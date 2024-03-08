@@ -1,0 +1,23 @@
+{
+	"name": "ethan-ui",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "node scripts/build.mjs"
+	},
+	"peerDependencies": {
+		"typescript": "^5.4.2"
+	},
+	"devDependencies": {
+		"@rollup/plugin-typescript": "^11.1.6",
+		"prettier": "^3.2.5",
+		"rollup": "^4.12.1",
+		"tslib": "^2.6.2",
+		"typescript": "^5.4.2"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"type": "module"
+}
