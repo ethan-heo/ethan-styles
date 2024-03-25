@@ -1,23 +1,39 @@
 {
-	"name": "ethan-ui",
+	"name": "@ethan-heo/ui",
+	"description": "Ethan custom ui",
 	"version": "1.0.0",
-	"main": "index.js",
+	"type": "module",
+	"module": "./dist/index.esm.js",
+	"main": "./dist/index.esm.js",
 	"license": "MIT",
 	"scripts": {
 		"build": "node scripts/build.mjs"
 	},
 	"peerDependencies": {
+		"react": "^16.13.0 || ^17.0.0 || ^18.0.0",
 		"typescript": "^5.4.2"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.24.3",
+		"@babel/preset-env": "^7.24.3",
+		"@babel/preset-react": "^7.24.1",
+		"@rollup/plugin-babel": "^6.0.4",
 		"@rollup/plugin-typescript": "^11.1.6",
+		"@types/react": "^16.13.0",
+		"@types/react-dom": "^17.0.0",
+		"postcss": "^8.4.38",
 		"prettier": "^3.2.5",
 		"rollup": "^4.12.1",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-postcss": "^4.0.2",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.2"
 	},
 	"engines": {
 		"node": ">=20"
 	},
-	"type": "module"
+	"dependencies": {
+		"react": "^16.13.0",
+		"react-dom": "^16.13.0"
+	}
 }
