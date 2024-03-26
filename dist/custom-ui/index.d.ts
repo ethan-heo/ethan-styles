@@ -1,4 +1,4 @@
-import Button from "./Button/Button.custom";
+import Button from "../Button/Button.custom";
 declare const els: {
     Button: typeof Button;
 };

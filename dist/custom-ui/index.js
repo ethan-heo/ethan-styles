@@ -16,4 +16,4 @@ function defineCustomElements(element) {
 }
 
 export { defineCustomElements as default };
-//# sourceMappingURL=index.esm.js.map
+//# sourceMappingURL=index.js.map

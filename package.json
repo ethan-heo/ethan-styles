@@ -3,11 +3,11 @@
 	"description": "Ethan custom ui",
 	"version": "1.0.0",
 	"type": "module",
-	"module": "./dist/index.esm.js",
-	"main": "./dist/index.esm.js",
 	"license": "MIT",
 	"scripts": {
-		"build": "node scripts/build.mjs"
+		"build": "node scripts/build.mjs",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	},
 	"peerDependencies": {
 		"react": "^16.13.0 || ^17.0.0 || ^18.0.0",
@@ -17,8 +17,17 @@
 		"@babel/core": "^7.24.3",
 		"@babel/preset-env": "^7.24.3",
 		"@babel/preset-react": "^7.24.1",
+		"@chromatic-com/storybook": "^1.2.25",
 		"@rollup/plugin-babel": "^6.0.4",
 		"@rollup/plugin-typescript": "^11.1.6",
+		"@storybook/addon-essentials": "^8.0.4",
+		"@storybook/addon-interactions": "^8.0.4",
+		"@storybook/addon-links": "^8.0.4",
+		"@storybook/addon-onboarding": "^8.0.4",
+		"@storybook/blocks": "^8.0.4",
+		"@storybook/react": "^8.0.4",
+		"@storybook/react-vite": "^8.0.4",
+		"@storybook/test": "^8.0.4",
 		"@types/react": "^16.13.0",
 		"@types/react-dom": "^17.0.0",
 		"postcss": "^8.4.38",
@@ -26,8 +35,10 @@
 		"rollup": "^4.12.1",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-postcss": "^4.0.2",
+		"storybook": "^8.0.4",
 		"tslib": "^2.6.2",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"vite": "^5.2.6"
 	},
 	"engines": {
 		"node": ">=20"
@@ -35,5 +46,8 @@
 	"dependencies": {
 		"react": "^16.13.0",
 		"react-dom": "^16.13.0"
+	},
+	"resolutions": {
+		"jackspeak": "2.1.1"
 	}
 }
