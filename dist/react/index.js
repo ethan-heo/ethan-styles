@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react';
 
 function Button() {
-	return React.createElement(
-		"button",
-		{ className: "button" },
-		"hello!~~ world",
-	);
+    return React.createElement("button", { className: "button" }, "hell!o world~");
 }
 
 export { Button };

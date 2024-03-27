@@ -1,71 +1,58 @@
-import { rollup } from "rollup";
-import path from "../configs/path.config.mjs";
-import typescript from "@rollup/plugin-typescript";
-import babel from "@rollup/plugin-babel";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import postcss from "rollup-plugin-postcss";
+import { rollup, watch } from "rollup";
+import rollupOptions from "../configs/rollup.config.mjs";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 
-const options = [
-	{
-		input: path.lib + `/react/index.ts`,
-		output: {
-			dir: path.dist,
-			entryFileNames: `react/index.js`,
-			format: `esm`,
-			sourcemap: true,
-		},
-		plugins: [
-			babel({
-				babelHelpers: "bundled",
-				presets: ["@babel/preset-env", "@babel/preset-react"],
-			}),
-			typescript({
-				tsconfig: "./tsconfig.react.json",
-				declaration: true,
-				declarationDir: path.dist,
-			}),
-			peerDepsExternal(),
-			postcss({
-				// modules: true,
-				extract: path.dist + `/styles.css`,
-			}),
-		],
-	},
-	{
-		input: path.lib + `/custom-ui/index.ts`,
-		output: {
-			dir: path.dist,
-			entryFileNames: `custom-ui/index.js`,
-			format: `esm`,
-			sourcemap: true,
-		},
-		plugins: [
-			babel({
-				babelHelpers: "bundled",
-				presets: ["@babel/preset-env"],
-			}),
-			typescript({
-				tsconfig: "./tsconfig.custom-ui.json",
-				declaration: true,
-				declarationDir: path.dist,
-			}),
-			postcss({
-				// modules: true,
-				extract: path.dist + `/styles.css`,
-			}),
-		],
-	},
-];
+const bundlers = [];
+const options = [rollupOptions.reactOption, rollupOptions.customUiOption];
+const argv = yargs(hideBin(process.argv)).parse();
+let watcher;
 
 try {
-	for (const option of options) {
-		const bundle = await rollup(option);
+	if (argv.watch) {
+		watcher = watch(
+			options.map((option) => ({
+				...option,
+				watch: rollupOptions.watchOption,
+			})),
+		);
 
-		await bundle.write(option.output);
-		await bundle.close();
+		watcher.on("event", (e) => {
+			switch (e.code) {
+				case "START":
+					console.log("Build started...");
+					break;
+				case "BUNDLE_START":
+					console.log(`Building ${e.input}...`);
+					break;
+				case "BUNDLE_END":
+					console.log(`Finished building ${e.input} in ${e.duration}ms.`);
+					break;
+				case "END":
+					console.log("Build completed.");
+					break;
+				case "ERROR":
+				case "FATAL":
+					throw e.error;
+			}
+		});
+	} else {
+		for (const option of options) {
+			const bundle = await rollup(option);
+
+			await bundle.write(option.output);
+
+			bundlers.push(bundle);
+		}
+
+		bundlers.forEach(async (bundler) => await bundler.close());
+		console.log(`Build success!`);
 	}
-
-	console.log(`Build success!`);
 } catch (e) {
 	console.error(e);
+	if (argv.watch) {
+		watcher.close();
+	} else {
+		bundlers.forEach(async (bundler) => await bundler.close());
+	}
 }
