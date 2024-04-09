@@ -1,4 +1,4 @@
 {
 	"extends": ["./tsconfig.json"],
-	"include": ["./lib/custom-ui/index.ts"]
+	"include": ["./src/custom-ui/index.ts"]
 }

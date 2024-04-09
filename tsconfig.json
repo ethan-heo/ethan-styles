@@ -15,12 +15,17 @@
 		"jsx": "react" /* Specify what JSX code is generated. */,
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
 		"paths": {
-			"@react-ui": ["./dist/react"],
-			"@react-ui/*": ["./dist/react/*"],
-			"@custom-ui": ["./dist/custom-ui"],
-			"@custom-ui/*": ["./dist/custom-ui/*"]
+			"@react-ui": ["./lib/react"],
+			"@react-ui/*": ["./lib/react/*"],
+			"@custom-ui": ["./lib/custom-ui"],
+			"@custom-ui/*": ["./lib/custom-ui/*"]
 		}
 	},
-	"include": ["./lib/**/*.tsx"],
-	"exclude": ["node_modules", "dist/**/*", "README.md"]
+	"include": [
+		"src/**/*.tsx",
+		"src/**/*.ts",
+		"./stories/**/*.tsx",
+		"./stories/**/*.ts"
+	],
+	"exclude": ["node_modules", "README.md"]
 }
