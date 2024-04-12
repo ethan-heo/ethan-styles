@@ -1,0 +1,89 @@
+{
+	"text": {
+		"heading-1": {
+			"$type": "heading",
+			"$value": {
+				"font-size": "{font-size.xxl}",
+				"font-weight": "{font-weight.bold}",
+				"line-height": "{line-height.140}"
+			}
+		},
+		"heading-2": {
+			"$type": "heading",
+			"$value": {
+				"font-size": "{font-size.xl}",
+				"font-weight": "{font-weight.bold}",
+				"line-height": "{line-height.140}"
+			}
+		},
+		"heading-3": {
+			"$type": "heading",
+			"$value": {
+				"font-size": "{font-size.lg}",
+				"font-weight": "{font-weight.bold}",
+				"line-height": "{line-height.140}"
+			}
+		},
+		"body": {
+			"$type": "text",
+			"$value": {
+				"font-size": "{font-size.md}",
+				"font-weight": "{font-weight.medium}",
+				"line-height": "{line-height.160}"
+			}
+		},
+		"caption": {
+			"$type": "text",
+			"$value": {
+				"font-size": "{font-size.sm}",
+				"font-weight": "{font-weight.light}",
+				"line-height": "{line-height.140}"
+			}
+		},
+		"label": {
+			"$type": "text",
+			"$value": {
+				"font-size": "{font-size.sm}",
+				"font-weight": "{font-weight.light}",
+				"line-height": "{line-height.140}"
+			}
+		}
+	},
+	"color": {
+		"primary": {
+			"$description": "주요 브랜드 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.red.4}"
+		},
+		"secondary": {
+			"$description": "주요 브랜드 색상을 보안합니다.",
+			"$type": "color",
+			"$value": "{color.black.8}"
+		},
+		"success": {
+			"$description": "작업 성공에 대한 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.green.5}"
+		},
+		"error": {
+			"$description": "작업 실패에 대한 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.red.2}"
+		},
+		"warning": {
+			"$description": "주의를 요구할 때에 대한 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.yellow.5}"
+		},
+		"info": {
+			"$description": "정보 혹은 팁을 제공할 때에 대한 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.blue.3}"
+		},
+		"text": {
+			"$description": "텍스트의 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.black.1}"
+		}
+	}
+}
