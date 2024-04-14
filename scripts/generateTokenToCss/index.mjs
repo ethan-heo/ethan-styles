@@ -48,7 +48,7 @@ themes.forEach(async (theme) => {
 
 				tokenMap.set(
 					`${tokenNames.join("-")}-${_tokenName}`,
-					parseToken(_tokenValue.$type, _tokenValue.$value)(baseToken),
+					parseToken(_tokenValue, baseToken),
 				);
 				stack.pop();
 			}

@@ -1,6 +1,6 @@
 import getType from "./utils/getType.mjs";
 
-export const formatBoxShadowToken = (tokenValue) => (parser) => {
+const formatBoxShadowToken = (tokenValue, parser) => {
 	const tokenValueType = getType(tokenValue);
 	const expression = ["offsetX", "offsetY", "blur", "spread"];
 
@@ -22,7 +22,7 @@ export const formatBoxShadowToken = (tokenValue) => (parser) => {
 	}
 };
 
-export const formatTextToken = (tokenValue) => (parser) => {
+const formatTextToken = (tokenValue, parser) => {
 	return Object.entries(tokenValue)
 		.map(([name, value]) => {
 			return `${name}: ${parser(value)};`;
@@ -30,26 +30,43 @@ export const formatTextToken = (tokenValue) => (parser) => {
 		.join("\n");
 };
 
-export const formatFontWeightToken = (tokenValue) => (parser) => {
-	const value = parser(tokenValue);
-
-	return `font-weight: ${value};`;
+const formatFontWeightToken = (tokenValue, parser) => {
+	return `font-weight: ${parser(tokenValue)};`;
 };
 
-export const formatColorToken = (tokenValue) => (parser) => {
-	const value = parser(tokenValue);
-
-	return `color: ${value};`;
+const formatColorToken = (tokenValue, parser) => {
+	return `color: ${parser(tokenValue)};`;
 };
 
-export const formatLineHeightToken = (tokenValue) => (parser) => {
-	const value = parser(tokenValue);
-
-	return `line-height: ${value};`;
+const formatLineHeightToken = (tokenValue, parser) => {
+	return `line-height: ${parser(tokenValue)};`;
 };
 
-export const formatMarginToken = (tokenValue) => (parser) => {
-	const value = parser(tokenValue);
-
-	return `margin: ${value};`;
+const formatMarginToken = (tokenValue, parser) => {
+	return `margin: ${parser(tokenValue)};`;
 };
+
+const formatFontSizeToken = (tokenValue, parser) => {
+	return `font-size: ${parser(tokenValue)};`;
+};
+
+const formatToken = (token, parser) => {
+	const formatter = (() =>
+		({
+			boxShadow: formatBoxShadowToken,
+			text: formatTextToken,
+			fontWeight: formatFontWeightToken,
+			fontSize: formatFontSizeToken,
+			color: formatColorToken,
+			lineHeight: formatLineHeightToken,
+			margin: formatMarginToken,
+		})[token.$type])();
+
+	if (getType(formatter) === "undefined") {
+		throw new Error(`Formatter가 존재하지 않습니다. [${token.$type}]`);
+	}
+
+	return formatter(token.$value, parser);
+};
+
+export default formatToken;

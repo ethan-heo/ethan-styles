@@ -348,7 +348,7 @@
 	"box-shadow": {
 		"bottom-right": {
 			"low": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "0.5px",
@@ -371,7 +371,7 @@
 				]
 			},
 			"medium": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "0.5px",
@@ -400,7 +400,7 @@
 				]
 			},
 			"high": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "0.5px",
@@ -455,7 +455,7 @@
 		},
 		"bottom-left": {
 			"low": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "-0.5px",
@@ -478,7 +478,7 @@
 				]
 			},
 			"medium": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "-0.5px",
@@ -507,7 +507,7 @@
 				]
 			},
 			"high": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "-0.5px",
@@ -562,7 +562,7 @@
 		},
 		"top-right": {
 			"low": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "0.5px",
@@ -585,7 +585,7 @@
 				]
 			},
 			"medium": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "0.5px",
@@ -614,7 +614,7 @@
 				]
 			},
 			"high": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "0.5px",
@@ -669,7 +669,7 @@
 		},
 		"top-left": {
 			"low": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "-0.5px",
@@ -692,7 +692,7 @@
 				]
 			},
 			"medium": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "-0.5px",
@@ -721,7 +721,7 @@
 				]
 			},
 			"high": {
-				"$type": "shadow",
+				"$type": "boxShadow",
 				"$value": [
 					{
 						"offsetX": "-0.5px",

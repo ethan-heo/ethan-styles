@@ -1,7 +1,7 @@
 {
 	"text": {
 		"heading-1": {
-			"$type": "heading",
+			"$type": "text",
 			"$value": {
 				"font-size": "{font-size.xxl}",
 				"font-weight": "{font-weight.bold}",
@@ -9,7 +9,7 @@
 			}
 		},
 		"heading-2": {
-			"$type": "heading",
+			"$type": "text",
 			"$value": {
 				"font-size": "{font-size.xl}",
 				"font-weight": "{font-weight.bold}",
@@ -17,7 +17,7 @@
 			}
 		},
 		"heading-3": {
-			"$type": "heading",
+			"$type": "text",
 			"$value": {
 				"font-size": "{font-size.lg}",
 				"font-weight": "{font-weight.bold}",
