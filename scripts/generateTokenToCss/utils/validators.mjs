@@ -1,7 +1,10 @@
 import getType from "./getType.mjs";
 
 export const validateTokenObj = (obj) => {
-	return !["$type", "$value"].some((key) => getType(obj[key]) === "undefined");
+	return (
+		getType(obj) === "object" &&
+		!["$type", "$value"].some((key) => getType(obj[key]) === "undefined")
+	);
 };
 
 export const validateTokenValue = (value) => {

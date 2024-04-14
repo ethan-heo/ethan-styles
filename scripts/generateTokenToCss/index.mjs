@@ -3,7 +3,6 @@ import lightThemeToken from "../../design-token/light.theme.token.json" assert {
 import fs from "fs/promises";
 import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
-import getType from "./utils/getType.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
 
 const themes = [
@@ -33,7 +32,7 @@ themes.forEach(async (theme) => {
 		while (stack.length) {
 			const [_tokenName, _tokenValue] = currentTarget;
 
-			if (getType(_tokenValue) === "object" && !validateTokenObj(_tokenValue)) {
+			if (!validateTokenObj(_tokenValue)) {
 				if (tokenNames.length > 1) {
 					tokenNames.pop();
 				}
