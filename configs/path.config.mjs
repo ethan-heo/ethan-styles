@@ -5,4 +5,5 @@ const __dirname = path.resolve();
 export default {
 	lib: path.resolve(__dirname, "lib"),
 	src: path.resolve(__dirname, "src"),
+	token: path.resolve(__dirname, "src/token"),
 };
