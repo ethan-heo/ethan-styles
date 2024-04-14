@@ -27,7 +27,7 @@ const formatTextToken = (tokenValue, parser) => {
 		.map(([name, value]) => {
 			return `${name}: ${parser(value)};`;
 		})
-		.join("\n");
+		.join("");
 };
 
 const formatFontWeightToken = (tokenValue, parser) => {
