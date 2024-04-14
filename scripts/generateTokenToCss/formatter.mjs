@@ -12,9 +12,9 @@ export const formatBoxShadowToken = (tokenValue) => (parser) => {
 
 	switch (true) {
 		case tokenValueType === "array":
-			return tokenValue.map(formatter).join(", ");
+			return `box-shadow: ${tokenValue.map(formatter).join(", ")};`;
 		case tokenValueType === "object":
-			return formatter(tokenValue);
+			return `box-shadow: ${formatter(tokenValue)};`;
 		default:
 			throw new TypeError(
 				`Shadow token의 타입은 Array 또는 Object 형식만 허용합니다.`,
@@ -28,4 +28,28 @@ export const formatTextToken = (tokenValue) => (parser) => {
 			return `${name}: ${parser(value)};`;
 		})
 		.join("\n");
+};
+
+export const formatFontWeightToken = (tokenValue) => (parser) => {
+	const value = parser(tokenValue);
+
+	return `font-weight: ${value};`;
+};
+
+export const formatColorToken = (tokenValue) => (parser) => {
+	const value = parser(tokenValue);
+
+	return `color: ${value};`;
+};
+
+export const formatLineHeightToken = (tokenValue) => (parser) => {
+	const value = parser(tokenValue);
+
+	return `line-height: ${value};`;
+};
+
+export const formatMarginToken = (tokenValue) => (parser) => {
+	const value = parser(tokenValue);
+
+	return `margin: ${value};`;
 };

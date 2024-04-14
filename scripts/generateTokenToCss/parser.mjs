@@ -1,19 +1,32 @@
-import { formatBoxShadowToken, formatTextToken } from "./formatter.mjs";
+import {
+	formatBoxShadowToken,
+	formatColorToken,
+	formatFontWeightToken,
+	formatLineHeightToken,
+	formatMarginToken,
+	formatTextToken,
+} from "./formatter.mjs";
 import { validateTokenObj } from "./utils/validators.mjs";
 
 const parseToken = (tokenType, tokenValue) => (baseToken) => {
 	switch (tokenType) {
 		case `color`:
-		case `demention`:
+			return formatColorToken(tokenValue)(parseTokenValue);
+		case `fontSize`:
+			return formatFontWeightToken(tokenValue)(parseTokenValue);
+		case `margin`:
+			return formatMarginToken(tokenValue)(parseTokenValue);
+		case `lineHeight`:
+			return formatLineHeightToken(tokenValue)(parseTokenValue);
 		case `fontWeight`:
-		case `number`:
-			return parseTokenValue(tokenValue);
+			return formatFontWeightToken(tokenValue)(parseTokenValue);
 		case `shadow`:
 			return formatBoxShadowToken(tokenValue)(parseTokenValue);
 		case `heading`:
 		case `text`:
 			return formatTextToken(tokenValue)(parseTokenValue);
 		default:
+			throw new TypeError(`정의된 토큰이 아닙니다. ${tokenType}`);
 	}
 
 	function parseTokenValue(tokenValue) {
