@@ -9,6 +9,8 @@ import {
 import { validateTokenObj } from "./utils/validators.mjs";
 
 const parseToken = (tokenType, tokenValue) => (baseToken) => {
+	const TOKEN_REF_REGEXP = /\{[^{}]*\}/g;
+
 	switch (tokenType) {
 		case `color`:
 			return formatColorToken(tokenValue)(parseTokenValue);
@@ -30,9 +32,7 @@ const parseToken = (tokenType, tokenValue) => (baseToken) => {
 	}
 
 	function parseTokenValue(tokenValue) {
-		const isTokenRef = (tokenValue) => /(^\{).*?(\}$)/.test(tokenValue);
-
-		if (isTokenRef(tokenValue)) {
+		if (TOKEN_REF_REGEXP.test(tokenValue)) {
 			return parseTokenRef(tokenValue);
 		} else {
 			return tokenValue;
@@ -40,18 +40,20 @@ const parseToken = (tokenType, tokenValue) => (baseToken) => {
 	}
 
 	function parseTokenRef(tokenRef) {
-		let tokenKeys = tokenRef.slice(1, tokenRef.length - 1).split(".");
+		return tokenRef.replace(TOKEN_REF_REGEXP, (matcher) => {
+			let tokenKeys = matcher.slice(1, matcher.length - 1).split(".");
 
-		const result = tokenKeys.reduce(
-			(_baseToken, tokenKey) => _baseToken[tokenKey],
-			baseToken,
-		);
+			const result = tokenKeys.reduce(
+				(_baseToken, tokenKey) => _baseToken[tokenKey],
+				baseToken,
+			);
 
-		if (!validateTokenObj(result)) {
-			throw new TypeError(`토큰값이 존재하지 않습니다. [${tokenRef}]`);
-		}
+			if (!validateTokenObj(result)) {
+				throw new TypeError(`토큰값이 존재하지 않습니다. [${tokenRef}]`);
+			}
 
-		return result.$value;
+			return result.$value;
+		});
 	}
 };
 
