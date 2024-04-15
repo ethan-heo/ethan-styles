@@ -1,6 +1,7 @@
+import fs from "fs/promises";
+import * as prettier from "prettier";
 import baseToken from "../../design-token/design.token.json" assert { type: "json" };
 import lightThemeToken from "../../design-token/light.theme.token.json" assert { type: "json" };
-import fs from "fs/promises";
 import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
@@ -60,6 +61,10 @@ themes.forEach(async (theme) => {
 
 	tokenMap.forEach((value, name) => {
 		contents += `.${name}{${value}}`;
+	});
+
+	contents = await prettier.format(contents, {
+		parser: "css",
 	});
 
 	await fs.mkdir(OUTPUT_PATH, { recursive: true });
