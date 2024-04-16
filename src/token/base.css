@@ -242,98 +242,38 @@
   margin: 8px;
 }
 .box-shadow-top-left-high {
-  box-shadow:
-    -0.5px -0.5px 0.8px,
-    -2.9px -2.8px 4.5px -0.4px,
-    -5.3px -5.3px 8.4px -0.7px,
-    -8.8px -8.7px 13.9px -1.1px,
-    -14px -13.9px 22.2px -1.4px,
-    -21.9px -21.7px 34.7px -1.8px,
-    -33.3px -33px 52.7px -2.1px,
-    -49.1px -48.7px 77.8px -2.5px;
+  box-shadow: -50px -50px 80px -3px;
 }
 .box-shadow-top-left-medium {
-  box-shadow:
-    -0.5px -0.5px 0.8px,
-    -1.6px -1.6px 2.5px -0.8px,
-    -4px -4px 6.4px -1.7px,
-    -9.8px -9.7px 15.5px -2.5px;
+  box-shadow: -10px -10px 15px -3px;
 }
 .box-shadow-top-left-low {
-  box-shadow:
-    -0.5px -0.5px 0.8px,
-    -0.8px -0.8px 1.3px -1.2px,
-    -2px -1.9px 3.1px -2.5px;
+  box-shadow: -2px -2px 3px -3px;
 }
 .box-shadow-top-right-high {
-  box-shadow:
-    0.5px -0.5px 0.8px,
-    2.8px -2.9px 4.5px -0.4px,
-    5.2px -5.4px 8.4px -0.7px,
-    8.6px -8.8px 13.8px -1.1px,
-    13.7px -14.1px 22.1px -1.4px,
-    21.4px -22px 34.5px -1.8px,
-    32.5px -33.4px 52.4px -2.1px,
-    47.9px -49.2px 77.2px -2.5px;
+  box-shadow: 50px -50px 80px -3px;
 }
 .box-shadow-top-right-medium {
-  box-shadow:
-    0.5px -0.5px 0.8px,
-    1.6px -1.6px 2.5px -0.8px,
-    3.9px -4px 6.3px -1.7px,
-    9.6px -9.8px 15.4px -2.5px;
+  box-shadow: 10px -10px 15px -3px;
 }
 .box-shadow-top-right-low {
-  box-shadow:
-    0.5px -0.5px 0.8px,
-    0.8px -0.8px 1.3px -1.2px,
-    1.9px -2px 3.1px -2.5px;
+  box-shadow: 2px -2px 3px -3px;
 }
 .box-shadow-bottom-left-high {
-  box-shadow:
-    -0.5px 0.5px 0.8px,
-    -2.9px 2.8px 4.5px -0.4px,
-    -5.3px 5.3px 8.4px -0.7px,
-    -8.8px 8.7px 13.9px -1.1px,
-    -14px 13.8px 22.1px -1.4px,
-    -21.9px 21.6px 34.6px -1.8px,
-    -33.3px 32.8px 52.6px -2.1px,
-    -49.1px 48.4px 77.6px -2.5px;
+  box-shadow: -50px 50px 80px -3px;
 }
 .box-shadow-bottom-left-medium {
-  box-shadow:
-    -0.5px 0.5px 0.8px,
-    -1.6px 1.6px 2.5px -0.8px,
-    -4px 4px 6.4px -1.7px,
-    -9.8px 9.7px 15.5px -2.5px;
+  box-shadow: -10px 10px 15px -3px;
 }
 .box-shadow-bottom-left-low {
-  box-shadow:
-    -0.5px -0.5px 0.8px,
-    -0.8px -0.8px 1.3px -1.2px,
-    -2px -1.9px 3.1px -2.5px;
+  box-shadow: -2px -2px 3px -3px;
 }
 .box-shadow-bottom-right-high {
-  box-shadow:
-    0.5px 0.5px 0.8px,
-    2.9px 2.9px 4.6px -0.4px,
-    5.5px 5.3px 8.6px -0.7px,
-    9px 8.8px 14.2px -1.1px,
-    14.4px 14px 22.6px -1.4px,
-    22.5px 21.9px 35.3px -1.8px,
-    34.1px 33.3px 43.6px -2.1px,
-    50.3px 49px 79px -2.5px;
+  box-shadow: 50px 50px 80px -3px;
 }
 .box-shadow-bottom-right-medium {
-  box-shadow:
-    0.5px 0.5px 0.8px,
-    1.7px 1.6px 2.6px -0.8px,
-    4.1px 4px 6.4px -1.7px,
-    10.1px 9.8px 15.8px -2.5px;
+  box-shadow: 10px 10px 15px -3px;
 }
 .box-shadow-bottom-right-low {
-  box-shadow:
-    0.5px 0.5px 0.8px,
-    0.8px 0.8px 1.3px -1.2px,
-    2px 2px 3.2px -2.5px;
+  box-shadow: 2px 2px 3px -3px;
 }

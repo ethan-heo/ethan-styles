@@ -10,16 +10,13 @@ const formatBoxShadowToken = (tokenValue, parser) => {
 			.filter(Boolean)
 			.join(" ");
 
-	switch (true) {
-		case tokenValueType === "array":
-			return `box-shadow: ${tokenValue.map(formatter).join(", ")};`;
-		case tokenValueType === "object":
-			return `box-shadow: ${formatter(tokenValue)};`;
-		default:
-			throw new TypeError(
-				`Shadow token의 타입은 Array 또는 Object 형식만 허용합니다.`,
-			);
+	if (tokenValueType !== "object") {
+		throw new TypeError(
+			`Shadow token의 타입은 Array 또는 Object 형식만 허용합니다.`,
+		);
 	}
+
+	return `box-shadow: ${formatter(tokenValue)};`;
 };
 
 const formatTextToken = (tokenValue, parser) => {

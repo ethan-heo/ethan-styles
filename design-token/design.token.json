@@ -349,429 +349,117 @@
 		"bottom-right": {
 			"low": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "0.5px",
-						"offsetY": "0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "0.8px",
-						"offsetY": "0.8px",
-						"blur": "1.3px",
-						"spread": "-1.2px"
-					},
-					{
-						"offsetX": "2px",
-						"offsetY": "2px",
-						"blur": "3.2px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "2px",
+					"offsetY": "2px",
+					"blur": "3px",
+					"spread": "-3px"
+				}
 			},
 			"medium": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "0.5px",
-						"offsetY": "0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "1.7px",
-						"offsetY": "1.6px",
-						"blur": "2.6px",
-						"spread": "-0.8px"
-					},
-					{
-						"offsetX": "4.1px",
-						"offsetY": "4px",
-						"blur": "6.4px",
-						"spread": "-1.7px"
-					},
-					{
-						"offsetX": "10.1px",
-						"offsetY": "9.8px",
-						"blur": "15.8px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "10px",
+					"offsetY": "10px",
+					"blur": "15px",
+					"spread": "-3px"
+				}
 			},
 			"high": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "0.5px",
-						"offsetY": "0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "2.9px",
-						"offsetY": "2.9px",
-						"blur": "4.6px",
-						"spread": "-0.4px"
-					},
-					{
-						"offsetX": "5.5px",
-						"offsetY": "5.3px",
-						"blur": "8.6px",
-						"spread": "-0.7px"
-					},
-					{
-						"offsetX": "9px",
-						"offsetY": "8.8px",
-						"blur": "14.2px",
-						"spread": "-1.1px"
-					},
-					{
-						"offsetX": "14.4px",
-						"offsetY": "14px",
-						"blur": "22.6px",
-						"spread": "-1.4px"
-					},
-					{
-						"offsetX": "22.5px",
-						"offsetY": "21.9px",
-						"blur": "35.3px",
-						"spread": "-1.8px"
-					},
-					{
-						"offsetX": "34.1px",
-						"offsetY": "33.3px",
-						"blur": "43.6px",
-						"spread": "-2.1px"
-					},
-					{
-						"offsetX": "50.3px",
-						"offsetY": "49px",
-						"blur": "79px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "50px",
+					"offsetY": "50px",
+					"blur": "80px",
+					"spread": "-3px"
+				}
 			}
 		},
 		"bottom-left": {
 			"low": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "-0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "-0.8px",
-						"offsetY": "-0.8px",
-						"blur": "1.3px",
-						"spread": "-1.2px"
-					},
-					{
-						"offsetX": "-2px",
-						"offsetY": "-1.9px",
-						"blur": "3.1px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "-2px",
+					"offsetY": "-2px",
+					"blur": "3px",
+					"spread": "-3px"
+				}
 			},
 			"medium": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "-0.5px",
-						"offsetY": "0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "-1.6px",
-						"offsetY": "1.6px",
-						"blur": "2.5px",
-						"spread": "-0.8px"
-					},
-					{
-						"offsetX": "-4px",
-						"offsetY": "4px",
-						"blur": "6.4px",
-						"spread": "-1.7px"
-					},
-					{
-						"offsetX": "-9.8px",
-						"offsetY": "9.7px",
-						"blur": "15.5px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "-10px",
+					"offsetY": "10px",
+					"blur": "15px",
+					"spread": "-3px"
+				}
 			},
 			"high": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "-0.5px",
-						"offsetY": "0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "-2.9px",
-						"offsetY": "2.8px",
-						"blur": "4.5px",
-						"spread": "-0.4px"
-					},
-					{
-						"offsetX": "-5.3px",
-						"offsetY": "5.3px",
-						"blur": "8.4px",
-						"spread": "-0.7px"
-					},
-					{
-						"offsetX": "-8.8px",
-						"offsetY": "8.7px",
-						"blur": "13.9px",
-						"spread": "-1.1px"
-					},
-					{
-						"offsetX": "-14px",
-						"offsetY": "13.8px",
-						"blur": "22.1px",
-						"spread": "-1.4px"
-					},
-					{
-						"offsetX": "-21.9px",
-						"offsetY": "21.6px",
-						"blur": "34.6px",
-						"spread": "-1.8px"
-					},
-					{
-						"offsetX": "-33.3px",
-						"offsetY": "32.8px",
-						"blur": "52.6px",
-						"spread": "-2.1px"
-					},
-					{
-						"offsetX": "-49.1px",
-						"offsetY": "48.4px",
-						"blur": "77.6px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "-50px",
+					"offsetY": "50px",
+					"blur": "80px",
+					"spread": "-3px"
+				}
 			}
 		},
 		"top-right": {
 			"low": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "0.8px",
-						"offsetY": "-0.8px",
-						"blur": "1.3px",
-						"spread": "-1.2px"
-					},
-					{
-						"offsetX": "1.9px",
-						"offsetY": "-2px",
-						"blur": "3.1px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "2px",
+					"offsetY": "-2px",
+					"blur": "3px",
+					"spread": "-3px"
+				}
 			},
 			"medium": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "1.6px",
-						"offsetY": "-1.6px",
-						"blur": "2.5px",
-						"spread": "-0.8px"
-					},
-					{
-						"offsetX": "3.9px",
-						"offsetY": "-4px",
-						"blur": "6.3px",
-						"spread": "-1.7px"
-					},
-					{
-						"offsetX": "9.6px",
-						"offsetY": "-9.8px",
-						"blur": "15.4px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "10px",
+					"offsetY": "-10px",
+					"blur": "15px",
+					"spread": "-3px"
+				}
 			},
 			"high": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "2.8px",
-						"offsetY": "-2.9px",
-						"blur": "4.5px",
-						"spread": "-0.4px"
-					},
-					{
-						"offsetX": "5.2px",
-						"offsetY": "-5.4px",
-						"blur": "8.4px",
-						"spread": "-0.7px"
-					},
-					{
-						"offsetX": "8.6px",
-						"offsetY": "-8.8px",
-						"blur": "13.8px",
-						"spread": "-1.1px"
-					},
-					{
-						"offsetX": "13.7px",
-						"offsetY": "-14.1px",
-						"blur": "22.1px",
-						"spread": "-1.4px"
-					},
-					{
-						"offsetX": "21.4px",
-						"offsetY": "-22px",
-						"blur": "34.5px",
-						"spread": "-1.8px"
-					},
-					{
-						"offsetX": "32.5px",
-						"offsetY": "-33.4px",
-						"blur": "52.4px",
-						"spread": "-2.1px"
-					},
-					{
-						"offsetX": "47.9px",
-						"offsetY": "-49.2px",
-						"blur": "77.2px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "50px",
+					"offsetY": "-50px",
+					"blur": "80px",
+					"spread": "-3px"
+				}
 			}
 		},
 		"top-left": {
 			"low": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "-0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "-0.8px",
-						"offsetY": "-0.8px",
-						"blur": "1.3px",
-						"spread": "-1.2px"
-					},
-					{
-						"offsetX": "-2px",
-						"offsetY": "-1.9px",
-						"blur": "3.1px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "-2px",
+					"offsetY": "-2px",
+					"blur": "3px",
+					"spread": "-3px"
+				}
 			},
 			"medium": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "-0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "-1.6px",
-						"offsetY": "-1.6px",
-						"blur": "2.5px",
-						"spread": "-0.8px"
-					},
-					{
-						"offsetX": "-4px",
-						"offsetY": "-4px",
-						"blur": "6.4px",
-						"spread": "-1.7px"
-					},
-					{
-						"offsetX": "-9.8px",
-						"offsetY": "-9.7px",
-						"blur": "15.5px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "-10px",
+					"offsetY": "-10px",
+					"blur": "15px",
+					"spread": "-3px"
+				}
 			},
 			"high": {
 				"$type": "boxShadow",
-				"$value": [
-					{
-						"offsetX": "-0.5px",
-						"offsetY": "-0.5px",
-						"blur": "0.8px",
-						"spread": ""
-					},
-					{
-						"offsetX": "-2.9px",
-						"offsetY": "-2.8px",
-						"blur": "4.5px",
-						"spread": "-0.4px"
-					},
-					{
-						"offsetX": "-5.3px",
-						"offsetY": "-5.3px",
-						"blur": "8.4px",
-						"spread": "-0.7px"
-					},
-					{
-						"offsetX": "-8.8px",
-						"offsetY": "-8.7px",
-						"blur": "13.9px",
-						"spread": "-1.1px"
-					},
-					{
-						"offsetX": "-14px",
-						"offsetY": "-13.9px",
-						"blur": "22.2px",
-						"spread": "-1.4px"
-					},
-					{
-						"offsetX": "-21.9px",
-						"offsetY": "-21.7px",
-						"blur": "34.7px",
-						"spread": "-1.8px"
-					},
-					{
-						"offsetX": "-33.3px",
-						"offsetY": "-33px",
-						"blur": "52.7px",
-						"spread": "-2.1px"
-					},
-					{
-						"offsetX": "-49.1px",
-						"offsetY": "-48.7px",
-						"blur": "77.8px",
-						"spread": "-2.5px"
-					}
-				]
+				"$value": {
+					"offsetX": "-50px",
+					"offsetY": "-50px",
+					"blur": "80px",
+					"spread": "-3px"
+				}
 			}
 		}
 	}
