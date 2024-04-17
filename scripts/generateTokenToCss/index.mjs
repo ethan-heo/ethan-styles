@@ -4,9 +4,10 @@ import baseToken from "../../design-token/design.token.json" assert { type: "jso
 import lightThemeToken from "../../design-token/light.theme.token.json" assert { type: "json" };
 import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
+import formatToken from "./formatter.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
 
-const formatTokenToCss = (token, parser) => {
+const generateTokenToCss = (token, formatter) => {
 	const tokenMap = new Map();
 
 	for (const [startTokenName, startTokenValue] of Object.entries(token)) {
@@ -25,7 +26,7 @@ const formatTokenToCss = (token, parser) => {
 				}
 				tokenMap.set(
 					`${tokenNames.join("-")}-${tokenName}`,
-					parser(tokenValue),
+					formatter(tokenValue),
 				);
 			} else {
 				if (tokenNames.length > 1) {
@@ -49,15 +50,18 @@ const formatTokenToCss = (token, parser) => {
 };
 
 const parser = parseToken(baseToken);
+const formatter = (token) => {
+	return formatToken(parser(token));
+};
 
 const tokens = [
 	{
 		fileName: "base",
-		css: formatTokenToCss(baseToken, parser),
+		css: generateTokenToCss(baseToken, formatter),
 	},
 	{
 		fileName: "light-theme",
-		css: formatTokenToCss(lightThemeToken, parser),
+		css: generateTokenToCss(lightThemeToken, formatter),
 	},
 ];
 const OUTPUT_PATH = path.token;
