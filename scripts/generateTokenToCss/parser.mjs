@@ -1,7 +1,7 @@
 import formatToken from "./formatter.mjs";
 import { validateTokenObj } from "./utils/validators.mjs";
 
-const parseToken = (token, baseToken) => {
+const parseToken = (baseToken) => (token) => {
 	const TOKEN_REF_REGEXP = /\{[^{}]*\}/g;
 
 	return formatToken(token, parseTokenValue);
