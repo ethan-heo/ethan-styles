@@ -19,7 +19,7 @@ const generateTokenToCss = (
 	for (const [startTokenName, startTokenValue] of Object.entries(token)) {
 		const tokenNames = [startTokenName];
 		let stack = Object.entries(startTokenValue);
-		let currentToken = stack[0];
+		let currentToken = stack.shift();
 
 		while (stack.length) {
 			const [tokenName, tokenValue] = currentToken;
