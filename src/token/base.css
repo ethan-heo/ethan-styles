@@ -1,231 +1,177 @@
-.color-white {
-  color: #ffffff;
-}
-.color-black-1 {
-  color: #000000;
-}
-.color-black-2 {
-  color: #1a1a1a;
-}
-.color-black-3 {
-  color: #333333;
-}
-.color-black-4 {
-  color: #4d4d4d;
-}
-.color-black-5 {
-  color: #666666;
-}
-.color-black-6 {
-  color: #808080;
-}
-.color-black-7 {
-  color: #999999;
-}
-.color-black-8 {
-  color: #b3b3b3;
-}
-.color-black-9 {
-  color: #cccccc;
-}
-.color-black-10 {
-  color: #e6e6e6;
-}
-.color-red-1 {
-  color: #ff0000;
-}
-.color-red-2 {
-  color: #ff1a1a;
-}
-.color-red-3 {
-  color: #ff3333;
-}
-.color-red-4 {
-  color: #ff4d4d;
-}
-.color-red-5 {
-  color: #ff6666;
-}
-.color-red-6 {
-  color: #ff8080;
-}
-.color-red-7 {
-  color: #ff9999;
-}
-.color-red-8 {
-  color: #ffb3b3;
-}
-.color-red-9 {
-  color: #ffcccc;
-}
-.color-red-10 {
-  color: #ffe6e6;
-}
-.color-blue-1 {
-  color: #0000ff;
-}
-.color-blue-2 {
-  color: #1a1aff;
-}
-.color-blue-3 {
-  color: #3333ff;
-}
-.color-blue-4 {
-  color: #4d4dff;
-}
-.color-blue-5 {
-  color: #6666ff;
-}
-.color-blue-6 {
-  color: #8080ff;
-}
-.color-blue-7 {
-  color: #9999ff;
-}
-.color-blue-8 {
-  color: #b3b3ff;
-}
-.color-blue-9 {
-  color: #ccccff;
-}
-.color-blue-10 {
-  color: #e6e6ff;
-}
-.color-green-1 {
-  color: #00ff00;
-}
-.color-green-2 {
-  color: #1aff1a;
-}
-.color-green-3 {
-  color: #33ff33;
-}
-.color-green-4 {
-  color: #4dff4d;
-}
-.color-green-5 {
-  color: #66ff66;
-}
-.color-green-6 {
-  color: #80ff80;
-}
-.color-green-7 {
-  color: #99ff99;
-}
-.color-green-8 {
-  color: #b3ffb3;
-}
-.color-green-9 {
-  color: #ccffcc;
-}
-.color-green-10 {
-  color: #e6ffe6;
-}
-.font-size-xs {
-  font-size: 8px;
-}
-.font-size-sm {
-  font-size: 12px;
-}
-.font-size-md {
-  font-size: 16px;
-}
-.font-size-lg {
-  font-size: 20px;
-}
-.font-size-xl {
-  font-size: 24px;
-}
-.font-weight-thin {
-  font-weight: 100;
-}
-.font-weight-extra-light {
-  font-weight: 200;
-}
-.font-weight-light {
-  font-weight: 300;
-}
-.font-weight-normal {
-  font-weight: 400;
-}
-.font-weight-medium {
-  font-weight: 500;
-}
-.font-weight-semi-bold {
-  font-weight: 600;
-}
-.font-weight-bold {
-  font-weight: 700;
-}
-.font-weight-extra-bold {
-  font-weight: 800;
-}
-.font-weight-black {
-  font-weight: 900;
-}
-.line-height-120 {
-  line-height: 1.2;
-}
-.line-height-140 {
-  line-height: 1.4;
-}
-.line-height-160 {
-  line-height: 1.6;
-}
-.spacing-8x-1 {
-  margin: 8px;
-}
-.spacing-8x-2 {
-  margin: 16px;
-}
-.spacing-8x-3 {
-  margin: 24px;
-}
-.spacing-8x-4 {
-  margin: 32px;
-}
-.spacing-8x-5 {
-  margin: 40px;
-}
-.spacing-8x-6 {
-  margin: 48px;
-}
-.spacing-8x-7 {
-  margin: 56px;
-}
-.spacing-8x-8 {
-  margin: 64px;
-}
-.spacing-8x-9 {
-  margin: 72px;
-}
-.spacing-8x-10 {
-  margin: 72px;
-}
-.box-shadow-bottom-right-low {
-  box-shadow: 2px 2px 3px -3px;
-}
-.box-shadow-bottom-right-medium {
-  box-shadow: 10px 10px 15px -3px;
-}
-.box-shadow-bottom-right-high {
-  box-shadow: 50px 50px 80px -3px;
-}
-.box-shadow-bottom-left-low {
-  box-shadow: -2px -2px 3px -3px;
-}
-.box-shadow-bottom-left-medium {
-  box-shadow: -10px 10px 15px -3px;
-}
-.box-shadow-bottom-left-high {
-  box-shadow: -50px 50px 80px -3px;
-}
-.box-shadow-top-right-low {
-  box-shadow: 2px -2px 3px -3px;
-}
-.box-shadow-top-right-medium {
-  box-shadow: 10px -10px 15px -3px;
-}
-.box-shadow-top-right-high {
-  box-shadow: 50px -50px 80px -3px;
+:root {
+  --color-white: #ffffff;
+  --color-white: #ffffff;
+  --color-black-1: #000000;
+  --color-black-2: #1a1a1a;
+  --color-black-3: #333333;
+  --color-black-4: #4d4d4d;
+  --color-black-5: #666666;
+  --color-black-6: #808080;
+  --color-black-7: #999999;
+  --color-black-8: #b3b3b3;
+  --color-black-9: #cccccc;
+  --color-black-10: #e6e6e6;
+  --color-red-1: #ff0000;
+  --color-red-2: #ff1a1a;
+  --color-red-3: #ff3333;
+  --color-red-4: #ff4d4d;
+  --color-red-5: #ff6666;
+  --color-red-6: #ff8080;
+  --color-red-7: #ff9999;
+  --color-red-8: #ffb3b3;
+  --color-red-9: #ffcccc;
+  --color-red-10: #ffe6e6;
+  --color-blue-1: #0000ff;
+  --color-blue-2: #1a1aff;
+  --color-blue-3: #3333ff;
+  --color-blue-4: #4d4dff;
+  --color-blue-5: #6666ff;
+  --color-blue-6: #8080ff;
+  --color-blue-7: #9999ff;
+  --color-blue-8: #b3b3ff;
+  --color-blue-9: #ccccff;
+  --color-blue-10: #e6e6ff;
+  --color-green-1: #00ff00;
+  --color-green-2: #1aff1a;
+  --color-green-3: #33ff33;
+  --color-green-4: #4dff4d;
+  --color-green-5: #66ff66;
+  --color-green-6: #80ff80;
+  --color-green-7: #99ff99;
+  --color-green-8: #b3ffb3;
+  --color-green-9: #ccffcc;
+  --color-green-10: #e6ffe6;
+  --font-size-xs: 8px;
+  --font-size-xs: 8px;
+  --font-size-sm: 12px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-weight-thin: 100;
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+  --line-height-120: 1.2;
+  --line-height-120: 1.2;
+  --line-height-140: 1.4;
+  --line-height-160: 1.6;
+  --spacing-8x-1: 8px;
+  --spacing-8x-2: 16px;
+  --spacing-8x-3: 24px;
+  --spacing-8x-4: 32px;
+  --spacing-8x-5: 40px;
+  --spacing-8x-6: 48px;
+  --spacing-8x-7: 56px;
+  --spacing-8x-8: 64px;
+  --spacing-8x-9: 72px;
+  --spacing-8x-10: 72px;
+  --padding-8x-1: 8px;
+  --padding-8x-2: 16px;
+  --padding-8x-3: 24px;
+  --padding-8x-4: 32px;
+  --padding-8x-5: 40px;
+  --padding-8x-6: 48px;
+  --padding-8x-7: 56px;
+  --padding-8x-8: 64px;
+  --padding-8x-9: 72px;
+  --padding-8x-10: 72px;
+  --margin-8x-1: 8px;
+  --margin-8x-2: 16px;
+  --margin-8x-3: 24px;
+  --margin-8x-4: 32px;
+  --margin-8x-5: 40px;
+  --margin-8x-6: 48px;
+  --margin-8x-7: 56px;
+  --margin-8x-8: 64px;
+  --margin-8x-9: 72px;
+  --margin-8x-10: 72px;
+  --box-shadow-bottom-right-low-offsetX: 2px;
+  --box-shadow-bottom-right-low-offsetY: 2px;
+  --box-shadow-bottom-right-low-blur: 3px;
+  --box-shadow-bottom-right-low-spread: -3px;
+  --box-shadow-bottom-right-medium-offsetX: 10px;
+  --box-shadow-bottom-right-medium-offsetY: 10px;
+  --box-shadow-bottom-right-medium-blur: 15px;
+  --box-shadow-bottom-right-medium-spread: -3px;
+  --box-shadow-bottom-right-high-offsetX: 50px;
+  --box-shadow-bottom-right-high-offsetY: 50px;
+  --box-shadow-bottom-right-high-blur: 80px;
+  --box-shadow-bottom-right-high-spread: -3px;
+  --box-shadow-bottom-right-low-offsetX: 2px;
+  --box-shadow-bottom-right-low-offsetY: 2px;
+  --box-shadow-bottom-right-low-blur: 3px;
+  --box-shadow-bottom-right-low-spread: -3px;
+  --box-shadow-bottom-right-medium-offsetX: 10px;
+  --box-shadow-bottom-right-medium-offsetY: 10px;
+  --box-shadow-bottom-right-medium-blur: 15px;
+  --box-shadow-bottom-right-medium-spread: -3px;
+  --box-shadow-bottom-right-high-offsetX: 50px;
+  --box-shadow-bottom-right-high-offsetY: 50px;
+  --box-shadow-bottom-right-high-blur: 80px;
+  --box-shadow-bottom-right-high-spread: -3px;
+  --box-shadow-bottom-left-low-offsetX: -2px;
+  --box-shadow-bottom-left-low-offsetY: -2px;
+  --box-shadow-bottom-left-low-blur: 3px;
+  --box-shadow-bottom-left-low-spread: -3px;
+  --box-shadow-bottom-left-medium-offsetX: -10px;
+  --box-shadow-bottom-left-medium-offsetY: 10px;
+  --box-shadow-bottom-left-medium-blur: 15px;
+  --box-shadow-bottom-left-medium-spread: -3px;
+  --box-shadow-bottom-left-high-offsetX: -50px;
+  --box-shadow-bottom-left-high-offsetY: 50px;
+  --box-shadow-bottom-left-high-blur: 80px;
+  --box-shadow-bottom-left-high-spread: -3px;
+  --box-shadow-top-right-low-offsetX: 2px;
+  --box-shadow-top-right-low-offsetY: -2px;
+  --box-shadow-top-right-low-blur: 3px;
+  --box-shadow-top-right-low-spread: -3px;
+  --box-shadow-top-right-medium-offsetX: 10px;
+  --box-shadow-top-right-medium-offsetY: -10px;
+  --box-shadow-top-right-medium-blur: 15px;
+  --box-shadow-top-right-medium-spread: -3px;
+  --box-shadow-top-right-high-offsetX: 50px;
+  --box-shadow-top-right-high-offsetY: -50px;
+  --box-shadow-top-right-high-blur: 80px;
+  --box-shadow-top-right-high-spread: -3px;
+  --border-radius-sm: 4px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-style-none: none;
+  --border-style-none: none;
+  --border-style-hidden: hidden;
+  --border-style-dotted: dotted;
+  --border-style-dashed: dashed;
+  --border-style-solid: solid;
+  --border-style-double: double;
+  --border-style-groove: groove;
+  --border-style-ridge: ridge;
+  --border-style-inset: inset;
+  --border-width-1: 1px;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-3: 3px;
+  --border-width-4: 4px;
+  --border-width-5: 5px;
+  --border-width-6: 6px;
+  --border-width-7: 7px;
+  --border-width-8: 8px;
+  --border-width-9: 9px;
+  --screen-mobile-v-max-width: 575px;
+  --screen-mobile-v-orientation: portrait;
+  --screen-mobile-v-max-width: 575px;
+  --screen-mobile-v-orientation: portrait;
+  --screen-mobile-o-min-width: 576px;
+  --screen-mobile-o-max-width: 767px;
+  --screen-mobile-o-orientation: landscape;
+  --screen-tablet-min-width: 768px;
+  --screen-tablet-max-width: 991px;
+  --screen-desktop-min-width: 992px;
+  --screen-desktop-max-width: 1199px;
 }

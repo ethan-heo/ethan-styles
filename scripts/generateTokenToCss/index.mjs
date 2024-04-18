@@ -7,8 +7,14 @@ import parseToken from "./parser.mjs";
 import formatToken from "./formatter.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
 
-const generateTokenToCss = (token, formatter) => {
-	const tokenMap = new Map();
+const generateTokenToCss = (
+	token,
+	formatter,
+	options = {
+		use: "variables", // variable, class
+	},
+) => {
+	const tokenList = [];
 
 	for (const [startTokenName, startTokenValue] of Object.entries(token)) {
 		const tokenNames = [startTokenName];
@@ -24,9 +30,13 @@ const generateTokenToCss = (token, formatter) => {
 						`유효하지 않은 토큰 오브젝트입니다.\n${JSON.stringify(_tokenValue, null, 2)}`,
 					);
 				}
-				tokenMap.set(
-					`${tokenNames.join("-")}-${tokenName}`,
-					formatter(tokenValue),
+
+				tokenList.push(
+					formatter({
+						name: `${tokenNames.join("-")}-${tokenName}`,
+						use: options.use,
+						token: tokenValue,
+					}),
 				);
 			} else {
 				if (tokenNames.length > 1) {
@@ -40,18 +50,19 @@ const generateTokenToCss = (token, formatter) => {
 		}
 	}
 
-	let result = "";
-
-	for (const [name, value] of tokenMap.entries()) {
-		result += `.${name}{${value}}`;
+	if (options.use === "variables") {
+		return `:root{${tokenList.join("")}}`;
 	}
 
-	return result;
+	return tokenList.join("");
 };
 
 const parser = parseToken(baseToken);
-const formatter = (token) => {
-	return formatToken(parser(token));
+const formatter = (options) => {
+	return formatToken({
+		...options,
+		token: parser(options.token),
+	});
 };
 
 const tokens = [
