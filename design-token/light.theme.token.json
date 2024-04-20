@@ -1,96 +1,106 @@
 {
 	"text": {
-		"heading-1": {
-			"$type": "composition",
-			"$value": {
-				"font-size": "{font-size.xxl}",
-				"font-weight": "{font-weight.bold}",
-				"line-height": "{line-height.140}"
-			}
+		"extra-large": {
+			"$type": "string",
+			"$value": "normal {font-size.4x.5}/{line-height.140} {font-family.default}"
 		},
-		"heading-2": {
-			"$type": "composition",
-			"$value": {
-				"font-size": "{font-size.xl}",
-				"font-weight": "{font-weight.bold}",
-				"line-height": "{line-height.140}"
-			}
+		"large": {
+			"$type": "string",
+			"$value": "normal {font-size.4x.4}/{line-height.140} {font-family.default}"
 		},
-		"heading-3": {
-			"$type": "composition",
-			"$value": {
-				"font-size": "{font-size.lg}",
-				"font-weight": "{font-weight.bold}",
-				"line-height": "{line-height.140}"
-			}
+		"medium": {
+			"$type": "string",
+			"$value": "normal {font-size.4x.3}/{line-height.120} {font-family.default}"
 		},
-		"body": {
-			"$type": "composition",
-			"$value": {
-				"font-size": "{font-size.md}",
-				"font-weight": "{font-weight.medium}",
-				"line-height": "{line-height.160}"
-			}
+		"small": {
+			"$type": "string",
+			"$value": "normal {font-size.4x.2}/{line-height.120} {font-family.default}"
 		},
-		"caption": {
-			"$type": "composition",
-			"$value": {
-				"font-size": "{font-size.sm}",
-				"font-weight": "{font-weight.light}",
-				"line-height": "{line-height.140}"
-			}
-		},
-		"label": {
-			"$type": "composition",
-			"$value": {
-				"font-size": "{font-size.sm}",
-				"font-weight": "{font-weight.light}",
-				"line-height": "{line-height.140}"
-			}
+		"extra-small": {
+			"$type": "string",
+			"$value": "normal {font-size.4x.1}/{line-height.120} {font-family.default}"
 		}
 	},
 	"color": {
 		"primary": {
 			"$description": "주요 브랜드 색상을 나타냅니다.",
-			"$property": "color",
 			"$type": "color",
 			"$value": "{color.red.4}"
 		},
 		"secondary": {
 			"$description": "주요 브랜드 색상을 보안합니다.",
 			"$type": "color",
-			"$property": "color",
 			"$value": "{color.black.8}"
 		},
 		"success": {
 			"$description": "작업 성공에 대한 색상을 나타냅니다.",
 			"$type": "color",
-			"$property": "color",
-			"$value": "{color.green.5}"
+			"$value": "{color.green.4}"
 		},
 		"error": {
 			"$description": "작업 실패에 대한 색상을 나타냅니다.",
 			"$type": "color",
-			"$property": "color",
 			"$value": "{color.red.2}"
 		},
 		"warning": {
 			"$description": "주의를 요구할 때에 대한 색상을 나타냅니다.",
 			"$type": "color",
-			"$property": "color",
-			"$value": "{color.yellow.5}"
+			"$value": "{color.yellow.4}"
 		},
 		"info": {
 			"$description": "정보 혹은 팁을 제공할 때에 대한 색상을 나타냅니다.",
 			"$type": "color",
-			"$property": "color",
-			"$value": "{color.blue.3}"
+			"$value": "{color.blue.4}"
 		},
 		"text": {
 			"$description": "텍스트의 색상을 나타냅니다.",
 			"$type": "color",
-			"$property": "color",
-			"$value": "{color.black.1}"
+			"$value": "{color.black.2}"
+		},
+		"background": {
+			"$description": "텍스트의 색상을 나타냅니다.",
+			"$type": "color",
+			"$value": "{color.black.10}"
+		}
+	},
+	"border": {
+		"thin": {
+			"$type": "string",
+			"$value": "{border-width.1x.1} {border-style.solid} {color.black.1}"
+		},
+		"light": {
+			"$type": "string",
+			"$value": "{border-width.1x.2} {border-style.solid} {color.black.1}"
+		},
+		"medium": {
+			"$type": "string",
+			"$value": "{border-width.1x.3} {border-style.solid} {color.black.1}"
+		},
+		"bold": {
+			"$type": "string",
+			"$value": "{border-width.1x.4} {border-style.solid} {color.black.1}"
+		},
+		"heavy": {
+			"$type": "string",
+			"$value": "{border-width.1x.5} {border-style.solid} {color.black.1}"
+		}
+	},
+	"border-radius": {
+		"small": {
+			"$type": "string",
+			"$value": "{border-radius.4x.1}"
+		},
+		"medium": {
+			"$type": "string",
+			"$value": "{border-radius.4x.2}"
+		},
+		"large": {
+			"$type": "string",
+			"$value": "{border-radius.4x.3}"
+		},
+		"round": {
+			"$type": "string",
+			"$value": "{border-radius.full}"
 		}
 	}
 }

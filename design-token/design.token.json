@@ -216,69 +216,87 @@
 		}
 	},
 	"font-size": {
-		"xs": {
-			"$type": "dimension",
-			"$value": "8px"
-		},
-		"sm": {
-			"$type": "dimension",
-			"$value": "12px"
-		},
-		"md": {
-			"$type": "dimension",
-			"$value": "16px"
-		},
-		"lg": {
-			"$type": "dimension",
-			"$value": "20px"
-		},
-		"xl": {
-			"$type": "dimension",
-			"$value": "24px"
-		},
-		"xxl": {
-			"$type": "dimension",
-			"$value": "28px"
+		"4x": {
+			"1": {
+				"$type": "dimension",
+				"$value": "8px"
+			},
+			"2": {
+				"$type": "dimension",
+				"$value": "12px"
+			},
+			"3": {
+				"$type": "dimension",
+				"$value": "16px"
+			},
+			"4": {
+				"$type": "dimension",
+				"$value": "20px"
+			},
+			"5": {
+				"$type": "dimension",
+				"$value": "24px"
+			},
+			"6": {
+				"$type": "dimension",
+				"$value": "28px"
+			},
+			"7": {
+				"$type": "dimension",
+				"$value": "32px"
+			},
+			"8": {
+				"$type": "dimension",
+				"$value": "36px"
+			},
+			"9": {
+				"$type": "dimension",
+				"$value": "40px"
+			},
+			"10": {
+				"$type": "dimension",
+				"$value": "44px"
+			}
 		}
 	},
 	"font-weight": {
-		"thin": {
+		"100": {
 			"$type": "fontWeight",
 			"$value": "100"
 		},
-		"extra-light": {
+		"200": {
 			"$type": "fontWeight",
 			"$value": "200"
 		},
-		"light": {
+		"300": {
 			"$type": "fontWeight",
 			"$value": "300"
 		},
-		"normal": {
+		"400": {
 			"$type": "fontWeight",
 			"$value": "400"
 		},
-		"medium": {
+		"500": {
 			"$type": "fontWeight",
 			"$value": "500"
 		},
-		"semi-bold": {
+		"600": {
 			"$type": "fontWeight",
 			"$value": "600"
 		},
-		"bold": {
+		"700": {
 			"$type": "fontWeight",
 			"$value": "700"
 		},
-		"extra-bold": {
+		"800": {
 			"$type": "fontWeight",
 			"$value": "800"
 		},
-		"black": {
+		"900": {
 			"$type": "fontWeight",
 			"$value": "900"
 		},
-		"extra-black": {
+		"950": {
 			"$type": "fontWeight",
 			"$value": "950"
 		}
@@ -301,95 +319,55 @@
 			"$value": "1.8"
 		}
 	},
+	"font-family": {
+		"default": {
+			"$type": "string",
+			"$value": "'Roboto', Arial, sans-serif"
+		}
+	},
 	"spacing": {
-		"8x": {
+		"4x": {
 			"1": {
 				"$type": "dimension",
-				"$value": "8px"
+				"$value": "4px"
 			},
 			"2": {
 				"$type": "dimension",
-				"$value": "16px"
-			},
-			"3": {
-				"$type": "dimension",
-				"$value": "24px"
-			},
-			"4": {
-				"$type": "dimension",
-				"$value": "32px"
-			},
-			"5": {
-				"$type": "dimension",
-				"$value": "40px"
-			},
-			"6": {
-				"$type": "dimension",
-				"$value": "48px"
-			},
-			"7": {
-				"$type": "dimension",
-				"$value": "56px"
-			},
-			"8": {
-				"$type": "dimension",
-				"$value": "64px"
-			},
-			"9": {
-				"$type": "dimension",
-				"$value": "72px"
-			},
-			"10": {
-				"$type": "dimension",
-				"$value": "72px"
-			}
-		}
-	},
-	"padding": {
-		"8x": {
-			"1": {
-				"$type": "dimension",
 				"$value": "8px"
 			},
-			"2": {
-				"$type": "dimension",
-				"$value": "16px"
-			},
 			"3": {
 				"$type": "dimension",
-				"$value": "24px"
+				"$value": "12px"
 			},
 			"4": {
 				"$type": "dimension",
-				"$value": "32px"
+				"$value": "16px"
 			},
 			"5": {
 				"$type": "dimension",
-				"$value": "40px"
+				"$value": "20px"
 			},
 			"6": {
 				"$type": "dimension",
-				"$value": "48px"
+				"$value": "24px"
 			},
 			"7": {
 				"$type": "dimension",
-				"$value": "56px"
+				"$value": "28px"
 			},
 			"8": {
 				"$type": "dimension",
-				"$value": "64px"
+				"$value": "32px"
 			},
 			"9": {
 				"$type": "dimension",
-				"$value": "72px"
+				"$value": "36px"
 			},
 			"10": {
 				"$type": "dimension",
-				"$value": "72px"
+				"$value": "40px"
 			}
-		}
-	},
-	"margin": {
+		},
 		"8x": {
 			"1": {
 				"$type": "dimension",
@@ -434,135 +412,103 @@
 		}
 	},
 	"box-shadow": {
-		"bottom-right": {
-			"low": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "2px",
-					"offsetY": "2px",
-					"blur": "3px",
-					"spread": "-3px"
-				}
+		"low": {
+			"bottom-right": {
+				"$type": "string",
+				"$value": "2px 2px 3px -3px"
 			},
-			"medium": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "10px",
-					"offsetY": "10px",
-					"blur": "15px",
-					"spread": "-3px"
-				}
+			"top-right": {
+				"$type": "string",
+				"$value": "2px -2px 3px -3px"
 			},
-			"high": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "50px",
-					"offsetY": "50px",
-					"blur": "80px",
-					"spread": "-3px"
-				}
+			"bottom-left": {
+				"$type": "string",
+				"$value": "-2px 2px 3px -3px"
+			},
+			"top-left": {
+				"$type": "string",
+				"$value": "-2px -2px 3px -3px"
 			}
 		},
-		"bottom-left": {
-			"low": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "-2px",
-					"offsetY": "-2px",
-					"blur": "3px",
-					"spread": "-3px"
-				}
+		"medium": {
+			"bottom-right": {
+				"$type": "string",
+				"$value": "10px 10px 15px -3px"
 			},
-			"medium": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "-10px",
-					"offsetY": "10px",
-					"blur": "15px",
-					"spread": "-3px"
-				}
+			"top-right": {
+				"$type": "string",
+				"$value": "10px -10px 15px -3px"
 			},
-			"high": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "-50px",
-					"offsetY": "50px",
-					"blur": "80px",
-					"spread": "-3px"
-				}
+			"bottom-left": {
+				"$type": "string",
+				"$value": "-10px 10px 15px -3px"
+			},
+			"top-left": {
+				"$type": "string",
+				"$value": "-10px -10px 15px -3px"
 			}
 		},
-		"top-right": {
-			"low": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "2px",
-					"offsetY": "-2px",
-					"blur": "3px",
-					"spread": "-3px"
-				}
+		"high": {
+			"bottom-right": {
+				"$type": "string",
+				"$value": "50px 50px 80px -3px"
 			},
-			"medium": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "10px",
-					"offsetY": "-10px",
-					"blur": "15px",
-					"spread": "-3px"
-				}
+			"top-right": {
+				"$type": "string",
+				"$value": "50px -50px 80px -3px"
 			},
-			"high": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "50px",
-					"offsetY": "-50px",
-					"blur": "80px",
-					"spread": "-3px"
-				}
-			}
-		},
-		"top-left": {
-			"low": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "-2px",
-					"offsetY": "-2px",
-					"blur": "3px",
-					"spread": "-3px"
-				}
+			"bottom-left": {
+				"$type": "string",
+				"$value": "-50px 50px 80px -3px"
 			},
-			"medium": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "-10px",
-					"offsetY": "-10px",
-					"blur": "15px",
-					"spread": "-3px"
-				}
-			},
-			"high": {
-				"$type": "composition",
-				"$value": {
-					"offsetX": "-50px",
-					"offsetY": "-50px",
-					"blur": "80px",
-					"spread": "-3px"
-				}
+			"top-left": {
+				"$type": "string",
+				"$value": "-50px -50px 80px -3px"
 			}
 		}
 	},
 	"border-radius": {
-		"sm": {
-			"$type": "dimension",
-			"$value": "4px"
-		},
-		"md": {
-			"$type": "dimension",
-			"$value": "8px"
-		},
-		"lg": {
-			"$type": "dimension",
-			"$value": "16px"
+		"4x": {
+			"1": {
+				"$type": "dimension",
+				"$value": "4px"
+			},
+			"2": {
+				"$type": "dimension",
+				"$value": "8px"
+			},
+			"3": {
+				"$type": "dimension",
+				"$value": "16px"
+			},
+			"4": {
+				"$type": "dimension",
+				"$value": "20px"
+			},
+			"5": {
+				"$type": "dimension",
+				"$value": "24px"
+			},
+			"6": {
+				"$type": "dimension",
+				"$value": "28px"
+			},
+			"7": {
+				"$type": "dimension",
+				"$value": "32px"
+			},
+			"8": {
+				"$type": "dimension",
+				"$value": "36px"
+			},
+			"9": {
+				"$type": "dimension",
+				"$value": "40px"
+			},
+			"10": {
+				"$type": "dimension",
+				"$value": "44px"
+			}
 		},
 		"full": {
 			"$type": "dimension",
@@ -612,81 +558,92 @@
 		}
 	},
 	"border-width": {
-		"1": {
-			"$type": "dimension",
-			"$value": "1px"
-		},
-		"2": {
-			"$type": "dimension",
-			"$value": "2px"
-		},
-		"3": {
-			"$type": "dimension",
-			"$value": "3px"
-		},
-		"4": {
-			"$type": "dimension",
-			"$value": "4px"
-		},
-		"5": {
-			"$type": "dimension",
-			"$value": "5px"
-		},
-		"6": {
-			"$type": "dimension",
-			"$value": "6px"
-		},
-		"7": {
-			"$type": "dimension",
-			"$value": "7px"
-		},
-		"8": {
-			"$type": "dimension",
-			"$value": "8px"
-		},
-		"9": {
-			"$type": "dimension",
-			"$value": "9px"
-		},
-		"10": {
-			"$type": "dimension",
-			"$value": "10px"
+		"1x": {
+			"1": {
+				"$type": "dimension",
+				"$value": "1px"
+			},
+			"2": {
+				"$type": "dimension",
+				"$value": "2px"
+			},
+			"3": {
+				"$type": "dimension",
+				"$value": "3px"
+			},
+			"4": {
+				"$type": "dimension",
+				"$value": "4px"
+			},
+			"5": {
+				"$type": "dimension",
+				"$value": "5px"
+			},
+			"6": {
+				"$type": "dimension",
+				"$value": "6px"
+			},
+			"7": {
+				"$type": "dimension",
+				"$value": "7px"
+			},
+			"8": {
+				"$type": "dimension",
+				"$value": "8px"
+			},
+			"9": {
+				"$type": "dimension",
+				"$value": "9px"
+			},
+			"10": {
+				"$type": "dimension",
+				"$value": "10px"
+			}
 		}
 	},
-	"screen": {
-		"mobile-v": {
-			"$type": "composition",
-			"$value": {
-				"max-width": "575px",
-				"orientation": "portrait"
-			}
-		},
-		"mobile-o": {
-			"$type": "composition",
-			"$value": {
-				"min-width": "576px",
-				"max-width": "767px",
-				"orientation": "landscape"
+	"breakpoint": {
+		"mobile": {
+			"portrait": {
+				"min-width": {
+					"$type": "dimension",
+					"$value": "575px"
+				}
+			},
+			"landscape": {
+				"min-width": {
+					"$type": "dimension",
+					"$value": "576px"
+				},
+				"max-width": {
+					"$type": "dimension",
+					"$value": "767px"
+				}
 			}
 		},
 		"tablet": {
-			"$type": "composition",
-			"$value": {
-				"min-width": "768px",
-				"max-width": "991px"
+			"min-width": {
+				"$type": "dimension",
+				"$value": "768px"
+			},
+			"max-width": {
+				"$type": "dimension",
+				"$value": "991px"
 			}
 		},
 		"desktop": {
-			"$type": "composition",
-			"$value": {
-				"min-width": "992px",
-				"max-width": "1199px"
+			"min-width": {
+				"$type": "dimension",
+				"$value": "992px"
+			},
+			"max-width": {
+				"$type": "dimension",
+				"$value": "1199px"
 			}
 		},
-		"desktop-l": {
-			"$type": "composition",
-			"$value": {
-				"min-width": "1200px"
+		"desktop-large": {
+			"min-width": {
+				"$type": "dimension",
+				"$value": "1200px"
 			}
 		}
 	}
