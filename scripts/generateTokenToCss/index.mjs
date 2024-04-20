@@ -1,21 +1,16 @@
 import fs from "fs/promises";
 import * as prettier from "prettier";
+import ejs from "ejs";
 import baseToken from "../../design-token/design.token.json" assert { type: "json" };
 import lightThemeToken from "../../design-token/light.theme.token.json" assert { type: "json" };
 import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
-import formatToken from "./formatter.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
-import getType from "./utils/getType.mjs";
 
-const generateTokenToCss = (
-	token,
-	formatter,
-	options = {
-		use: "variables", // variable, class
-	},
-) => {
-	const tokenList = [];
+const parser = parseToken(baseToken);
+
+const generateToken = (token, parser) => {
+	const result = new Map();
 
 	for (const [startTokenName, startTokenValue] of Object.entries(token)) {
 		const tokenNames = [startTokenName];
@@ -31,13 +26,7 @@ const generateTokenToCss = (
 					);
 				}
 
-				tokenList.push(
-					formatter({
-						name: `${tokenNames.join("-")}-${tokenName}`,
-						use: options.use,
-						token: tokenValue,
-					}),
-				);
+				result.set(`${tokenNames.join("-")}-${tokenName}`, parser(tokenValue));
 			} else {
 				if (tokenNames.length > 1) {
 					tokenNames.pop();
@@ -48,35 +37,52 @@ const generateTokenToCss = (
 		}
 	}
 
-	if (options.use === "variables") {
-		return `:root{${tokenList.join("")}}`;
-	}
-
-	return tokenList.join("");
-};
-
-const parser = parseToken(baseToken);
-const formatter = (options) => {
-	return formatToken({
-		...options,
-		token: parser(options.token),
-	});
+	return result;
 };
 
 const tokens = [
 	{
 		fileName: "base",
-		css: generateTokenToCss(baseToken, formatter),
+		type: "variables",
+		tokenMap: generateToken(baseToken, parser),
 	},
 	{
 		fileName: "light-theme",
-		css: generateTokenToCss(lightThemeToken, formatter),
+		type: "variables",
+		tokenMap: generateToken(lightThemeToken, parser),
 	},
 ];
+
+const EJS_TEMPLATE_PATH = {
+	VARIABLES: path.tokenTemplate + "/variables.ejs",
+	CLASSES: path.tokenTemplate + "/classes.ejs",
+};
+
+const results = await Promise.all(
+	tokens.map(async ({ fileName, type, tokenMap }) => {
+		if (type === "variables") {
+			return {
+				fileName,
+				contents: await ejs.renderFile(
+					EJS_TEMPLATE_PATH.VARIABLES,
+					{
+						variables: tokenMap.entries(),
+					},
+					{
+						async: true,
+					},
+				),
+			};
+		} else {
+			return Promise.resolve("Do Not Defined");
+		}
+	}),
+);
+
 const OUTPUT_PATH = path.token;
 
-for (const { fileName, css } of tokens) {
-	const formattedCss = await prettier.format(css, {
+for (const { fileName, contents } of results) {
+	const formattedCss = await prettier.format(contents, {
 		parser: "css",
 	});
 

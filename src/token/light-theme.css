@@ -1,24 +1,45 @@
 :root {
   --text-extra-large: normal 24px/1.4 "Roboto", Arial, sans-serif;
+
   --text-large: normal 20px/1.4 "Roboto", Arial, sans-serif;
+
   --text-medium: normal 16px/1.2 "Roboto", Arial, sans-serif;
+
   --text-small: normal 12px/1.2 "Roboto", Arial, sans-serif;
+
   --text-extra-small: normal 8px/1.2 "Roboto", Arial, sans-serif;
+
   --color-primary: #ff4d4d;
+
   --color-secondary: #b3b3b3;
+
   --color-success: #4dff4d;
+
   --color-error: #ff1a1a;
+
   --color-warning: #ffff4d;
+
   --color-info: #4d4dff;
+
   --color-text: #1a1a1a;
+
   --color-background: #e6e6e6;
+
   --border-thin: 1px solid #000000;
+
   --border-light: 2px solid #000000;
+
   --border-medium: 3px solid #000000;
+
   --border-bold: 4px solid #000000;
+
   --border-heavy: 5px solid #000000;
+
   --border-radius-small: 4px;
+
   --border-radius-medium: 8px;
+
   --border-radius-large: 16px;
+
   --border-radius-round: 100%;
 }
