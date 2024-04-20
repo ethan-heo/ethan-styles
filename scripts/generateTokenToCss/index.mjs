@@ -6,6 +6,7 @@ import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
 import formatToken from "./formatter.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
+import getType from "./utils/getType.mjs";
 
 const generateTokenToCss = (
 	token,
@@ -19,10 +20,9 @@ const generateTokenToCss = (
 	for (const [startTokenName, startTokenValue] of Object.entries(token)) {
 		const tokenNames = [startTokenName];
 		let stack = Object.entries(startTokenValue);
-		let currentToken = stack.shift();
 
 		while (stack.length) {
-			const [tokenName, tokenValue] = currentToken;
+			const [tokenName, tokenValue] = stack.shift();
 
 			if (validateTokenObj(tokenValue)) {
 				if (!validateTokenValue(tokenValue)) {
@@ -45,8 +45,6 @@ const generateTokenToCss = (
 				tokenNames.push(tokenName);
 				stack = [...Object.entries(tokenValue), ...stack];
 			}
-
-			currentToken = stack.shift();
 		}
 	}
 
