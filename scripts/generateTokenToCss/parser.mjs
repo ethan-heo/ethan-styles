@@ -6,6 +6,9 @@ const parseToken = (baseToken) => (token) => {
 		const _value = {};
 
 		for (const [name, value] of Object.entries(token.$value)) {
+			if (getType(value) !== "string") {
+				throw new TypeError(`값이 문자열이 아닙니다.`);
+			}
 			_value[name] = parseTokenValue(value);
 		}
 
