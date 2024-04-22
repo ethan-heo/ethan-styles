@@ -127,9 +127,3 @@ describe(`토큰 $value 파싱`, () => {
 		expect(() => parser(value)).toThrowError("토큰값이 존재하지 않습니다.");
 	});
 });
-
-describe(`토큰 규칙`, () => {
-	const parser = parseToken(TOKEN.BASE);
-
-	it(`토큰 객체에 `, () => {});
-});
