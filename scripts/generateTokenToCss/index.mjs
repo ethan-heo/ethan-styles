@@ -6,6 +6,7 @@ import lightThemeToken from "../../design-token/light.themes.token.json" assert 
 import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
+import parseRule from "./ruler.mjs";
 
 const parser = parseToken(baseToken);
 
@@ -32,7 +33,7 @@ const generateToken = (token, parser) => {
 					tokenNames.pop();
 				}
 				tokenNames.push(tokenName);
-				stack = [...Object.entries(tokenValue), ...stack];
+				stack = [...Object.entries(parseRule(tokenName, tokenValue)), ...stack];
 			}
 		}
 	}
