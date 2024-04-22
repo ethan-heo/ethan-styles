@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import * as prettier from "prettier";
 import ejs from "ejs";
-import baseToken from "../../design-token/design.token.json" assert { type: "json" };
-import lightThemeToken from "../../design-token/light.theme.token.json" assert { type: "json" };
+import baseToken from "../../design-token/design.tokens.json" assert { type: "json" };
+import lightThemeToken from "../../design-token/light.themes.token.json" assert { type: "json" };
 import path from "../../configs/path.config.mjs";
 import parseToken from "./parser.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
