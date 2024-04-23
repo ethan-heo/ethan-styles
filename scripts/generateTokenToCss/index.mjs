@@ -8,12 +8,12 @@ import parseToken from "./parser.mjs";
 import { validateTokenObj, validateTokenValue } from "./utils/validators.mjs";
 import parseRule from "./ruler.mjs";
 
-const parser = parseToken(baseToken);
-
-const generateToken = (token, parser) => {
+const generateToken = (targetToken, baseTokens = []) => {
 	const result = new Map();
+	const parser = parseToken(...baseTokens);
+	const ruler = parseRule(...baseTokens);
 
-	for (const [startTokenName, startTokenValue] of Object.entries(token)) {
+	for (const [startTokenName, startTokenValue] of Object.entries(targetToken)) {
 		const tokenNames = [startTokenName];
 		let stack = Object.entries(startTokenValue);
 
@@ -33,7 +33,7 @@ const generateToken = (token, parser) => {
 					tokenNames.pop();
 				}
 				tokenNames.push(tokenName);
-				stack = [...Object.entries(parseRule(tokenName, tokenValue)), ...stack];
+				stack = [...Object.entries(ruler(tokenName, tokenValue)), ...stack];
 			}
 		}
 	}
@@ -45,12 +45,12 @@ const tokens = [
 	{
 		fileName: "base",
 		type: "variables",
-		tokenMap: generateToken(baseToken, parser),
+		tokenMap: generateToken(baseToken),
 	},
 	{
 		fileName: "light-theme",
 		type: "variables",
-		tokenMap: generateToken(lightThemeToken, parser),
+		tokenMap: generateToken(lightThemeToken, [baseToken, lightThemeToken]),
 	},
 ];
 
