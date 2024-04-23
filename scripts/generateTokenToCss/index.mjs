@@ -50,7 +50,7 @@ const tokens = [
 	{
 		fileName: "light-theme",
 		type: "variables",
-		tokenMap: generateToken(lightThemeToken, [baseToken, lightThemeToken]),
+		tokenMap: generateToken(lightThemeToken, [lightThemeToken, baseToken]),
 	},
 ];
 
