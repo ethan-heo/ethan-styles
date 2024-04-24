@@ -2,12 +2,11 @@
 	"name": "@ethan-heo/ui",
 	"description": "Ethan custom ui",
 	"version": "1.0.0",
-	"type": "module",
 	"license": "MIT",
 	"scripts": {
 		"dev": "node scripts/build.mjs --watch",
 		"build": "node scripts/build.mjs",
-		"gen:token": "node scripts/generateTokenToCss/index.mjs",
+		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test": "vitest --config ./configs/vitest.config.mjs"
@@ -40,12 +39,12 @@
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-postcss": "^4.0.2",
 		"storybook": "^8.0.4",
+		"ts-node": "^10.9.2",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.2",
 		"vite": "^5.2.6",
 		"vite-tsconfig-paths": "^4.3.2",
-		"vitest": "^1.5.0",
-		"yargs": "^17.7.2"
+		"vitest": "^1.5.0"
 	},
 	"engines": {
 		"node": ">=20"
