@@ -20,7 +20,8 @@ const iterateToken =
 	<Data>(options: IterateTokenOptions<Data>) =>
 	(token: Token) => {
 		let stack = transformTokenToArray(token);
-		const tokenNames: string[] = [];
+		let tokenNames: string[] = [];
+		let position: number[] = [stack.length];
 
 		while (stack.length) {
 			const [_tokenName, _tokenValue] = stack.shift()!;
@@ -31,9 +32,26 @@ const iterateToken =
 
 			if (isTokenObj(_tokenValue)) {
 				options.foundTokenObjCallback?.(tokenNames, _tokenValue, options.data);
-				tokenNames.pop();
+
+				const _position = [...position];
+
+				for (const count of position.reverse()) {
+					tokenNames.pop();
+
+					if (count === 1) {
+						_position.pop();
+					} else {
+						_position[_position.length - 1] -= 1;
+						break;
+					}
+				}
+
+				position = _position;
 			} else {
-				stack = [...transformTokenToArray(_tokenValue), ...stack];
+				const items = transformTokenToArray(_tokenValue);
+
+				stack = [...items, ...stack];
+				position.push(items.length);
 			}
 		}
 
