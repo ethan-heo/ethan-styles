@@ -5,62 +5,97 @@ import isTransformWord from "./utils/isTransformWord";
 import iterateToken from "./utils/iterateToken";
 import parseTokenRef from "./utils/parseTokenRef";
 
-const transformer: SequenceFunction = (token, baseTokens) => {
-	// token을 순회하는 로직이 필요함
-	// 1. 참조 형식의 토큰 이름이 지정되어 있다면 변환작업을 진행한다.
-	// 2. 참조할 토큰을 찾는다.
-	// 3. 참조 형식으로 지정된 자식 토큰은 참조 토큰이거나 참조 구성 토큰일 수 있다.
-	// 4. 자식 토큰은 참조 토큰의 하위 구성 형식으로 재조정 되도록 만든다.
+const normalizeToken = iterateToken<Map<string, TokenObj>>({
+	data: new Map(),
+	foundTokenObjCallback: (tokenNames, token, data) => {
+		data.set(tokenNames.join("/"), token);
+	},
+});
 
-	const assignTokenValue = (
-		data: Record<string, Token | TokenObj>,
-		tokenNames: string[],
-		token: Token | TokenObj,
-	) => {
-		for (const tokenName of tokenNames) {
-			if (!data[tokenName]) {
-				data[tokenName] = {};
-			}
+const findTokenToBaseTokens = (baseTokens: Token[], tokenRef: string[]) => {
+	for (const baseToken of baseTokens) {
+		const foundToken = findToken(baseToken, tokenRef);
 
-			data[tokenName] = token;
+		if (foundToken) {
+			return foundToken;
 		}
-	};
+	}
+};
 
-	const transformToken = iterateToken({
-		data: {},
-		iterateCallback: (tokenNames, token, data) => {
-			const tokenName = tokenNames[tokenNames.length - 1];
+const transformer: SequenceFunction = (token, baseTokens) => {
+	// 데이터 구조를 일반화를 먼저 진행해야 이후 작업이 수월 할 듯.
 
-			if (isTransformWord(tokenName)) {
-				const tokenRef = parseTokenRef(tokenName);
-				const referredToken = baseTokens.find((token) =>
-					findToken(token, tokenRef),
-				);
+	// console.log(token);
+	const normalizedToken = normalizeToken(token);
+	const referredTokens = new Map();
 
-				if (referredToken === undefined) {
-					throw new Error(`정의되지 않은 토큰입니다. [${tokenName}]`);
-				}
+	for (const [key] of normalizedToken[Symbol.iterator]()) {
+		const matcher = key.match(/\{[^{}]*\}/);
 
-				const transformTokenValue = iterateToken({
-					data: {},
-					foundTokenObjCallback: (tokenNames, token, data) => {},
-				});
+		if (matcher !== null) {
+			const [referredTokenName] = matcher;
+			const tokenRef = parseTokenRef(referredTokenName);
 
-				if (isTokenObj(referredToken)) {
-				} else {
-					assignTokenValue(
-						data,
-						tokenNames,
-						transformTokenValue(referredToken),
-					);
-				}
-			} else {
-				assignTokenValue(data, tokenNames, token);
+			referredTokens.set(
+				referredTokenName,
+				findTokenToBaseTokens(baseTokens, tokenRef),
+			);
+		}
+	}
+
+	for (const [referredTokenName, referredToken] of referredTokens[
+		Symbol.iterator
+	]()) {
+		for (const [tokenName, token] of normalizedToken[Symbol.iterator]()) {
+			if (!tokenName.includes(referredTokenName)) {
+				continue;
 			}
-		},
-	});
 
-	return transformToken(token);
+			if (isTokenObj(referredToken)) {
+				const tokenRef = parseTokenRef(referredTokenName);
+				normalizedToken.set(
+					tokenName.replace(referredTokenName, tokenRef.pop()!),
+					{
+						...token,
+						$value: token.$value.replace("{$value}", referredToken.$value),
+					},
+				);
+			} else {
+				iterateToken({
+					data: null,
+					foundTokenObjCallback: (_tokenNames, _token) => {
+						normalizedToken.set(
+							tokenName.replace(referredTokenName, _tokenNames.join("/")),
+							{
+								...token,
+								$value: token.$value.replace("{$value}", _token.$value),
+							},
+						);
+					},
+				})(referredToken);
+			}
+
+			normalizedToken.delete(tokenName);
+		}
+	}
+
+	const result = {};
+
+	for (const [tokenNames, tokenObj] of normalizedToken[Symbol.iterator]()) {
+		let target = result;
+		const _splitTokenNames = tokenNames.split("/");
+		const targetName = _splitTokenNames.pop()!;
+
+		for (const tokenName of _splitTokenNames) {
+			target = target[tokenName] ??= {};
+		}
+
+		target[targetName] = tokenObj;
+	}
+
+	console.log(result);
+
+	return result;
 };
 
 export default transformer;
