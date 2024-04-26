@@ -1,7 +1,6 @@
 import { SequenceFunction, Token, TokenObj } from "./generateToken.token";
 import findToken from "./utils/findToken";
 import isTokenObj from "./utils/isTokenObj";
-import isTransformWord from "./utils/isTransformWord";
 import iterateToken from "./utils/iterateToken";
 import parseTokenRef from "./utils/parseTokenRef";
 
@@ -22,13 +21,16 @@ const findTokenToBaseTokens = (baseTokens: Token[], tokenRef: string[]) => {
 	}
 };
 
+/**
+ * TODO
+ * - 리팩토링 필요
+ */
 const transformer: SequenceFunction = (token, baseTokens) => {
-	// 데이터 구조를 일반화를 먼저 진행해야 이후 작업이 수월 할 듯.
-
-	// console.log(token);
+	// 1. 데이터를 일반화 한다.
 	const normalizedToken = normalizeToken(token);
 	const referredTokens = new Map();
 
+	// 2. 참조할 토큰을 찾는다.
 	for (const [key] of normalizedToken[Symbol.iterator]()) {
 		const matcher = key.match(/\{[^{}]*\}/);
 
@@ -43,6 +45,7 @@ const transformer: SequenceFunction = (token, baseTokens) => {
 		}
 	}
 
+	// 3. 일반화된 토큰 데이터를 참조 토큰을 통해 값을 파싱한다.
 	for (const [referredTokenName, referredToken] of referredTokens[
 		Symbol.iterator
 	]()) {
@@ -81,6 +84,7 @@ const transformer: SequenceFunction = (token, baseTokens) => {
 
 	const result = {};
 
+	// 4. 일반화된 토큰을 다시 토큰 형태로 변경합니다.
 	for (const [tokenNames, tokenObj] of normalizedToken[Symbol.iterator]()) {
 		let target = result;
 		const _splitTokenNames = tokenNames.split("/");
@@ -92,8 +96,6 @@ const transformer: SequenceFunction = (token, baseTokens) => {
 
 		target[targetName] = tokenObj;
 	}
-
-	console.log(result);
 
 	return result;
 };
