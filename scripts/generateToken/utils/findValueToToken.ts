@@ -1,8 +1,11 @@
-import { Token } from "../generateToken.token";
+import { Token, TokenObj } from "../generateToken.token";
 import findToken from "./findToken";
 import isTokenObj from "./isTokenObj";
 
-const findValueToToken = (tokenKeys: string[], tokens: Token[]) => {
+const findValueToToken = (
+	tokenKeys: string[],
+	tokens: Token[],
+): Token | TokenObj | undefined => {
 	for (const token of tokens) {
 		const foundToken = findToken(token, tokenKeys);
 
