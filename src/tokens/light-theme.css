@@ -101,6 +101,22 @@
 
   --color-yellow-10: #ffffe6;
 
+  --color-primary: #ff4d4d;
+
+  --color-secondary: #b3b3b3;
+
+  --color-success: #4dff4d;
+
+  --color-error: #ff1a1a;
+
+  --color-warning: #ffff4d;
+
+  --color-info: #4d4dff;
+
+  --color-text: #1a1a1a;
+
+  --color-background: #e6e6e6;
+
   --font-size-4x-1: 8px;
 
   --font-size-4x-2: 12px;
@@ -235,7 +251,15 @@
 
   --border-radius-4x-10: 44px;
 
-  --border-radius-4x-full: 100%;
+  --border-radius-full: 100%;
+
+  --border-radius-small: 4px;
+
+  --border-radius-medium: 8px;
+
+  --border-radius-large: 16px;
+
+  --border-radius-round: 100%;
 
   --border-style-none: none;
 
@@ -277,11 +301,11 @@
 
   --border-width-1x-10: 10px;
 
-  --breakpoint-portrait-min-width: 575px;
+  --breakpoint-mobile-portrait-min-width: 575px;
 
-  --breakpoint-landscape-min-width: 576px;
+  --breakpoint-mobile-landscape-min-width: 576px;
 
-  --breakpoint-landscape-max-width: 767px;
+  --breakpoint-mobile-landscape-max-width: 767px;
 
   --breakpoint-tablet-min-width: 768px;
 
@@ -292,4 +316,94 @@
   --breakpoint-desktop-max-width: 1199px;
 
   --breakpoint-desktop-large-min-width: 1200px;
+
+  --text-extra-large: normal 24px/1.4 "Roboto", Arial, sans-serif;
+
+  --text-large: normal 20px/1.4 "Roboto", Arial, sans-serif;
+
+  --text-medium: normal 16px/1.2 "Roboto", Arial, sans-serif;
+
+  --text-small: normal 12px/1.2 "Roboto", Arial, sans-serif;
+
+  --text-extra-small: normal 8px/1.2 "Roboto", Arial, sans-serif;
+
+  --border-primary-thin: 1px solid #ff4d4d;
+
+  --border-primary-light: 2px solid #ff4d4d;
+
+  --border-primary-medium: 3px solid #ff4d4d;
+
+  --border-primary-bold: 4px solid #ff4d4d;
+
+  --border-primary-heavy: 5px solid #ff4d4d;
+
+  --border-secondary-thin: 1px solid #b3b3b3;
+
+  --border-secondary-light: 2px solid #b3b3b3;
+
+  --border-secondary-medium: 3px solid #b3b3b3;
+
+  --border-secondary-bold: 4px solid #b3b3b3;
+
+  --border-secondary-heavy: 5px solid #b3b3b3;
+
+  --border-success-thin: 1px solid #4dff4d;
+
+  --border-success-light: 2px solid #4dff4d;
+
+  --border-success-medium: 3px solid #4dff4d;
+
+  --border-success-bold: 4px solid #4dff4d;
+
+  --border-success-heavy: 5px solid #4dff4d;
+
+  --border-error-thin: 1px solid #ff1a1a;
+
+  --border-error-light: 2px solid #ff1a1a;
+
+  --border-error-medium: 3px solid #ff1a1a;
+
+  --border-error-bold: 4px solid #ff1a1a;
+
+  --border-error-heavy: 5px solid #ff1a1a;
+
+  --border-warning-thin: 1px solid #ffff4d;
+
+  --border-warning-light: 2px solid #ffff4d;
+
+  --border-warning-medium: 3px solid #ffff4d;
+
+  --border-warning-bold: 4px solid #ffff4d;
+
+  --border-warning-heavy: 5px solid #ffff4d;
+
+  --border-info-thin: 1px solid #4d4dff;
+
+  --border-info-light: 2px solid #4d4dff;
+
+  --border-info-medium: 3px solid #4d4dff;
+
+  --border-info-bold: 4px solid #4d4dff;
+
+  --border-info-heavy: 5px solid #4d4dff;
+
+  --border-text-thin: 1px solid #1a1a1a;
+
+  --border-text-light: 2px solid #1a1a1a;
+
+  --border-text-medium: 3px solid #1a1a1a;
+
+  --border-text-bold: 4px solid #1a1a1a;
+
+  --border-text-heavy: 5px solid #1a1a1a;
+
+  --border-background-thin: 1px solid #e6e6e6;
+
+  --border-background-light: 2px solid #e6e6e6;
+
+  --border-background-medium: 3px solid #e6e6e6;
+
+  --border-background-bold: 4px solid #e6e6e6;
+
+  --border-background-heavy: 5px solid #e6e6e6;
 }
