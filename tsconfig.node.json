@@ -3,7 +3,8 @@
 	"ts-node": {
 		"compilerOptions": {
 			"esModuleInterop": true,
-			"resolveJsonModule": true
+			"resolveJsonModule": true,
+			"target": "ESNext"
 		}
 	}
 }
