@@ -1,6 +1,6 @@
 export type TokenObj = {
 	$type: "composition" | string;
-	$value: string | Record<string, string>;
+	$value: string;
 };
 
 export type Token = {
