@@ -20,6 +20,14 @@ it.each([
 		},
 		false,
 	],
+	[
+		{
+			$description: "주요 브랜드 색상을 나타냅니다.",
+			$type: "color",
+			$value: "{color.red.4}",
+		},
+		true,
+	],
 ])(`isTokenObj(%o) => %s`, (value, expected) => {
 	expect(isTokenObj(value)).toBe(expected);
 });
