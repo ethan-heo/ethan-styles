@@ -15,10 +15,8 @@
 		"jsx": "react" /* Specify what JSX code is generated. */,
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
 		"paths": {
-			"@react-ui": ["./lib/react"],
-			"@react-ui/*": ["./lib/react/*"],
-			"@custom-ui": ["./lib/custom-ui"],
-			"@custom-ui/*": ["./lib/custom-ui/*"]
+			"@ethanheo/ui": ["./lib"],
+			"@ethanheo/ui/*": ["./lib/*"]
 		}
 	},
 	"include": [
