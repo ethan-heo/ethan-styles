@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "./Header";
 import "./page.css";
-import { Button } from "@react-ui";
+import { Button } from "@ethanheo/ui";
 
 type User = {
 	name: string;

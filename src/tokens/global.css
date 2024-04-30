@@ -1,105 +1,37 @@
 :root {
   --color-white: #ffffff;
 
-  --color-black-1: #000000;
+  --color-vintage-blue: #102c57;
 
-  --color-black-2: #1a1a1a;
+  --color-vintage-orange: #f97300;
 
-  --color-black-3: #333333;
+  --color-vintage-purple: #32012f;
 
-  --color-black-4: #4d4d4d;
+  --color-vintage-black-1: #000000;
 
-  --color-black-5: #666666;
+  --color-vintage-black-2: #171615;
 
-  --color-black-6: #808080;
+  --color-vintage-black-3: #2d2d2a;
 
-  --color-black-7: #999999;
+  --color-vintage-black-4: #44433e;
 
-  --color-black-8: #b3b3b3;
+  --color-vintage-black-5: #5a5953;
 
-  --color-black-9: #cccccc;
+  --color-vintage-black-6: #717068;
 
-  --color-black-10: #e6e6e6;
+  --color-vintage-black-7: #88867d;
 
-  --color-red-1: #ff0000;
+  --color-vintage-black-8: #9e9c92;
 
-  --color-red-2: #ff1a1a;
+  --color-vintage-black-9: #b5b2a6;
 
-  --color-red-3: #ff3333;
+  --color-vintage-black-10: #cbc9bb;
 
-  --color-red-4: #ff4d4d;
+  --color-vintage-black-11: #e2dfd0;
 
-  --color-red-5: #ff6666;
+  --color-vintage-red: #cd1818;
 
-  --color-red-6: #ff8080;
-
-  --color-red-7: #ff9999;
-
-  --color-red-8: #ffb3b3;
-
-  --color-red-9: #ffcccc;
-
-  --color-red-10: #ffe6e6;
-
-  --color-blue-1: #0000ff;
-
-  --color-blue-2: #1a1aff;
-
-  --color-blue-3: #3333ff;
-
-  --color-blue-4: #4d4dff;
-
-  --color-blue-5: #6666ff;
-
-  --color-blue-6: #8080ff;
-
-  --color-blue-7: #9999ff;
-
-  --color-blue-8: #b3b3ff;
-
-  --color-blue-9: #ccccff;
-
-  --color-blue-10: #e6e6ff;
-
-  --color-green-1: #00ff00;
-
-  --color-green-2: #1aff1a;
-
-  --color-green-3: #33ff33;
-
-  --color-green-4: #4dff4d;
-
-  --color-green-5: #66ff66;
-
-  --color-green-6: #80ff80;
-
-  --color-green-7: #99ff99;
-
-  --color-green-8: #b3ffb3;
-
-  --color-green-9: #ccffcc;
-
-  --color-green-10: #e6ffe6;
-
-  --color-yellow-1: #ffff00;
-
-  --color-yellow-2: #ffff1a;
-
-  --color-yellow-3: #ffff33;
-
-  --color-yellow-4: #ffff4d;
-
-  --color-yellow-5: #ffff66;
-
-  --color-yellow-6: #ffff80;
-
-  --color-yellow-7: #ffff99;
-
-  --color-yellow-8: #ffffb3;
-
-  --color-yellow-9: #ffffcc;
-
-  --color-yellow-10: #ffffe6;
+  --color-vintage-yellow: #e9b824;
 
   --font-size-4x-1: 8px;
 
