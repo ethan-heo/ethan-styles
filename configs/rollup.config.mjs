@@ -3,6 +3,7 @@ import typescript from "@rollup/plugin-typescript";
 import babel from "@rollup/plugin-babel";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
+import copyAssets from "rollup-plugin-copy-assets";
 
 const options = {
 	input: path.src + `/index.ts`,
@@ -24,8 +25,10 @@ const options = {
 		}),
 		peerDepsExternal(),
 		postcss({
-			// modules: true,
-			extract: path.lib + `/styles.css`,
+			extract: path.lib + `/tokens/components.css`,
+		}),
+		copyAssets({
+			assets: [`/src/tokens/light-theme.css`],
 		}),
 	],
 };
