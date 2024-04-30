@@ -1,9 +1,12 @@
 {
 	"name": "@ethanheo/ui",
-	"description": "Ethan custom ui",
-	"version": "1.0.0",
+	"description": "이든의 극히 개인적인 디자인 시스템",
+	"version": "0.0.1",
 	"license": "MIT",
-	"main": "./lib/index.js",
+	"exports": {
+		".": "./lib/index.js",
+		"./styles.css": "./lib/styles.css"
+	},
 	"scripts": {
 		"dev": "node scripts/build.mjs --watch",
 		"build": "node scripts/build.mjs",
@@ -37,6 +40,7 @@
 		"postcss": "^8.4.38",
 		"prettier": "^3.2.5",
 		"rollup": "^4.12.1",
+		"rollup-plugin-copy-assets": "^2.0.3",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-postcss": "^4.0.2",
 		"storybook": "^8.0.4",
