@@ -4,13 +4,6 @@ import isTokenObj from "./utils/isTokenObj";
 import iterateToken from "./utils/iterateToken";
 import parseTokenRef from "./utils/parseTokenRef";
 
-const normalizeToken = iterateToken<Map<string, TokenObj>>({
-	data: new Map(),
-	foundTokenObjCallback: (tokenNames, token, data) => {
-		data.set(tokenNames.join("/"), token);
-	},
-});
-
 const findTokenToBaseTokens = (baseTokens: Token[], tokenRef: string[]) => {
 	for (const baseToken of baseTokens) {
 		const foundToken = findToken(baseToken, tokenRef);
@@ -26,6 +19,13 @@ const findTokenToBaseTokens = (baseTokens: Token[], tokenRef: string[]) => {
  * - 리팩토링 필요
  */
 const transformer: SequenceFunction = (token, baseTokens) => {
+	const normalizeToken = iterateToken<Map<string, TokenObj>>({
+		data: new Map(),
+		foundTokenObjCallback: (tokenNames, token, data) => {
+			data.set(tokenNames.join("/"), token);
+		},
+	});
+
 	// 1. 데이터를 일반화 한다.
 	const normalizedToken = normalizeToken(token);
 	const referredTokens = new Map();
