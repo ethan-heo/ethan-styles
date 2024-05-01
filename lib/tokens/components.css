@@ -5,6 +5,7 @@
 	text-align: center;
 	border: none;
 	cursor: pointer;
+	outline: inherit;
 	box-shadow: var(--shadow-low-bottom-right);
 	background-color: var(--color-background);
 	border: var(--border-transparent-light);
@@ -48,17 +49,23 @@
 	background-color: var(--color-primary);
 	color: var(--color-text-white);
 }
-.button.primary:hover {
+.button.primary:hover,
+.button.primary:focus,
+.button.primary:active {
 	opacity: 0.6;
 }
 .button.default {
 	border: var(--border-secondary-light);
 }
-.button.default:hover {
+.button.default:hover,
+.button.default:focus,
+.button.default:active {
 	border: var(--border-primary-light);
 	color: var(--color-primary);
 }
-.button.text:hover {
+.button.text:hover,
+.button.text:focus,
+.button.text:active {
 	background-color: var(--color-secondary);
 }
 
@@ -78,12 +85,18 @@
 	border: var(--border-secondary-light);
 	color: var(--color-secondary);
 }
-.button.primary:disabled:hover {
+.button.primary:disabled:hover,
+.button.primary:disabled:focus,
+.button.primary:disabled:active {
 	opacity: initial;
 	background-color: var(--color-secondary);
 }
 .button.text:disabled:hover,
-.button.default:disabled:hover {
+.button.text:disabled:focus,
+.button.text:disabled:active,
+.button.default:disabled:hover,
+.button.default:disabled:focus,
+.button.default:disabled:active {
 	opacity: initial;
 	background-color: var(--color-background);
 }
@@ -98,13 +111,17 @@
 	border: var(--border-error-light);
 	color: var(--color-error);
 }
-.button.default.danger:hover {
+.button.default.danger:hover,
+.button.default.danger:focus,
+.button.default.danger:active {
 	opacity: 0.6;
 }
 .button.text.danger {
 	color: var(--color-error);
 }
-.button.text.danger:hover {
+.button.text.danger:hover,
+.button.text.danger:focus,
+.button.text.danger:active {
 	opacity: 0.6;
 	background-color: var(--color-error);
 	color: var(--color-text-white);
