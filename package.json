@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"exports": {
 		".": "./lib/index.js",
-		"./styles.css": "./lib/styles.css"
+		"./styles/components.css": "./lib/tokens/components.css",
+		"./styles/light-theme.css": "./lib/tokens/light-theme.css"
 	},
 	"scripts": {
 		"watch": "node scripts/build.mjs --watch",
