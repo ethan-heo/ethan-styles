@@ -61,7 +61,7 @@
 			"white": {
 				"$description": "텍스트의 색상을 나타냅니다.",
 				"$type": "color",
-				"$value": "{color.vintage.black.11}"
+				"$value": "{color.white}"
 			}
 		},
 		"background": {
@@ -71,7 +71,29 @@
 		}
 	},
 	"border": {
-		"{color.vintage}": {
+		"transparent": {
+			"thin": {
+				"$type": "string",
+				"$value": "{border-width.1x.1} {border-style.solid} transparent"
+			},
+			"light": {
+				"$type": "string",
+				"$value": "{border-width.1x.2} {border-style.solid} transparent"
+			},
+			"medium": {
+				"$type": "string",
+				"$value": "{border-width.1x.3} {border-style.solid} transparent"
+			},
+			"bold": {
+				"$type": "string",
+				"$value": "{border-width.1x.4} {border-style.solid} transparent"
+			},
+			"heavy": {
+				"$type": "string",
+				"$value": "{border-width.1x.5} {border-style.solid} transparent"
+			}
+		},
+		"{color}": {
 			"thin": {
 				"$type": "string",
 				"$value": "{border-width.1x.1} {border-style.solid} {$value}"
@@ -131,9 +153,11 @@
 		}
 	},
 	"shadow": {
-		"{box-shadow}": {
-			"$type": "string",
-			"$value": "{$value} {color.vintage.black.2}"
+		"thin": {
+			"{color}": {
+				"$type": "string",
+				"$value": "{box-shadow.low.bottom-right} {$value}"
+			}
 		}
 	}
 }

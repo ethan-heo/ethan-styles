@@ -23,9 +23,109 @@
 
   --color-text-black: #171615;
 
-  --color-text-white: #e2dfd0;
+  --color-text-white: #ffffff;
 
   --color-background: #ffffff;
+
+  --border-transparent-thin: 1px solid transparent;
+
+  --border-transparent-light: 2px solid transparent;
+
+  --border-transparent-medium: 3px solid transparent;
+
+  --border-transparent-bold: 4px solid transparent;
+
+  --border-transparent-heavy: 5px solid transparent;
+
+  --border-primary-thin: 1px solid #f97300;
+
+  --border-primary-light: 2px solid #f97300;
+
+  --border-primary-medium: 3px solid #f97300;
+
+  --border-primary-bold: 4px solid #f97300;
+
+  --border-primary-heavy: 5px solid #f97300;
+
+  --border-secondary-thin: 1px solid #e2dfd0;
+
+  --border-secondary-light: 2px solid #e2dfd0;
+
+  --border-secondary-medium: 3px solid #e2dfd0;
+
+  --border-secondary-bold: 4px solid #e2dfd0;
+
+  --border-secondary-heavy: 5px solid #e2dfd0;
+
+  --border-accent-thin: 1px solid #32012f;
+
+  --border-accent-light: 2px solid #32012f;
+
+  --border-accent-medium: 3px solid #32012f;
+
+  --border-accent-bold: 4px solid #32012f;
+
+  --border-accent-heavy: 5px solid #32012f;
+
+  --border-success-thin: 1px solid #102c57;
+
+  --border-success-light: 2px solid #102c57;
+
+  --border-success-medium: 3px solid #102c57;
+
+  --border-success-bold: 4px solid #102c57;
+
+  --border-success-heavy: 5px solid #102c57;
+
+  --border-warning-thin: 1px solid #e9b824;
+
+  --border-warning-light: 2px solid #e9b824;
+
+  --border-warning-medium: 3px solid #e9b824;
+
+  --border-warning-bold: 4px solid #e9b824;
+
+  --border-warning-heavy: 5px solid #e9b824;
+
+  --border-error-thin: 1px solid #cd1818;
+
+  --border-error-light: 2px solid #cd1818;
+
+  --border-error-medium: 3px solid #cd1818;
+
+  --border-error-bold: 4px solid #cd1818;
+
+  --border-error-heavy: 5px solid #cd1818;
+
+  --border-text-black-thin: 1px solid #171615;
+
+  --border-text-black-light: 2px solid #171615;
+
+  --border-text-black-medium: 3px solid #171615;
+
+  --border-text-black-bold: 4px solid #171615;
+
+  --border-text-black-heavy: 5px solid #171615;
+
+  --border-text-white-thin: 1px solid #ffffff;
+
+  --border-text-white-light: 2px solid #ffffff;
+
+  --border-text-white-medium: 3px solid #ffffff;
+
+  --border-text-white-bold: 4px solid #ffffff;
+
+  --border-text-white-heavy: 5px solid #ffffff;
+
+  --border-background-thin: 1px solid #ffffff;
+
+  --border-background-light: 2px solid #ffffff;
+
+  --border-background-medium: 3px solid #ffffff;
+
+  --border-background-bold: 4px solid #ffffff;
+
+  --border-background-heavy: 5px solid #ffffff;
 
   --border-radius-small: 4px;
 
@@ -35,165 +135,23 @@
 
   --border-radius-round: 100%;
 
-  --border-blue-thin: 1px solid #102c57;
+  --shadow-thin-primary: 2px 2px 3px -3px #f97300;
 
-  --border-blue-light: 2px solid #102c57;
+  --shadow-thin-secondary: 2px 2px 3px -3px #e2dfd0;
 
-  --border-blue-medium: 3px solid #102c57;
+  --shadow-thin-accent: 2px 2px 3px -3px #32012f;
 
-  --border-blue-bold: 4px solid #102c57;
+  --shadow-thin-success: 2px 2px 3px -3px #102c57;
 
-  --border-blue-heavy: 5px solid #102c57;
+  --shadow-thin-warning: 2px 2px 3px -3px #e9b824;
 
-  --border-orange-thin: 1px solid #f97300;
+  --shadow-thin-error: 2px 2px 3px -3px #cd1818;
 
-  --border-orange-light: 2px solid #f97300;
+  --shadow-thin-text-black: 2px 2px 3px -3px #171615;
 
-  --border-orange-medium: 3px solid #f97300;
+  --shadow-thin-text-white: 2px 2px 3px -3px #ffffff;
 
-  --border-orange-bold: 4px solid #f97300;
-
-  --border-orange-heavy: 5px solid #f97300;
-
-  --border-purple-thin: 1px solid #32012f;
-
-  --border-purple-light: 2px solid #32012f;
-
-  --border-purple-medium: 3px solid #32012f;
-
-  --border-purple-bold: 4px solid #32012f;
-
-  --border-purple-heavy: 5px solid #32012f;
-
-  --border-black-1-thin: 1px solid #000000;
-
-  --border-black-1-light: 2px solid #000000;
-
-  --border-black-1-medium: 3px solid #000000;
-
-  --border-black-1-bold: 4px solid #000000;
-
-  --border-black-1-heavy: 5px solid #000000;
-
-  --border-black-2-thin: 1px solid #171615;
-
-  --border-black-2-light: 2px solid #171615;
-
-  --border-black-2-medium: 3px solid #171615;
-
-  --border-black-2-bold: 4px solid #171615;
-
-  --border-black-2-heavy: 5px solid #171615;
-
-  --border-black-3-thin: 1px solid #2d2d2a;
-
-  --border-black-3-light: 2px solid #2d2d2a;
-
-  --border-black-3-medium: 3px solid #2d2d2a;
-
-  --border-black-3-bold: 4px solid #2d2d2a;
-
-  --border-black-3-heavy: 5px solid #2d2d2a;
-
-  --border-black-4-thin: 1px solid #44433e;
-
-  --border-black-4-light: 2px solid #44433e;
-
-  --border-black-4-medium: 3px solid #44433e;
-
-  --border-black-4-bold: 4px solid #44433e;
-
-  --border-black-4-heavy: 5px solid #44433e;
-
-  --border-black-5-thin: 1px solid #5a5953;
-
-  --border-black-5-light: 2px solid #5a5953;
-
-  --border-black-5-medium: 3px solid #5a5953;
-
-  --border-black-5-bold: 4px solid #5a5953;
-
-  --border-black-5-heavy: 5px solid #5a5953;
-
-  --border-black-6-thin: 1px solid #717068;
-
-  --border-black-6-light: 2px solid #717068;
-
-  --border-black-6-medium: 3px solid #717068;
-
-  --border-black-6-bold: 4px solid #717068;
-
-  --border-black-6-heavy: 5px solid #717068;
-
-  --border-black-7-thin: 1px solid #88867d;
-
-  --border-black-7-light: 2px solid #88867d;
-
-  --border-black-7-medium: 3px solid #88867d;
-
-  --border-black-7-bold: 4px solid #88867d;
-
-  --border-black-7-heavy: 5px solid #88867d;
-
-  --border-black-8-thin: 1px solid #9e9c92;
-
-  --border-black-8-light: 2px solid #9e9c92;
-
-  --border-black-8-medium: 3px solid #9e9c92;
-
-  --border-black-8-bold: 4px solid #9e9c92;
-
-  --border-black-8-heavy: 5px solid #9e9c92;
-
-  --border-black-9-thin: 1px solid #b5b2a6;
-
-  --border-black-9-light: 2px solid #b5b2a6;
-
-  --border-black-9-medium: 3px solid #b5b2a6;
-
-  --border-black-9-bold: 4px solid #b5b2a6;
-
-  --border-black-9-heavy: 5px solid #b5b2a6;
-
-  --border-black-10-thin: 1px solid #cbc9bb;
-
-  --border-black-10-light: 2px solid #cbc9bb;
-
-  --border-black-10-medium: 3px solid #cbc9bb;
-
-  --border-black-10-bold: 4px solid #cbc9bb;
-
-  --border-black-10-heavy: 5px solid #cbc9bb;
-
-  --border-black-11-thin: 1px solid #e2dfd0;
-
-  --border-black-11-light: 2px solid #e2dfd0;
-
-  --border-black-11-medium: 3px solid #e2dfd0;
-
-  --border-black-11-bold: 4px solid #e2dfd0;
-
-  --border-black-11-heavy: 5px solid #e2dfd0;
-
-  --border-red-thin: 1px solid #cd1818;
-
-  --border-red-light: 2px solid #cd1818;
-
-  --border-red-medium: 3px solid #cd1818;
-
-  --border-red-bold: 4px solid #cd1818;
-
-  --border-red-heavy: 5px solid #cd1818;
-
-  --border-yellow-thin: 1px solid #e9b824;
-
-  --border-yellow-light: 2px solid #e9b824;
-
-  --border-yellow-medium: 3px solid #e9b824;
-
-  --border-yellow-bold: 4px solid #e9b824;
-
-  --border-yellow-heavy: 5px solid #e9b824;
+  --shadow-thin-background: 2px 2px 3px -3px #ffffff;
 
   --gutter-1: 4px;
 
@@ -254,28 +212,4 @@
   --margin-9: 36px;
 
   --margin-10: 40px;
-
-  --shadow-low-bottom-right: 2px 2px 3px -3px #171615;
-
-  --shadow-low-top-right: 2px -2px 3px -3px #171615;
-
-  --shadow-low-bottom-left: -2px 2px 3px -3px #171615;
-
-  --shadow-low-top-left: -2px -2px 3px -3px #171615;
-
-  --shadow-medium-bottom-right: 10px 10px 15px -3px #171615;
-
-  --shadow-medium-top-right: 10px -10px 15px -3px #171615;
-
-  --shadow-medium-bottom-left: -10px 10px 15px -3px #171615;
-
-  --shadow-medium-top-left: -10px -10px 15px -3px #171615;
-
-  --shadow-high-bottom-right: 50px 50px 80px -3px #171615;
-
-  --shadow-high-top-right: 50px -50px 80px -3px #171615;
-
-  --shadow-high-bottom-left: -50px 50px 80px -3px #171615;
-
-  --shadow-high-top-left: -50px -50px 80px -3px #171615;
 }

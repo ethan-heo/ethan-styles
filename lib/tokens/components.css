@@ -1,54 +1,111 @@
+/*
+	Button 기본 스타일
+*/
 .button {
 	text-align: center;
-	color: var(--color-text);
 	border: none;
 	cursor: pointer;
 	box-shadow: var(--shadow-low-bottom-right);
+	background-color: var(--color-background);
+	border: var(--border-transparent-light);
+	color: var(--color-text-black);
+	box-sizing: border-box;
 }
+
+/*
+	Button 크기
+*/
 .button.x-large {
-	padding: var(--padding-3);
+	padding: calc(var(--padding-3) / 2) var(--padding-3);
 	font: var(--text-extra-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.large {
-	padding: var(--padding-2);
+	padding: calc(var(--padding-2) / 2) var(--padding-2);
 	font: var(--text-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.medium {
-	padding: var(--padding-1);
+	padding: calc(var(--padding-1) / 2) var(--padding-1);
 	font: var(--text-medium);
 	border-radius: var(--border-radius-small);
 }
 .button.small {
-	padding: var(--padding-1);
+	padding: calc(var(--padding-1) / 2) var(--padding-1);
 	font: var(--text-small);
 	border-radius: var(--border-radius-small);
 }
 .button.x-small {
-	padding: calc(var(--padding-1) / 2);
+	padding: calc(var(--padding-3) / 4) calc(var(--padding-3) / 2);
 	font: var(--text-extra-small);
 	border-radius: calc(var(--border-radius-small) / 2);
 }
+
+/*
+	Button 유형
+*/
 .button.primary {
 	background-color: var(--color-primary);
-}
-.button.accent {
-	background-color: var(--color-accent);
 	color: var(--color-text-white);
 }
-.button.success {
-	background-color: var(--color-success);
+.button.primary:hover {
+	opacity: 0.6;
+}
+.button.default {
+	border: var(--border-secondary-light);
+}
+.button.default:hover {
+	border: var(--border-primary-light);
+	color: var(--color-primary);
+}
+.button.text:hover {
+	background-color: var(--color-secondary);
+}
+
+/*
+	Button 상태
+*/
+.button:disabled {
+	cursor: not-allowed;
+}
+.button.primary:disabled {
+	background-color: var(--color-secondary);
+	border: var(--border-secondary-light);
 	color: var(--color-text-white);
 }
-.button.warning {
-	background-color: var(--color-warning);
+.button.default:disabled {
+	background-color: var(--color-background);
+	border: var(--border-secondary-light);
+	color: var(--color-secondary);
 }
-.button.error {
+.button.primary:disabled:hover {
+	opacity: initial;
+	background-color: var(--color-secondary);
+}
+.button.text:disabled:hover,
+.button.default:disabled:hover {
+	opacity: initial;
+	background-color: var(--color-background);
+}
+.button.text:disabled {
+	color: var(--color-secondary);
+}
+.button.primary.danger {
 	background-color: var(--color-error);
 	color: var(--color-text-white);
 }
-.button.text {
-	background-color: var(--color-background);
-	border: var(--border-black-2-thin);
+.button.default.danger {
+	border: var(--border-error-light);
+	color: var(--color-error);
+}
+.button.default.danger:hover {
+	opacity: 0.6;
+}
+.button.text.danger {
+	color: var(--color-error);
+}
+.button.text.danger:hover {
+	opacity: 0.6;
+	background-color: var(--color-error);
+	color: var(--color-text-white);
 }
