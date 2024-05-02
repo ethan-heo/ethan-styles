@@ -13,7 +13,7 @@
 		"build": "node scripts/build.mjs",
 		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
+		"build-storybook": "storybook build -o docs",
 		"test": "vitest --config ./configs/vitest.config.mjs",
 		"dev": "run-p storybook watch"
 	},
