@@ -179,7 +179,7 @@ h3.title {
 	font-weight: var(--text-weight-bold);
 }
 
-.paragraph {
+p.paragraph {
 	font: var(--text-size-medium);
 	font-weight: var(--text-weight-medium);
 }
