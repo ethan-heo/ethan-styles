@@ -4,93 +4,96 @@ import { Meta } from "@storybook/blocks";
 
 ## 소개
 
-Ethan-ui의 디자인 토큰은 여러 프로젝트에서 쉽게 토큰을 구성하고 재사용가능한 UI를 사용할 수 있도록하기 위한 디자인 토큰 시스템입니다.
+> ethan-ui의 디자인 토큰은 개인 프로젝트에서 사용할 디자인 요소들을 재사용하기 위한 목적으로 만들어졌습니다. 이 프로젝트의 목표는 디자인 시스템을 만드는 것이지만 디자인 토큰은 이 시스템을 구성하는 중요한 역할을 하고 있습니다.
 
-## 종류와 역할
+## 구성 요소
 
-디자인 토큰의 구성은 아래와 같습니다.
+디자인 토큰은 아래와 같은 흐름으로 진행됩니다.
+![ethan-ui의 디자인 토큰 흐름](./assets/ethan-ui-design-token-flow.webp)
 
-### 글로벌 토큰
+- **global 토큰** : 가장 작은 추상화단위 요소들의 집합입니다.
 
-글로벌 토큰은 확장가능한 요소중 가장 낮은 추상화단계의 토큰입니다. 이 토큰은 가장 낮은 단계이니 만큼 네이밍을 정의할 때 특정 목적이나, 형태를 나타내지 않는 이름으로 정의합니다.
+- **theme 토큰** : 구체적인 형태의 디자인 속성들의 집합입니다.
 
-```json
-{
-	"color": {
-		"red": {
-			"$type": "color",
-			"$value": "#ff0000"
-		}
-	},
-	"font-weight": {
-		"100": {
-			"$type": "fontWeight",
-			"$value": "100"
-		}
-	},
-	"font-size": {
-		"4x": {
-			"1": {
-				"$type": "dimension",
-				"$value": "8px"
-			}
-		}
-	}
-}
-```
-
-색상.빨강, 폰트*가중치.100, 폰트*사이즈.배율.숫자 등으로 어떠한 의도가 담기지 않은 명확한 디자인 속성으로 네이밍을 지정합니다.
-
-그리고 글로벌 토큰을 사용하여 테마 토큰을 정의할 수 있습니다.
-
-### 테마 토큰
-
-테마 토큰은 light, dark 테마와 같은 디자인 속성들을 정의하기 위한 단계입니다. 이 토큰은 글로벌 토큰을 활용하여 구성하며 네이밍을 정의할 때 구체화된 사용 목적을 기반으로 정의합니다.
-
-```json
-{
-	"color": {
-		"primary": {
-			"$type": "color",
-			"$value": "{color.red}"
-		}
-	},
-	"text": {
-		"large": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.4}/{line-height.140} {font-family.default}"
-		},
-		"medium": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.3}/{line-height.120} {font-family.default}"
-		}
-	}
-}
-```
-
-색상.primary는 브랜드의 주요 색상을 의미하며 text.large, text.medium은 텍스트의 형태를 구체화하여 정의합니다.
-
-### 디자인 시스템 토큰
-
-디자인 시스템 토큰은 재사용가능한 UI 스타일을 구성합니다. 글로벌, 테마 토큰과 달리 네이밍은 css 클래스를 작성하는 방식으로 정의할 예정입니다. 구체적인 내용은 추후 업데이트 예정.
+- **component styles** : UI에 사용되는 스타일을 구성한 css 파일입니다.
 
 ```css
-.button-primary-large {
-	background-color: var(--color-primary);
-	font: var(--text-large);
+.button.primary {
+	/* ... */
+}
+.button.secondary {
+	/* ... */
+}
+h1.title {
+	/* ... */
+}
+h2.title {
+	/* ... */
+}
+h3.title {
+	/* ... */
+}
+/* ... */
+```
+
+- **design system styles** : [구상중] 프로젝트에 의존된 스타일을 구성한 css 파일입니다. css variable로 변환된 theme 요소를 통해 구성합니다.
+
+## 네이밍 규칙
+
+global, theme 토큰 / components, design system 스타일을 정의하기 위한 네이밍 규칙에 대해 설명합니다.
+
+### Global 토큰
+
+Global 토큰은 가장 작은 요소이며 어떠한 목적을 가지지 않습니다. 그렇기 때문에 단순 스타일 속성에 대한 정의를 통해 네이밍을 정의합니다.
+
+**[속성명]-[category]-[subcategory]**
+
+```json
+{
+	"color": {},
+	"font-size": {},
+	"font-weight": {},
+	"border-width": {},
+	"border-style": {}
+	// ...
 }
 ```
 
-## 사용법
+### Theme 토큰
 
-토큰의 사용법은 generateToken 모듈을 실행하여 JSON으로 정의된 토큰을 css 파일로 변환해줍니다.
+Theme 토큰은 스타일의 형태를 표현합니다.
 
-### 1. 토큰 구성
+**[형태]-[category]-[subcategory]**
 
-### 2. generateToken
+```json
+{
+	"color": {
+		"primary": {},
+		"secondary": {},
+		"success": {}
+		// ...
+	},
+	"text": {
+		"size": {
+			"large": {},
+			"medium": {},
+			"small": {}
+		},
+		"weight": {
+			"bold": {},
+			"medium": {},
+			"small": {}
+		}
+		// ...
+	}
+	// ...
+}
+```
 
-## FAQ
+### Components 스타일
 
-### 토큰 객체와 토큰 구성 객체
+[준비중]
 
-### 토큰 메타데이터 정의 방법
+### Design system 스타일
+
+[준비중]
