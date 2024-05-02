@@ -1,4 +1,4 @@
-import{r as j}from"./index-V85efKSV.js";import{useMDXComponents as m}from"./index-NsTgK0Gw.js";import{M as u}from"./index-DSUCC3Qx.js";import"./iframe-DYjcrAqJ.js";import"../sb-preview/runtime.js";import"./index-Bi5bZrvs.js";import"./index-B_J8iUie.js";import"./index-BdyFT-FI.js";import"./index-DrFu-skq.js";var x={exports:{}},r={};/** @license React v16.14.0
+import{r as j}from"./index-V85efKSV.js";import{useMDXComponents as m}from"./index-NsTgK0Gw.js";import{M as u}from"./index-CNrbR9-V.js";import"./iframe-QWxvLQEj.js";import"../sb-preview/runtime.js";import"./index-Bi5bZrvs.js";import"./index-B_J8iUie.js";import"./index-BdyFT-FI.js";import"./index-DrFu-skq.js";var x={exports:{}},r={};/** @license React v16.14.0
  * react-jsx-runtime.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -23,26 +23,9 @@ import{r as j}from"./index-V85efKSV.js";import{useMDXComponents as m}from"./inde
 `,e.jsxs(n.li,{children:[`
 `,e.jsxs(n.p,{children:[e.jsx(n.strong,{children:"component styles"})," : UI에 사용되는 스타일을 구성한 css 파일입니다."]}),`
 `]}),`
+`,e.jsxs(n.li,{children:[`
+`,e.jsxs(n.p,{children:[e.jsx(n.strong,{children:"design system styles"})," : [구상중] 프로젝트에 의존된 스타일을 구성한 css 파일입니다. css variable로 변환된 theme 요소를 통해 구성합니다."]}),`
 `]}),`
-`,e.jsx(n.pre,{children:e.jsx(n.code,{className:"language-css",children:`.button.primary {
-	/* ... */
-}
-.button.secondary {
-	/* ... */
-}
-h1.title {
-	/* ... */
-}
-h2.title {
-	/* ... */
-}
-h3.title {
-	/* ... */
-}
-/* ... */
-`})}),`
-`,e.jsxs(n.ul,{children:[`
-`,e.jsxs(n.li,{children:[e.jsx(n.strong,{children:"design system styles"})," : [구상중] 프로젝트에 의존된 스타일을 구성한 css 파일입니다. css variable로 변환된 theme 요소를 통해 구성합니다."]}),`
 `]}),`
 `,e.jsx(n.h2,{id:"네이밍-규칙",children:"네이밍 규칙"}),`
 `,e.jsx(n.p,{children:"global, theme 토큰 / components, design system 스타일을 정의하기 위한 네이밍 규칙에 대해 설명합니다."}),`
@@ -86,5 +69,22 @@ h3.title {
 `})}),`
 `,e.jsx(n.h3,{id:"components-스타일",children:"Components 스타일"}),`
 `,e.jsx(n.p,{children:"[준비중]"}),`
+`,e.jsx(n.pre,{children:e.jsx(n.code,{className:"language-css",children:`.button.primary {
+	/* ... */
+}
+.button.secondary {
+	/* ... */
+}
+h1.title {
+	/* ... */
+}
+h2.title {
+	/* ... */
+}
+h3.title {
+	/* ... */
+}
+/* ... */
+`})}),`
 `,e.jsx(n.h3,{id:"design-system-스타일",children:"Design system 스타일"}),`
 `,e.jsx(n.p,{children:"[준비중]"})]})}function M(t={}){const{wrapper:n}={...m(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(h,{...t})}):h(t)}export{M as default};
