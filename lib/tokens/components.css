@@ -18,27 +18,27 @@
 */
 .button.x-large {
 	padding: calc(var(--padding-3) / 2) var(--padding-3);
-	font: var(--text-extra-large);
+	font: var(--text-size-extra-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.large {
 	padding: calc(var(--padding-2) / 2) var(--padding-2);
-	font: var(--text-large);
+	font: var(--text-size-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.medium {
 	padding: calc(var(--padding-1) / 2) var(--padding-1);
-	font: var(--text-medium);
+	font: var(--text-size-medium);
 	border-radius: var(--border-radius-small);
 }
 .button.small {
 	padding: calc(var(--padding-1) / 2) var(--padding-1);
-	font: var(--text-small);
+	font: var(--text-size-small);
 	border-radius: var(--border-radius-small);
 }
 .button.x-small {
 	padding: calc(var(--padding-3) / 4) calc(var(--padding-3) / 2);
-	font: var(--text-extra-small);
+	font: var(--text-size-extra-small);
 	border-radius: calc(var(--border-radius-small) / 2);
 }
 
@@ -125,4 +125,56 @@
 	opacity: 0.6;
 	background-color: var(--color-error);
 	color: var(--color-text-white);
+}
+
+.typograph.strong {
+	font-weight: var(--text-weight-700);
+}
+.typograph.italic {
+	font-style: italic;
+}
+.typograph.underline {
+	text-decoration: underline;
+}
+.typograph.del {
+	text-decoration: line-through;
+}
+.typograph.mark {
+	background-color: var(--color-primary);
+	border-radius: var(--border-radius-small);
+}
+
+h1.title {
+	font: var(--text-size-2-extra-large);
+	font-weight: var(--text-weight-bold);
+}
+h2.title {
+	font: var(--text-size-extra-large);
+	font-weight: var(--text-weight-bold);
+}
+h3.title {
+	font: var(--text-size-large);
+	font-weight: var(--text-weight-bold);
+}
+
+.title.primary {
+	color: var(--color-primary);
+}
+.title.secondary {
+	color: var(--color-secondary);
+}
+.title.accent {
+	color: var(--color-accent);
+}
+.title.success {
+	color: var(--color-success);
+}
+.title.warning {
+	color: var(--color-warning);
+}
+.title.error {
+	color: var(--color-error);
+}
+.title.text {
+	color: var(--color-text);
 }
