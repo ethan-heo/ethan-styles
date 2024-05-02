@@ -1,0 +1,4 @@
+.paragraph {
+	font: var(--text-size-medium);
+	font-weight: var(--text-weight-medium);
+}
