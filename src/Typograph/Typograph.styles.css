@@ -1,0 +1,37 @@
+.typograph.strong {
+	font-weight: var(--text-weight-700);
+}
+.typograph.italic {
+	font-style: italic;
+}
+.typograph.underline {
+	text-decoration: underline;
+}
+.typograph.del {
+	text-decoration: line-through;
+}
+.typograph.mark {
+	background-color: var(--color-primary);
+	border-radius: var(--border-radius-small);
+}
+.typograph.primary {
+	color: var(--color-primary);
+}
+.typograph.secondary {
+	color: var(--color-secondary);
+}
+.typograph.accent {
+	color: var(--color-accent);
+}
+.typograph.success {
+	color: var(--color-success);
+}
+.typograph.warning {
+	color: var(--color-warning);
+}
+.typograph.error {
+	color: var(--color-error);
+}
+.typograph.text {
+	color: var(--color-text);
+}

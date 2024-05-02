@@ -1,8 +1,9 @@
 import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
 import { TYPOGRAPH_CLASSNAME } from "./constants";
-import "./Title.styles.css";
 import transformClassnamesToProps from "./utils/transformClassnamesToProps";
+import "./Typograph.styles.css";
+import "./Title.styles.css";
 
 type Level = 1 | 2 | 3;
 type EnhancedTypographCommonProps = Omit<TypographCommonProps, "string">;
