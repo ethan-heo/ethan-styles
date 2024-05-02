@@ -1,31 +1,43 @@
 {
 	"text": {
 		"size": {
+			"2-extra-large": {
+				"$type": "string",
+				"$value": "normal {font-size.rem.8}/{line-height.140} {font-family.default}"
+			},
 			"extra-large": {
 				"$type": "string",
-				"$value": "normal {font-size.4x.5}/{line-height.140} {font-family.default}"
+				"$value": "normal {font-size.rem.6}/{line-height.140} {font-family.default}"
 			},
 			"large": {
 				"$type": "string",
-				"$value": "normal {font-size.4x.4}/{line-height.140} {font-family.default}"
+				"$value": "normal {font-size.rem.4}/{line-height.140} {font-family.default}"
 			},
 			"medium": {
 				"$type": "string",
-				"$value": "normal {font-size.4x.3}/{line-height.120} {font-family.default}"
+				"$value": "normal {font-size.rem.3}/{line-height.120} {font-family.default}"
 			},
 			"small": {
 				"$type": "string",
-				"$value": "normal {font-size.4x.2}/{line-height.120} {font-family.default}"
+				"$value": "normal {font-size.rem.2}/{line-height.120} {font-family.default}"
 			},
 			"extra-small": {
 				"$type": "string",
-				"$value": "normal {font-size.4x.1}/{line-height.120} {font-family.default}"
+				"$value": "normal {font-size.rem.1}/{line-height.120} {font-family.default}"
 			}
 		},
 		"weight": {
-			"{font-weight}": {
+			"bold": {
 				"$type": "fontWeight",
-				"$value": "{$value}"
+				"$value": "{font-weight.700}"
+			},
+			"medium": {
+				"$type": "fontWeight",
+				"$value": "{font-weight.500}"
+			},
+			"light": {
+				"$type": "fontWeight",
+				"$value": "{font-weight.300}"
 			}
 		}
 	},
