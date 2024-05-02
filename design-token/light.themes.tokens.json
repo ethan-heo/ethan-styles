@@ -1,24 +1,32 @@
 {
 	"text": {
-		"extra-large": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.5}/{line-height.140} {font-family.default}"
+		"size": {
+			"extra-large": {
+				"$type": "string",
+				"$value": "normal {font-size.4x.5}/{line-height.140} {font-family.default}"
+			},
+			"large": {
+				"$type": "string",
+				"$value": "normal {font-size.4x.4}/{line-height.140} {font-family.default}"
+			},
+			"medium": {
+				"$type": "string",
+				"$value": "normal {font-size.4x.3}/{line-height.120} {font-family.default}"
+			},
+			"small": {
+				"$type": "string",
+				"$value": "normal {font-size.4x.2}/{line-height.120} {font-family.default}"
+			},
+			"extra-small": {
+				"$type": "string",
+				"$value": "normal {font-size.4x.1}/{line-height.120} {font-family.default}"
+			}
 		},
-		"large": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.4}/{line-height.140} {font-family.default}"
-		},
-		"medium": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.3}/{line-height.120} {font-family.default}"
-		},
-		"small": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.2}/{line-height.120} {font-family.default}"
-		},
-		"extra-small": {
-			"$type": "string",
-			"$value": "normal {font-size.4x.1}/{line-height.120} {font-family.default}"
+		"weight": {
+			"{font-weight}": {
+				"$type": "fontWeight",
+				"$value": "{$value}"
+			}
 		}
 	},
 	"color": {

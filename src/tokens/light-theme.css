@@ -1,13 +1,33 @@
 :root {
-  --text-extra-large: normal 24px/1.4 "Roboto", Arial, sans-serif;
+  --text-size-extra-large: normal 24px/1.4 "Roboto", Arial, sans-serif;
 
-  --text-large: normal 20px/1.4 "Roboto", Arial, sans-serif;
+  --text-size-large: normal 20px/1.4 "Roboto", Arial, sans-serif;
 
-  --text-medium: normal 16px/1.2 "Roboto", Arial, sans-serif;
+  --text-size-medium: normal 16px/1.2 "Roboto", Arial, sans-serif;
 
-  --text-small: normal 12px/1.2 "Roboto", Arial, sans-serif;
+  --text-size-small: normal 12px/1.2 "Roboto", Arial, sans-serif;
 
-  --text-extra-small: normal 8px/1.2 "Roboto", Arial, sans-serif;
+  --text-size-extra-small: normal 8px/1.2 "Roboto", Arial, sans-serif;
+
+  --text-weight-100: 100;
+
+  --text-weight-200: 200;
+
+  --text-weight-300: 300;
+
+  --text-weight-400: 400;
+
+  --text-weight-500: 500;
+
+  --text-weight-600: 600;
+
+  --text-weight-700: 700;
+
+  --text-weight-800: 800;
+
+  --text-weight-900: 900;
+
+  --text-weight-950: 950;
 
   --color-primary: #f97300;
 
