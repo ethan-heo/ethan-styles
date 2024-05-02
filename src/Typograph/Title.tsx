@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
 import { TYPOGRAPH_CLASSNAME } from "./constants";
 import "./Title.styles.css";
+import transformClassnamesToProps from "./utils/transformClassnamesToProps";
 
 type Level = 1 | 2 | 3;
 type EnhancedTypographCommonProps = Omit<TypographCommonProps, "string">;
@@ -25,7 +26,7 @@ const Title: React.FC<TitleProps> = ({
 		TYPOGRAPH_CLASSNAME,
 		"title",
 		variant,
-		...createStylesClassNames({
+		...transformClassnamesToProps({
 			italic,
 			underline,
 			del,
@@ -47,11 +48,3 @@ const Title: React.FC<TitleProps> = ({
 };
 
 export default Title;
-
-const createStylesClassNames = (
-	styles: Omit<EnhancedTypographCommonProps, "variant">,
-) => {
-	return Object.entries(styles)
-		.filter(([_, value]) => Boolean(value))
-		.map(([key]) => key);
-};
