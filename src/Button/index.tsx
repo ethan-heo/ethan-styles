@@ -13,19 +13,20 @@ const Button: React.FC<ButtonProps> = ({
 	size = "medium",
 	danger,
 	children,
+	className,
 	...props
 }) => {
 	const prefix = "button";
-	const classNames: (string | null)[] = [prefix, size];
+	const classNames: (string | null | undefined)[] = [prefix, size, variant];
 
 	if (!props.disabled) {
-		classNames.push(...[variant, danger ? "danger" : null]);
-	} else {
-		classNames.push(variant);
+		classNames.push(danger ? "danger" : null);
 	}
 
+	classNames.push(className);
+
 	return (
-		<button className={classNames.join(" ")} {...props}>
+		<button className={classNames.filter(Boolean).join(" ")} {...props}>
 			{children}
 		</button>
 	);
