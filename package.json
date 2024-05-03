@@ -9,13 +9,14 @@
 		"./styles/light-theme.css": "./lib/tokens/light-theme.css"
 	},
 	"scripts": {
-		"watch": "node scripts/build.mjs --watch",
-		"build": "node scripts/build.mjs",
 		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build -o docs",
+		"dev:lib": "node scripts/build.mjs --watch",
+		"dev:storybook": "storybook dev -p 6006",
+		"build:lib": "node scripts/build.mjs",
+		"build:docs": "storybook build -o docs",
 		"test": "vitest --config ./configs/vitest.config.mjs",
-		"dev": "run-p storybook watch"
+		"dev": "run-p dev:storybook dev:lib",
+		"build": "run-s build:lib build:docs"
 	},
 	"peerDependencies": {
 		"react": "^18.0.0",
