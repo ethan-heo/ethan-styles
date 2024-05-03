@@ -14,7 +14,7 @@ const Paragraph: React.FC<ParagraphProps> = ({
 	underline,
 	del,
 	mark,
-	variant,
+	variant = "default",
 	children,
 	className,
 	...props

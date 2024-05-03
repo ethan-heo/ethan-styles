@@ -14,7 +14,7 @@ const Text: React.FC<TextProps> = ({
 	underline,
 	del,
 	mark,
-	variant,
+	variant = "default",
 	children,
 	className,
 	...props

@@ -16,7 +16,7 @@
 .typograph.error {
 	color: var(--color-error);
 }
-.typograph.text {
+.typograph.default {
 	color: var(--color-text);
 }
 .typograph.strong {

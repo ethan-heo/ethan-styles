@@ -11,5 +11,5 @@ export interface TypographCommonProps {
 		| "success"
 		| "warning"
 		| "error"
-		| "text";
+		| "default";
 }
