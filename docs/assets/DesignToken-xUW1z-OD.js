@@ -1,11 +1,12 @@
-import{r as j}from"./index-V85efKSV.js";import{useMDXComponents as m}from"./index-NsTgK0Gw.js";import{M as u}from"./index-CNrbR9-V.js";import"./iframe-QWxvLQEj.js";import"../sb-preview/runtime.js";import"./index-Bi5bZrvs.js";import"./index-B_J8iUie.js";import"./index-BdyFT-FI.js";import"./index-DrFu-skq.js";var x={exports:{}},r={};/** @license React v16.14.0
+import{r as p}from"./index-uubelm5h.js";import{useMDXComponents as h}from"./index-FeUjBnvO.js";import{M as a}from"./index-D2br6GbB.js";import"./iframe-IzFQIhl1.js";import"../sb-preview/runtime.js";import"./index-Dei0BBcc.js";import"./index-B_J8iUie.js";import"./index-dOsnOu12.js";import"./index-DrFu-skq.js";var x={exports:{}},o={};/**
+ * @license React
  * react-jsx-runtime.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var g=j,a=60103;r.Fragment=60107;if(typeof Symbol=="function"&&Symbol.for){var d=Symbol.for;a=d("react.element"),r.Fragment=d("react.fragment")}var y=g.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,f=Object.prototype.hasOwnProperty,b={key:!0,ref:!0,__self:!0,__source:!0};function p(t,n,l){var s,o={},i=null,c=null;l!==void 0&&(i=""+l),n.key!==void 0&&(i=""+n.key),n.ref!==void 0&&(c=n.ref);for(s in n)f.call(n,s)&&!b.hasOwnProperty(s)&&(o[s]=n[s]);if(t&&t.defaultProps)for(s in n=t.defaultProps,n)o[s]===void 0&&(o[s]=n[s]);return{$$typeof:a,type:t,key:i,ref:c,props:o,_owner:y.current}}r.jsx=p;r.jsxs=p;x.exports=r;var e=x.exports;function h(t){const n={blockquote:"blockquote",code:"code",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",pre:"pre",strong:"strong",ul:"ul",...m(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(u,{title:"디자인 토큰 가이드"}),`
+ */var j=p,u=Symbol.for("react.element"),g=Symbol.for("react.fragment"),y=Object.prototype.hasOwnProperty,f=j.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,b={key:!0,ref:!0,__self:!0,__source:!0};function m(t,n,l){var s,r={},i=null,c=null;l!==void 0&&(i=""+l),n.key!==void 0&&(i=""+n.key),n.ref!==void 0&&(c=n.ref);for(s in n)y.call(n,s)&&!b.hasOwnProperty(s)&&(r[s]=n[s]);if(t&&t.defaultProps)for(s in n=t.defaultProps,n)r[s]===void 0&&(r[s]=n[s]);return{$$typeof:u,type:t,key:i,ref:c,props:r,_owner:f.current}}o.Fragment=g;o.jsx=m;o.jsxs=m;x.exports=o;var e=x.exports;function d(t){const n={blockquote:"blockquote",code:"code",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",pre:"pre",strong:"strong",ul:"ul",...h(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(a,{title:"디자인 토큰 가이드"}),`
 `,e.jsx(n.h2,{id:"소개",children:"소개"}),`
 `,e.jsxs(n.blockquote,{children:[`
 `,e.jsx(n.p,{children:"ethan-ui의 디자인 토큰은 개인 프로젝트에서 사용할 디자인 요소들을 재사용하기 위한 목적으로 만들어졌습니다. 이 프로젝트의 목표는 디자인 시스템을 만드는 것이지만 디자인 토큰은 이 시스템을 구성하는 중요한 역할을 하고 있습니다."}),`
@@ -87,4 +88,4 @@ h3.title {
 /* ... */
 `})}),`
 `,e.jsx(n.h3,{id:"design-system-스타일",children:"Design system 스타일"}),`
-`,e.jsx(n.p,{children:"[준비중]"})]})}function M(t={}){const{wrapper:n}={...m(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(h,{...t})}):h(t)}export{M as default};
+`,e.jsx(n.p,{children:"[준비중]"})]})}function M(t={}){const{wrapper:n}={...h(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(d,{...t})}):d(t)}export{M as default};

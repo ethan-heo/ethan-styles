@@ -4,5 +4,5 @@ export interface TypographCommonProps {
     underline?: boolean;
     del?: boolean;
     mark?: boolean;
-    variant?: "priamry" | "secondary" | "accent" | "success" | "warning" | "error" | "text";
+    variant?: "priamry" | "secondary" | "accent" | "success" | "warning" | "error" | "default";
 }

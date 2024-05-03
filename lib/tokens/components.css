@@ -145,7 +145,7 @@
 .typograph.error {
 	color: var(--color-error);
 }
-.typograph.text {
+.typograph.default {
 	color: var(--color-text);
 }
 .typograph.strong {
@@ -188,4 +188,13 @@ span.text {
 	display: inline-block;
 	font: var(--text-size-medium);
 	font-weight: var(--text-weight-medium);
+}
+
+a.link {
+	font: var(--text-size-medium);
+	font-weight: var(--text-weight-medium);
+	text-decoration: none;
+}
+a.link:hover {
+	opacity: 0.6;
 }
