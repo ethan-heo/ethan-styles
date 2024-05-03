@@ -27,7 +27,7 @@ const meta = {
 		variant: {
 			control: "select",
 			description: "텍스트 색상을 정의할 때 사용합니다.",
-			defaultValue: "text",
+			defaultValue: "default",
 			options: [
 				"primary",
 				"secondary",
@@ -35,7 +35,7 @@ const meta = {
 				"success",
 				"warning",
 				"error",
-				"text",
+				"default",
 			],
 		},
 		level: {
