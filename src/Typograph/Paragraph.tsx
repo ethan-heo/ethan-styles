@@ -1,9 +1,8 @@
 import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
-import { TYPOGRAPH_CLASSNAME } from "./constants";
-import transformClassnamesToProps from "./utils/transformClassnamesToProps";
 import "./Typograph.styles.css";
 import "./Paragraph.styles.css";
+import createTypographClassnames from "./utils/createTypographClassnames";
 
 interface ParagraphProps
 	extends HTMLAttributes<HTMLParagraphElement>,
@@ -20,21 +19,18 @@ const Paragraph: React.FC<ParagraphProps> = ({
 	className,
 	...props
 }) => {
-	const classNames = [
-		TYPOGRAPH_CLASSNAME,
+	const classNames = createTypographClassnames(
 		"paragraph",
-		variant,
-		...transformClassnamesToProps({
-			strong,
+		{
 			italic,
 			underline,
 			del,
 			mark,
-		}),
+			variant,
+		},
 		className,
-	]
-		.filter(Boolean)
-		.join(" ");
+	);
+
 	return (
 		<p className={classNames} {...props}>
 			{children}

@@ -1,9 +1,8 @@
 import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
-import { TYPOGRAPH_CLASSNAME } from "./constants";
-import transformClassnamesToProps from "./utils/transformClassnamesToProps";
 import "./Typograph.styles.css";
 import "./Title.styles.css";
+import createTypographClassnames from "./utils/createTypographClassnames";
 
 type Level = 1 | 2 | 3;
 type EnhancedTypographCommonProps = Omit<TypographCommonProps, "string">;
@@ -25,20 +24,17 @@ const Title: React.FC<TitleProps> = ({
 	children,
 	...props
 }) => {
-	const classNames = [
-		TYPOGRAPH_CLASSNAME,
+	const classNames = createTypographClassnames(
 		"title",
-		variant,
-		...transformClassnamesToProps({
+		{
 			italic,
 			underline,
 			del,
 			mark,
-		}),
+			variant,
+		},
 		className,
-	]
-		.filter(Boolean)
-		.join(" ");
+	);
 
 	switch (level) {
 		case 2:

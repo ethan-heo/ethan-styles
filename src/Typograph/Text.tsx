@@ -1,9 +1,8 @@
 import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
-import { TYPOGRAPH_CLASSNAME } from "./constants";
-import transformClassnamesToProps from "./utils/transformClassnamesToProps";
 import "./Typograph.styles.css";
 import "./Text.styles.css";
+import createTypographClassnames from "./utils/createTypographClassnames";
 
 interface TextProps
 	extends HTMLAttributes<HTMLSpanElement>,
@@ -20,21 +19,17 @@ const Text: React.FC<TextProps> = ({
 	className,
 	...props
 }) => {
-	const classNames = [
-		TYPOGRAPH_CLASSNAME,
+	const classNames = createTypographClassnames(
 		"text",
-		variant,
-		...transformClassnamesToProps({
-			strong,
+		{
 			italic,
 			underline,
 			del,
 			mark,
-		}),
+			variant,
+		},
 		className,
-	]
-		.filter(Boolean)
-		.join(" ");
+	);
 
 	return (
 		<span className={classNames} {...props}>
