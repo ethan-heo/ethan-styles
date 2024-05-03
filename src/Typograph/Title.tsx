@@ -19,7 +19,7 @@ const Title: React.FC<TitleProps> = ({
 	underline,
 	del,
 	mark,
-	variant = "text",
+	variant = "default",
 	className,
 	children,
 	...props
