@@ -16,6 +16,8 @@ const Text: React.FC<TextProps> = ({
 	del,
 	mark,
 	variant,
+	children,
+	className,
 	...props
 }) => {
 	const classNames = [
@@ -29,12 +31,16 @@ const Text: React.FC<TextProps> = ({
 			del,
 			mark,
 		}),
-		props.className,
+		className,
 	]
 		.filter(Boolean)
 		.join(" ");
 
-	return <span className={classNames}>{props.children}</span>;
+	return (
+		<span className={classNames} {...props}>
+			{children}
+		</span>
+	);
 };
 
 export default Text;

@@ -21,6 +21,8 @@ const Title: React.FC<TitleProps> = ({
 	del,
 	mark,
 	variant = "text",
+	className,
+	children,
 	...props
 }) => {
 	const classNames = [
@@ -33,18 +35,30 @@ const Title: React.FC<TitleProps> = ({
 			del,
 			mark,
 		}),
-		props.className,
+		className,
 	]
 		.filter(Boolean)
 		.join(" ");
 
 	switch (level) {
 		case 2:
-			return <h2 className={classNames}>{props.children}</h2>;
+			return (
+				<h2 className={classNames} {...props}>
+					{children}
+				</h2>
+			);
 		case 3:
-			return <h3 className={classNames}>{props.children}</h3>;
+			return (
+				<h3 className={classNames} {...props}>
+					{children}
+				</h3>
+			);
 		default:
-			return <h1 className={classNames}>{props.children}</h1>;
+			return (
+				<h1 className={classNames} {...props}>
+					{children}
+				</h1>
+			);
 	}
 };
 

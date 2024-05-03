@@ -16,6 +16,8 @@ const Paragraph: React.FC<ParagraphProps> = ({
 	del,
 	mark,
 	variant,
+	children,
+	className,
 	...props
 }) => {
 	const classNames = [
@@ -29,11 +31,15 @@ const Paragraph: React.FC<ParagraphProps> = ({
 			del,
 			mark,
 		}),
-		props.className,
+		className,
 	]
 		.filter(Boolean)
 		.join(" ");
-	return <p className={classNames}>{props.children}</p>;
+	return (
+		<p className={classNames} {...props}>
+			{children}
+		</p>
+	);
 };
 
 export default Paragraph;
