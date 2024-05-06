@@ -1,4 +1,52 @@
 :root {
+  --grid-mobile-landscape-column: calc(100% - 24px * 5);
+
+  --grid-mobile-landscape-row: 8px;
+
+  --grid-mobile-landscape-gutter: 24px;
+
+  --grid-mobile-landscape-margin: 24px;
+
+  --grid-mobile-portrait-column: calc(100% - 16px * 5);
+
+  --grid-mobile-portrait-row: 8px;
+
+  --grid-mobile-portrait-gutter: 16px;
+
+  --grid-mobile-portrait-margin: 16px;
+
+  --grid-tablet-column: calc(100% - 24px * 9);
+
+  --grid-tablet-row: 8px;
+
+  --grid-tablet-gutter: 24px;
+
+  --grid-tablet-margin: 24px;
+
+  --grid-desktop-column: 72px;
+
+  --grid-desktop-row: 8px;
+
+  --grid-desktop-gutter: 24px;
+
+  --grid-desktop-margin: 0 auto;
+
+  --responsive-mobile-landscape-min-width: 576px;
+
+  --responsive-mobile-landscape-max-width: 767px;
+
+  --responsive-mobile-portrait-max-width: 575px;
+
+  --responsive-tablet-min-width: 768px;
+
+  --responsive-tablet-max-width: 991px;
+
+  --responsive-desktop-min-width: 992px;
+
+  --responsive-desktop-max-width: 1199px;
+
+  --responsive-desktop-large-min-width: 1200px;
+
   --text-size-2-extra-large: normal 2rem/1.4 "Roboto", Arial, sans-serif;
 
   --text-size-extra-large: normal 1.6rem/1.4 "Roboto", Arial, sans-serif;
@@ -29,21 +77,19 @@
 
   --color-error: #cd1818;
 
-  --color-text-black: #171615;
-
-  --color-text-white: #ffffff;
+  --color-text: #171615;
 
   --color-background: #ffffff;
 
-  --border-transparent-thin: 1px solid transparent;
+  --border-thin: 1px solid transparent;
 
-  --border-transparent-light: 2px solid transparent;
+  --border-light: 2px solid transparent;
 
-  --border-transparent-medium: 3px solid transparent;
+  --border-medium: 3px solid transparent;
 
-  --border-transparent-bold: 4px solid transparent;
+  --border-bold: 4px solid transparent;
 
-  --border-transparent-heavy: 5px solid transparent;
+  --border-heavy: 5px solid transparent;
 
   --border-primary-thin: 1px solid #f97300;
 
@@ -105,25 +151,15 @@
 
   --border-error-heavy: 5px solid #cd1818;
 
-  --border-text-black-thin: 1px solid #171615;
+  --border-text-thin: 1px solid #171615;
 
-  --border-text-black-light: 2px solid #171615;
+  --border-text-light: 2px solid #171615;
 
-  --border-text-black-medium: 3px solid #171615;
+  --border-text-medium: 3px solid #171615;
 
-  --border-text-black-bold: 4px solid #171615;
+  --border-text-bold: 4px solid #171615;
 
-  --border-text-black-heavy: 5px solid #171615;
-
-  --border-text-white-thin: 1px solid #ffffff;
-
-  --border-text-white-light: 2px solid #ffffff;
-
-  --border-text-white-medium: 3px solid #ffffff;
-
-  --border-text-white-bold: 4px solid #ffffff;
-
-  --border-text-white-heavy: 5px solid #ffffff;
+  --border-text-heavy: 5px solid #171615;
 
   --border-background-thin: 1px solid #ffffff;
 
@@ -143,81 +179,45 @@
 
   --border-radius-round: 100%;
 
-  --shadow-thin-primary: 2px 2px 3px -3px #f97300;
+  --shadow-thin: 2px 2px 3px -3px #171615;
 
-  --shadow-thin-secondary: 2px 2px 3px -3px #e2dfd0;
+  --padding-1: 8px;
 
-  --shadow-thin-accent: 2px 2px 3px -3px #32012f;
+  --padding-2: 16px;
 
-  --shadow-thin-success: 2px 2px 3px -3px #102c57;
+  --padding-3: 24px;
 
-  --shadow-thin-warning: 2px 2px 3px -3px #e9b824;
+  --padding-4: 32px;
 
-  --shadow-thin-error: 2px 2px 3px -3px #cd1818;
+  --padding-5: 40px;
 
-  --shadow-thin-text-black: 2px 2px 3px -3px #171615;
+  --padding-6: 48px;
 
-  --shadow-thin-text-white: 2px 2px 3px -3px #ffffff;
+  --padding-7: 56px;
 
-  --shadow-thin-background: 2px 2px 3px -3px #ffffff;
+  --padding-8: 64px;
 
-  --gutter-1: 4px;
+  --padding-9: 72px;
 
-  --gutter-2: 8px;
+  --padding-10: 80px;
 
-  --gutter-3: 12px;
+  --margin-1: 8px;
 
-  --gutter-4: 16px;
+  --margin-2: 16px;
 
-  --gutter-5: 20px;
+  --margin-3: 24px;
 
-  --gutter-6: 24px;
+  --margin-4: 32px;
 
-  --gutter-7: 28px;
+  --margin-5: 40px;
 
-  --gutter-8: 32px;
+  --margin-6: 48px;
 
-  --gutter-9: 36px;
+  --margin-7: 56px;
 
-  --gutter-10: 40px;
+  --margin-8: 64px;
 
-  --padding-1: 4px;
+  --margin-9: 72px;
 
-  --padding-2: 8px;
-
-  --padding-3: 12px;
-
-  --padding-4: 16px;
-
-  --padding-5: 20px;
-
-  --padding-6: 24px;
-
-  --padding-7: 28px;
-
-  --padding-8: 32px;
-
-  --padding-9: 36px;
-
-  --padding-10: 40px;
-
-  --margin-1: 4px;
-
-  --margin-2: 8px;
-
-  --margin-3: 12px;
-
-  --margin-4: 16px;
-
-  --margin-5: 20px;
-
-  --margin-6: 24px;
-
-  --margin-7: 28px;
-
-  --margin-8: 32px;
-
-  --margin-9: 36px;
-
-  --margin-10: 40px;
+  --margin-10: 80px;
 }

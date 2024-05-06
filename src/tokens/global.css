@@ -125,7 +125,7 @@
 
   --spacing-8x-9: 72px;
 
-  --spacing-8x-10: 72px;
+  --spacing-8x-10: 80px;
 
   --box-shadow-low-bottom-right: 2px 2px 3px -3px;
 
@@ -213,19 +213,19 @@
 
   --border-width-1x-10: 10px;
 
-  --breakpoint-mobile-portrait-min-width: 575px;
+  --breakpoint-1: 575px;
 
-  --breakpoint-mobile-landscape-min-width: 576px;
+  --breakpoint-2: 576px;
 
-  --breakpoint-mobile-landscape-max-width: 767px;
+  --breakpoint-3: 767px;
 
-  --breakpoint-tablet-min-width: 768px;
+  --breakpoint-4: 768px;
 
-  --breakpoint-tablet-max-width: 991px;
+  --breakpoint-5: 991px;
 
-  --breakpoint-desktop-min-width: 992px;
+  --breakpoint-6: 992px;
 
-  --breakpoint-desktop-max-width: 1199px;
+  --breakpoint-7: 1199px;
 
-  --breakpoint-desktop-large-min-width: 1200px;
+  --breakpoint-8: 1200px;
 }

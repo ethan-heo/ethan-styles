@@ -6,9 +6,9 @@
 	border: none;
 	cursor: pointer;
 	outline: inherit;
-	box-shadow: var(--shadow-low-bottom-right);
+	box-shadow: var(--shadow-thin);
 	background-color: var(--color-background);
-	border: var(--border-transparent-light);
+	border: var(--border-light);
 	color: var(--color-text-black);
 	box-sizing: border-box;
 }

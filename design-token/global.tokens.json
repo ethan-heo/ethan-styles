@@ -273,7 +273,7 @@
 			},
 			"10": {
 				"$type": "dimension",
-				"$value": "72px"
+				"$value": "80px"
 			}
 		}
 	},
@@ -468,49 +468,37 @@
 		}
 	},
 	"breakpoint": {
-		"mobile": {
-			"portrait": {
-				"min-width": {
-					"$type": "dimension",
-					"$value": "575px"
-				}
-			},
-			"landscape": {
-				"min-width": {
-					"$type": "dimension",
-					"$value": "576px"
-				},
-				"max-width": {
-					"$type": "dimension",
-					"$value": "767px"
-				}
-			}
+		"1": {
+			"$type": "dimension",
+			"$value": "575px"
 		},
-		"tablet": {
-			"min-width": {
-				"$type": "dimension",
-				"$value": "768px"
-			},
-			"max-width": {
-				"$type": "dimension",
-				"$value": "991px"
-			}
+		"2": {
+			"$type": "dimension",
+			"$value": "576px"
 		},
-		"desktop": {
-			"min-width": {
-				"$type": "dimension",
-				"$value": "992px"
-			},
-			"max-width": {
-				"$type": "dimension",
-				"$value": "1199px"
-			}
+		"3": {
+			"$type": "dimension",
+			"$value": "767px"
 		},
-		"desktop-large": {
-			"min-width": {
-				"$type": "dimension",
-				"$value": "1200px"
-			}
+		"4": {
+			"$type": "dimension",
+			"$value": "768px"
+		},
+		"5": {
+			"$type": "dimension",
+			"$value": "991px"
+		},
+		"6": {
+			"$type": "dimension",
+			"$value": "992px"
+		},
+		"7": {
+			"$type": "dimension",
+			"$value": "1199px"
+		},
+		"8": {
+			"$type": "dimension",
+			"$value": "1200px"
 		}
 	}
 }
