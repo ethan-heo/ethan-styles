@@ -6,7 +6,6 @@
 	border: none;
 	cursor: pointer;
 	outline: inherit;
-	box-shadow: var(--shadow-thin);
 	background-color: var(--color-background);
 	border: var(--border-light);
 	color: var(--color-text-black);
@@ -17,27 +16,27 @@
 	Button 크기
 */
 .button.x-large {
-	padding: calc(var(--padding-3) / 2) var(--padding-3);
+	padding: calc(var(--spacing-3) / 2) var(--spacing-3);
 	font: var(--text-size-extra-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.large {
-	padding: calc(var(--padding-2) / 2) var(--padding-2);
+	padding: calc(var(--spacing-2) / 2) var(--spacing-2);
 	font: var(--text-size-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.medium {
-	padding: calc(var(--padding-1) / 2) var(--padding-1);
+	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
 	font: var(--text-size-medium);
 	border-radius: var(--border-radius-small);
 }
 .button.small {
-	padding: calc(var(--padding-1) / 2) var(--padding-1);
+	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
 	font: var(--text-size-small);
 	border-radius: var(--border-radius-small);
 }
 .button.x-small {
-	padding: calc(var(--padding-3) / 4) calc(var(--padding-3) / 2);
+	padding: calc(var(--spacing-3) / 4) calc(var(--spacing-3) / 2);
 	font: var(--text-size-extra-small);
 	border-radius: calc(var(--border-radius-small) / 2);
 }
@@ -48,6 +47,7 @@
 .button.primary {
 	background-color: var(--color-primary);
 	color: var(--color-text-white);
+	box-shadow: var(--shadow-thin);
 }
 .button.primary:hover,
 .button.primary:focus,
@@ -56,6 +56,7 @@
 }
 .button.default {
 	border: var(--border-secondary-light);
+	box-shadow: var(--shadow-thin);
 }
 .button.default:hover,
 .button.default:focus,
@@ -197,4 +198,108 @@ a.link {
 }
 a.link:hover {
 	opacity: 0.6;
+}
+
+.grid-line {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -9999;
+}
+
+.grid-line-contents {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.grid-line-column {
+	background-color: #ff000020;
+	width: var(--column);
+	height: 100%;
+}
+
+.grid-line-gutter {
+	background-color: #0000ff20;
+	width: var(--gutter);
+	height: 100%;
+}
+
+.flex {
+	display: flex;
+}
+.flex.vertical {
+	flex-direction: column;
+}
+.flex.reverse {
+	flex-direction: row-reverse;
+}
+.flex.vertical.reverse {
+	flex-direction: column-reverse;
+}
+.flex.wrap {
+	flex-wrap: wrap;
+}
+.flex.justify.flex-start {
+	justify-content: flex-start;
+}
+.flex.justify.flex-end {
+	justify-content: flex-end;
+}
+.flex.justify.center {
+	justify-content: center;
+}
+.flex.justify.space-between {
+	justify-content: space-between;
+}
+.flex.justify.space-around {
+	justify-content: space-around;
+}
+.flex.justify.space-evenly {
+	justify-content: space-evenly;
+}
+.flex.justify.space-evenly {
+	justify-content: space-evenly;
+}
+.flex.align.flex-start {
+	align-items: flex-start;
+}
+.flex.align.flex-end {
+	align-items: flex-end;
+}
+.flex.align.center {
+	align-items: center;
+}
+.flex.gap-1 {
+	gap: var(--spacing-1);
+}
+.flex.gap-2 {
+	gap: var(--spacing-2);
+}
+.flex.gap-3 {
+	gap: var(--spacing-3);
+}
+.flex.gap-4 {
+	gap: var(--spacing-4);
+}
+.flex.gap-5 {
+	gap: var(--spacing-5);
+}
+.flex.gap-6 {
+	gap: var(--spacing-6);
+}
+.flex.gap-7 {
+	gap: var(--spacing-7);
+}
+.flex.gap-8 {
+	gap: var(--spacing-8);
+}
+.flex.gap-9 {
+	gap: var(--spacing-9);
+}
+.flex.gap-10 {
+	gap: var(--spacing-10);
 }

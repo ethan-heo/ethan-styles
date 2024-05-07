@@ -1,0 +1,75 @@
+.flex {
+	display: flex;
+}
+.flex.vertical {
+	flex-direction: column;
+}
+.flex.reverse {
+	flex-direction: row-reverse;
+}
+.flex.vertical.reverse {
+	flex-direction: column-reverse;
+}
+.flex.wrap {
+	flex-wrap: wrap;
+}
+.flex.justify.flex-start {
+	justify-content: flex-start;
+}
+.flex.justify.flex-end {
+	justify-content: flex-end;
+}
+.flex.justify.center {
+	justify-content: center;
+}
+.flex.justify.space-between {
+	justify-content: space-between;
+}
+.flex.justify.space-around {
+	justify-content: space-around;
+}
+.flex.justify.space-evenly {
+	justify-content: space-evenly;
+}
+.flex.justify.space-evenly {
+	justify-content: space-evenly;
+}
+.flex.align.flex-start {
+	align-items: flex-start;
+}
+.flex.align.flex-end {
+	align-items: flex-end;
+}
+.flex.align.center {
+	align-items: center;
+}
+.flex.gap-1 {
+	gap: var(--spacing-1);
+}
+.flex.gap-2 {
+	gap: var(--spacing-2);
+}
+.flex.gap-3 {
+	gap: var(--spacing-3);
+}
+.flex.gap-4 {
+	gap: var(--spacing-4);
+}
+.flex.gap-5 {
+	gap: var(--spacing-5);
+}
+.flex.gap-6 {
+	gap: var(--spacing-6);
+}
+.flex.gap-7 {
+	gap: var(--spacing-7);
+}
+.flex.gap-8 {
+	gap: var(--spacing-8);
+}
+.flex.gap-9 {
+	gap: var(--spacing-9);
+}
+.flex.gap-10 {
+	gap: var(--spacing-10);
+}
