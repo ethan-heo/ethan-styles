@@ -1,4 +1,7 @@
 {
 	"extends": "./tsconfig.json",
-	"include": ["src/index.ts"]
+	"compilerOptions": {
+		"typeRoots": ["./src/types"]
+	},
+	"include": ["src/index.ts", "src/types/**/*"]
 }
