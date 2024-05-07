@@ -4,7 +4,7 @@
 			"landscape": {
 				"column": {
 					"$type": "string",
-					"$value": "calc(100% - {spacing.8x.3} * 5)"
+					"$value": "calc((100% - {spacing.8x.3} * 5) / 4)"
 				},
 				"row": {
 					"$type": "dimension",
@@ -22,7 +22,7 @@
 			"portrait": {
 				"column": {
 					"$type": "string",
-					"$value": "calc(100% - {spacing.8x.2} * 5)"
+					"$value": "calc((100% - {spacing.8x.2} * 5) / 4)"
 				},
 				"row": {
 					"$type": "dimension",
@@ -41,7 +41,7 @@
 		"tablet": {
 			"column": {
 				"$type": "string",
-				"$value": "calc(100% - {spacing.8x.3} * 9)"
+				"$value": "calc((100% - {spacing.8x.3} * 9) / 8)"
 			},
 			"row": {
 				"$type": "dimension",
@@ -71,7 +71,7 @@
 			},
 			"margin": {
 				"$type": "string",
-				"$value": "0 auto"
+				"$value": "auto"
 			}
 		}
 	},
@@ -189,6 +189,10 @@
 		"text": {
 			"$type": "color",
 			"$value": "{color.vintage.black.2}"
+		},
+		"text-white": {
+			"$type": "color",
+			"$value": "{color.white}"
 		},
 		"background": {
 			"$type": "color",

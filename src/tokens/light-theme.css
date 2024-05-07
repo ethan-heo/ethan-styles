@@ -1,5 +1,5 @@
 :root {
-  --grid-mobile-landscape-column: calc(100% - 24px * 5);
+  --grid-mobile-landscape-column: calc((100% - 24px * 5) / 4);
 
   --grid-mobile-landscape-row: 8px;
 
@@ -7,7 +7,7 @@
 
   --grid-mobile-landscape-margin: 24px;
 
-  --grid-mobile-portrait-column: calc(100% - 16px * 5);
+  --grid-mobile-portrait-column: calc((100% - 16px * 5) / 4);
 
   --grid-mobile-portrait-row: 8px;
 
@@ -15,7 +15,7 @@
 
   --grid-mobile-portrait-margin: 16px;
 
-  --grid-tablet-column: calc(100% - 24px * 9);
+  --grid-tablet-column: calc((100% - 24px * 9) / 8);
 
   --grid-tablet-row: 8px;
 
@@ -29,7 +29,7 @@
 
   --grid-desktop-gutter: 24px;
 
-  --grid-desktop-margin: 0 auto;
+  --grid-desktop-margin: auto;
 
   --responsive-mobile-landscape-min-width: 576px;
 
@@ -78,6 +78,8 @@
   --color-error: #cd1818;
 
   --color-text: #171615;
+
+  --color-text-white: #ffffff;
 
   --color-background: #ffffff;
 
@@ -160,6 +162,16 @@
   --border-text-bold: 4px solid #171615;
 
   --border-text-heavy: 5px solid #171615;
+
+  --border-text-white-thin: 1px solid #ffffff;
+
+  --border-text-white-light: 2px solid #ffffff;
+
+  --border-text-white-medium: 3px solid #ffffff;
+
+  --border-text-white-bold: 4px solid #ffffff;
+
+  --border-text-white-heavy: 5px solid #ffffff;
 
   --border-background-thin: 1px solid #ffffff;
 
