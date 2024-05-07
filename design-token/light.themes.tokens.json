@@ -261,13 +261,7 @@
 			"$value": "{border-radius.full}"
 		}
 	},
-	"padding": {
-		"{spacing.8x}": {
-			"$type": "dimension",
-			"$value": "{$value}"
-		}
-	},
-	"margin": {
+	"spacing": {
 		"{spacing.8x}": {
 			"$type": "dimension",
 			"$value": "{$value}"

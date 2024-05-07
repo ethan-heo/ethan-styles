@@ -16,27 +16,27 @@
 	Button 크기
 */
 .button.x-large {
-	padding: calc(var(--padding-3) / 2) var(--padding-3);
+	padding: calc(var(--spacing-3) / 2) var(--spacing-3);
 	font: var(--text-size-extra-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.large {
-	padding: calc(var(--padding-2) / 2) var(--padding-2);
+	padding: calc(var(--spacing-2) / 2) var(--spacing-2);
 	font: var(--text-size-large);
 	border-radius: var(--border-radius-medium);
 }
 .button.medium {
-	padding: calc(var(--padding-1) / 2) var(--padding-1);
+	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
 	font: var(--text-size-medium);
 	border-radius: var(--border-radius-small);
 }
 .button.small {
-	padding: calc(var(--padding-1) / 2) var(--padding-1);
+	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
 	font: var(--text-size-small);
 	border-radius: var(--border-radius-small);
 }
 .button.x-small {
-	padding: calc(var(--padding-3) / 4) calc(var(--padding-3) / 2);
+	padding: calc(var(--spacing-3) / 4) calc(var(--spacing-3) / 2);
 	font: var(--text-size-extra-small);
 	border-radius: calc(var(--border-radius-small) / 2);
 }

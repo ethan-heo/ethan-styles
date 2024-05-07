@@ -193,43 +193,23 @@
 
   --shadow-thin: 2px 2px 3px -3px #171615;
 
-  --padding-1: 8px;
+  --spacing-1: 8px;
 
-  --padding-2: 16px;
+  --spacing-2: 16px;
 
-  --padding-3: 24px;
+  --spacing-3: 24px;
 
-  --padding-4: 32px;
+  --spacing-4: 32px;
 
-  --padding-5: 40px;
+  --spacing-5: 40px;
 
-  --padding-6: 48px;
+  --spacing-6: 48px;
 
-  --padding-7: 56px;
+  --spacing-7: 56px;
 
-  --padding-8: 64px;
+  --spacing-8: 64px;
 
-  --padding-9: 72px;
+  --spacing-9: 72px;
 
-  --padding-10: 80px;
-
-  --margin-1: 8px;
-
-  --margin-2: 16px;
-
-  --margin-3: 24px;
-
-  --margin-4: 32px;
-
-  --margin-5: 40px;
-
-  --margin-6: 48px;
-
-  --margin-7: 56px;
-
-  --margin-8: 64px;
-
-  --margin-9: 72px;
-
-  --margin-10: 80px;
+  --spacing-10: 80px;
 }
