@@ -1,0 +1,15 @@
+.grid-line {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -9999;
+}
+
+.grid-line-contents {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}

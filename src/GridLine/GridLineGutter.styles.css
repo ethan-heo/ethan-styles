@@ -1,0 +1,5 @@
+.grid-line-gutter {
+	background-color: #0000ff20;
+	width: var(--gutter);
+	height: 100%;
+}
