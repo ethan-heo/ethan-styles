@@ -4126,6 +4126,11 @@ functions-have-names@^1.2.3:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
+generate-design-token@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/generate-design-token/-/generate-design-token-0.0.4.tgz#4359baae7d7bb73d814d68aa827797aa7cec703a"
+  integrity sha512-fT+iXbZU//StALcEJmTO8kSJ6RJNmIuPyna7HfGaQBp/Dqg5hi8GW9j46mD2E/aK2DpVb1BXizGPlT9CIulHBg==
+
 generic-names@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/generic-names/-/generic-names-4.0.0.tgz#0bd8a2fd23fe8ea16cbd0a279acd69c06933d9a3"

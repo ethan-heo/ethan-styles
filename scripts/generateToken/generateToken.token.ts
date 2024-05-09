@@ -6,9 +6,3 @@ export type TokenObj = {
 export type Token = {
 	[key: string]: Token | TokenObj;
 };
-
-export type SequenceFunction<Result = any, Options = any> = (
-	token: Token,
-	baseTokens: Token[],
-	options?: Options,
-) => Result;

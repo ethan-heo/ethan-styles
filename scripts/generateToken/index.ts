@@ -3,8 +3,7 @@ import lightThemeToken from "../../design-token/light.themes.tokens.json";
 import creator from "./creator";
 import { Token } from "./generateToken.token";
 import mapper from "./mapper";
-import parser from "./parser";
-import transformer from "./transformer";
+import generateDesignToken from "generate-design-token";
 
 type GenerateTokenOptions = {
 	token: Token;
@@ -17,11 +16,7 @@ const generateToken = async ({
 	baseTokens,
 	fileName,
 }: GenerateTokenOptions) => {
-	const transformedToken = transformer(token, baseTokens);
-	const mappedToken = mapper(transformedToken);
-	const parsedToken = parser(mappedToken, baseTokens);
-
-	await creator(parsedToken, fileName);
+	await creator(mapper(generateDesignToken(token, baseTokens)), fileName);
 };
 
 generateToken({
