@@ -191,8 +191,6 @@
 
   --border-radius-round: 100%;
 
-  --shadow-thin: 2px 2px 3px -3px #171615;
-
   --spacing-1: 8px;
 
   --spacing-2: 16px;
@@ -212,4 +210,6 @@
   --spacing-9: 72px;
 
   --spacing-10: 80px;
+
+  --shadow-thin: 2px 2px 3px -3px #171615;
 }

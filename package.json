@@ -58,7 +58,7 @@
 		"yargs": "^17.7.2"
 	},
 	"engines": {
-		"node": ">=20"
+		"node": ">=18"
 	},
 	"dependencies": {
 		"react": "^18.2.0",
