@@ -10,18 +10,23 @@ const behaviorUI = new JSONEditorBehaviorUI({
 });
 
 it.each([
-	// ["<div>hello world</div>", 5, "<div><div>hello</div><div> world</div></div>"],
-	// ["<div>hello world</div>", 0, "<div><div></div><div>hello world</div></div>"],
-	// [
-	// 	"<div>hello <span>world</span></div>",
-	// 	7,
-	// 	"<div><div>hello <span>w</span></div><div><span>orld</span></div></div>",
-	// ],
+	["<div>hello world</div>", 5, "<div>hello</div><div><div> world</div></div>"],
+	["hello world", 5, "hello<div> world</div>"],
+	[
+		"<div>hello <span>world</span></div>",
+		5,
+		"<div>hello</div><div><div> <span>world</span></div></div>",
+	],
+	["<div>hello world</div>", 0, "<div></div><div><div>hello world</div></div>"],
+	[
+		"<div>hello <span>world</span></div>",
+		7,
+		"<div>hello <span>w</span></div><div><div><span>orld</span></div></div>",
+	],
 	[
 		"<div>hello <span>world</span></div> hello <div>world</div>",
 		5,
-
-		"<div><div>hello <div><span>world</span></div></div> hello <div>world</div><div>",
+		"<div>hello</div><div><div> <span>world</span></div> hello <div>world</div></div>",
 	],
 ])(`JSONEditorBehaviorUI.lineFeed()`, (domStr, startIndex, expected) => {
 	expect(behaviorUI.enter(domStr, startIndex)).toBe(expected);
