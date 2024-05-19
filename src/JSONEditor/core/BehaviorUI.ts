@@ -34,8 +34,8 @@ class JSONEditorBehaviorUI {
 					const BEFORE_SEPERATED_CLOSE_TAG_TOKENS = [...inconsistentTokens]
 						.reverse()
 						.map((token) => ({
-							...token,
 							type: "CloseTag" as HTMLTokenType,
+							contents: token.contents,
 						}));
 					const AFTER_SEPARATED_OPEN_TAG_TOKENS = inconsistentTokens;
 					const PARAGRAPH_OPEN_TAG_TOKEN: HTMLToken = {
@@ -79,7 +79,9 @@ class JSONEditorBehaviorUI {
 
 		return result.map(this.formatHTMLToken).join("");
 	}
-	tab() {}
+	tab(html: string) {
+		return `<div></div>` + html;
+	}
 	space() {}
 
 	private isHtml(html: string) {

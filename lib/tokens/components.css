@@ -50,7 +50,7 @@
 	box-shadow: var(--shadow-thin);
 }
 .button.primary:hover,
-.button.primary:focus,
+.button.primary:focus-visible,
 .button.primary:active {
 	opacity: 0.6;
 }
@@ -59,13 +59,13 @@
 	box-shadow: var(--shadow-thin);
 }
 .button.default:hover,
-.button.default:focus,
+.button.default:focus-visible,
 .button.default:active {
 	border: var(--border-primary-light);
 	color: var(--color-primary);
 }
 .button.text:hover,
-.button.text:focus,
+.button.text:focus-visible,
 .button.text:active {
 	background-color: var(--color-secondary);
 }
@@ -87,16 +87,16 @@
 	color: var(--color-secondary);
 }
 .button.primary:disabled:hover,
-.button.primary:disabled:focus,
+.button.primary:disabled:focus-visible,
 .button.primary:disabled:active {
 	opacity: initial;
 	background-color: var(--color-secondary);
 }
 .button.text:disabled:hover,
-.button.text:disabled:focus,
+.button.text:disabled:focus-visible,
 .button.text:disabled:active,
 .button.default:disabled:hover,
-.button.default:disabled:focus,
+.button.default:disabled:focus-visible,
 .button.default:disabled:active {
 	opacity: initial;
 	background-color: var(--color-background);
@@ -113,7 +113,7 @@
 	color: var(--color-error);
 }
 .button.default.danger:hover,
-.button.default.danger:focus,
+.button.default.danger:focus-visible,
 .button.default.danger:active {
 	opacity: 0.6;
 }
@@ -121,7 +121,7 @@
 	color: var(--color-error);
 }
 .button.text.danger:hover,
-.button.text.danger:focus,
+.button.text.danger:focus-visible,
 .button.text.danger:active {
 	opacity: 0.6;
 	background-color: var(--color-error);

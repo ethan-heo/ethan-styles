@@ -28,8 +28,13 @@ it.each([
 		5,
 		"<div>hello</div><div><div> <span>world</span></div> hello <div>world</div></div>",
 	],
-])(`JSONEditorBehaviorUI.lineFeed()`, (domStr, startIndex, expected) => {
+])(`JSONEditorBehaviorUI.enter(%s, %s)`, (domStr, startIndex, expected) => {
 	expect(behaviorUI.enter(domStr, startIndex)).toBe(expected);
 });
-it(`JSONEditorBehaviorUI.tab()`, () => {});
+it.each([["<div>hello world</div>", "<div></div><div>hello world</div>"]])(
+	`JSONEditorBehaviorUI.tab(%s)`,
+	(value, expected) => {
+		expect(behaviorUI.tab(value)).toBe(expected);
+	},
+);
 it(`JSONEditorBehaviorUI.space()`, () => {});
