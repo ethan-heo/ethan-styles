@@ -4,6 +4,7 @@ import "./GridLine.styles.css";
 import useMediaQuery from "../hooks/useMediaQuery";
 import GridLineColumn from "./GridLineColumn";
 import GridLineGutter from "./GridLineGutter";
+import { Platform } from "../types/constants";
 
 const GRID_COMPONENTS: Record<
 	Platform,

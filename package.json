@@ -6,6 +6,7 @@
 	"license": "MIT",
 	"author": "ethan-heo <ethanheo.dev@gmail.com> (https://github.com/ethan-heo/generate-design-token)",
 	"repository": "https://github.com/ethan-heo/ethan-ui.git",
+	"types": "./lib/index.d.ts",
 	"publishConfig": {
 		"access": "public"
 	},

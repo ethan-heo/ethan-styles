@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import { Platform } from "../types/constants";
 
 const useMediaQuery = () => {
 	const [platform, setPlatform] = useState<Platform>("desktop");

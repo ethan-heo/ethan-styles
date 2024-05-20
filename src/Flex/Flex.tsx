@@ -1,5 +1,6 @@
 import React from "react";
 import "./Flex.styles.css";
+import { PickCSSProperty } from "../types/utils";
 
 interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	justify?: PickCSSProperty<
