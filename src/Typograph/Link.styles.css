@@ -1,8 +1,7 @@
-a.link {
+.typograph__link {
 	font: var(--text-size-medium);
 	font-weight: var(--text-weight-medium);
-	text-decoration: none;
 }
-a.link:hover {
+.typograph__link:hover {
 	opacity: 0.6;
 }

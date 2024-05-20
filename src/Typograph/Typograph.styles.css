@@ -1,37 +1,37 @@
-.typograph.primary {
+.typograph--color-primary {
 	color: var(--color-primary);
 }
-.typograph.secondary {
+.typograph--color-secondary {
 	color: var(--color-secondary);
 }
-.typograph.accent {
+.typograph--color-accent {
 	color: var(--color-accent);
 }
-.typograph.success {
+.typograph--color-success {
 	color: var(--color-success);
 }
-.typograph.warning {
+.typograph--color-warning {
 	color: var(--color-warning);
 }
-.typograph.error {
+.typograph--color-error {
 	color: var(--color-error);
 }
-.typograph.default {
+.typograph--color-default {
 	color: var(--color-text);
 }
-.typograph.strong {
+.typograph--style-strong {
 	font-weight: var(--text-weight-700);
 }
-.typograph.italic {
+.typograph--style-italic {
 	font-style: italic;
 }
-.typograph.underline {
+.typograph--style-underline {
 	text-decoration: underline;
 }
-.typograph.del {
+.typograph--style-del {
 	text-decoration: line-through;
 }
-.typograph.mark {
+.typograph--style-mark {
 	background-color: var(--color-primary);
 	border-radius: var(--border-radius-small);
 	color: var(--color-text-white);

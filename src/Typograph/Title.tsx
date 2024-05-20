@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
-import "./Typograph.styles.css";
 import "./Title.styles.css";
+import "./Typograph.styles.css";
 import createTypographClassnames from "./utils/createTypographClassnames";
 
 type Level = 1 | 2 | 3;
@@ -25,7 +25,7 @@ const Title: React.FC<TitleProps> = ({
 	...props
 }) => {
 	const classNames = createTypographClassnames(
-		"title",
+		`heading${level}`,
 		{
 			italic,
 			underline,
