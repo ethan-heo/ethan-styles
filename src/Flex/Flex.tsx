@@ -1,6 +1,7 @@
 import React from "react";
 import "./Flex.styles.css";
 import { PickCSSProperty } from "../types/utils";
+import createBEMSelector from "../utils/createBEMSelector";
 
 interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	justify?: PickCSSProperty<
@@ -30,21 +31,61 @@ const Flex: React.FC<FlexProps> = ({
 	className,
 	...props
 }) => {
+	const block = "flex";
+	const blockClassName = createBEMSelector({
+		block,
+	});
+	const justifyClassName = createBEMSelector({
+		block,
+		modifier: ["justify", justify],
+	});
+	const alignClassName = createBEMSelector({
+		block,
+		modifier: ["align", align],
+	});
+	let reverseClassname;
+	let gapClassname;
+	let wrapClassname;
+	let verticalClassname;
+
+	if (reverse) {
+		reverseClassname = createBEMSelector({
+			block,
+			modifier: ["reverse"],
+		});
+	}
+	if (gap) {
+		gapClassname = createBEMSelector({
+			block,
+			modifier: ["gap", `${gap}`],
+		});
+	}
+	if (wrap) {
+		wrapClassname = createBEMSelector({
+			block,
+			modifier: ["wrap"],
+		});
+	}
+	if (vertical) {
+		verticalClassname = createBEMSelector({
+			block,
+			modifier: ["vertical"],
+		});
+	}
+
 	const classNames = [
-		"flex",
-		"justify",
-		"align",
-		justify,
-		align,
-		gap ? `gap-${gap}` : null,
-		vertical ? "vertical" : null,
-		wrap ? "wrap" : null,
-		reverse ? "reverse" : null,
+		blockClassName,
+		justifyClassName,
+		alignClassName,
+		reverseClassname,
+		gapClassname,
+		wrapClassname,
+		verticalClassname,
 		className,
-	].filter(Boolean);
+	];
 
 	return (
-		<div className={classNames.join(" ")} {...props}>
+		<div className={classNames.filter(Boolean).join(" ")} {...props}>
 			{children}
 		</div>
 	);

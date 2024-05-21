@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
-import "./Typograph.styles.css";
 import "./Paragraph.styles.css";
+import "./Typograph.styles.css";
 import createTypographClassnames from "./utils/createTypographClassnames";
 
 interface ParagraphProps

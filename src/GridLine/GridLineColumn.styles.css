@@ -1,4 +1,4 @@
-.grid-line-column {
+.grid-line__column {
 	background-color: #ff000020;
 	width: var(--column);
 	height: 100%;

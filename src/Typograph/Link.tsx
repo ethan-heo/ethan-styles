@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from "react";
 import { TypographCommonProps } from "./Typograph.types";
 import createTypographClassnames from "./utils/createTypographClassnames";
 import "./Link.styles.css";
+import "./Typograph.styles.css";
 
 interface LinkProps
 	extends HTMLAttributes<HTMLAnchorElement>,

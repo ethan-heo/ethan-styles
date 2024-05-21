@@ -15,27 +15,27 @@
 /*
 	Button 크기
 */
-.button.x-large {
+.button--size-x-large {
 	padding: calc(var(--spacing-3) / 2) var(--spacing-3);
 	font: var(--text-size-extra-large);
 	border-radius: var(--border-radius-medium);
 }
-.button.large {
+.button--size-large {
 	padding: calc(var(--spacing-2) / 2) var(--spacing-2);
 	font: var(--text-size-large);
 	border-radius: var(--border-radius-medium);
 }
-.button.medium {
+.button--size-medium {
 	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
 	font: var(--text-size-medium);
 	border-radius: var(--border-radius-small);
 }
-.button.small {
+.button--size-small {
 	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
 	font: var(--text-size-small);
 	border-radius: var(--border-radius-small);
 }
-.button.x-small {
+.button--size-x-small {
 	padding: calc(var(--spacing-3) / 4) calc(var(--spacing-3) / 2);
 	font: var(--text-size-extra-small);
 	border-radius: calc(var(--border-radius-small) / 2);
@@ -44,30 +44,57 @@
 /*
 	Button 유형
 */
-.button.primary {
+.button--variant-primary {
 	background-color: var(--color-primary);
 	color: var(--color-text-white);
 	box-shadow: var(--shadow-thin);
 }
-.button.primary:hover,
-.button.primary:focus-visible,
-.button.primary:active {
+.button--variant-primary:hover,
+.button--variant-primary:focus-visible,
+.button--variant-primary:active {
 	opacity: 0.6;
 }
-.button.default {
+.button--variant-default {
 	border: var(--border-secondary-light);
 	box-shadow: var(--shadow-thin);
 }
-.button.default:hover,
-.button.default:focus-visible,
-.button.default:active {
+.button--variant-default:hover,
+.button--variant-default:focus-visible,
+.button--variant-default:active {
 	border: var(--border-primary-light);
 	color: var(--color-primary);
 }
-.button.text:hover,
-.button.text:focus-visible,
-.button.text:active {
+.button--variant-text:hover,
+.button--variant-text:focus-visible,
+.button--variant-text:active {
 	background-color: var(--color-secondary);
+}
+
+/*
+	Button danger
+*/
+.button--variant-primary.button--danger {
+	background-color: var(--color-error);
+	color: var(--color-text-white);
+}
+.button--variant-default.button--danger {
+	border: var(--border-error-light);
+	color: var(--color-error);
+}
+.button--variant-default.button--danger:hover,
+.button--variant-default.button--danger:focus-visible,
+.button--variant-default.button--danger:active {
+	opacity: 0.6;
+}
+.button--variant-text.button--danger {
+	color: var(--color-error);
+}
+.button--variant-text.button--danger:hover,
+.button--variant-text.button--danger:focus-visible,
+.button--variant-text.button--danger:active {
+	opacity: 0.6;
+	background-color: var(--color-error);
+	color: var(--color-text-white);
 }
 
 /*
@@ -76,54 +103,31 @@
 .button:disabled {
 	cursor: not-allowed;
 }
-.button.primary:disabled {
+.button--variant-primary:disabled {
 	background-color: var(--color-secondary);
 	border: var(--border-secondary-light);
 	color: var(--color-text-white);
 }
-.button.default:disabled {
+.button--variant-default:disabled {
 	background-color: var(--color-background);
 	border: var(--border-secondary-light);
 	color: var(--color-secondary);
 }
-.button.primary:disabled:hover,
-.button.primary:disabled:focus-visible,
-.button.primary:disabled:active {
+.button--variant-primary:disabled:hover,
+.button--variant-primary:disabled:focus-visible,
+.button--variant-primary:disabled:active {
 	opacity: initial;
 	background-color: var(--color-secondary);
 }
-.button.text:disabled:hover,
-.button.text:disabled:focus-visible,
-.button.text:disabled:active,
-.button.default:disabled:hover,
-.button.default:disabled:focus-visible,
-.button.default:disabled:active {
+.button--variant-text:disabled:hover,
+.button--variant-text:disabled:focus-visible,
+.button--variant-text:disabled:active,
+.button--variant-default:disabled:hover,
+.button--variant-default:disabled:focus-visible,
+.button--variant-default:disabled:active {
 	opacity: initial;
 	background-color: var(--color-background);
 }
-.button.text:disabled {
+.button--variant-text:disabled {
 	color: var(--color-secondary);
-}
-.button.primary.danger {
-	background-color: var(--color-error);
-	color: var(--color-text-white);
-}
-.button.default.danger {
-	border: var(--border-error-light);
-	color: var(--color-error);
-}
-.button.default.danger:hover,
-.button.default.danger:focus-visible,
-.button.default.danger:active {
-	opacity: 0.6;
-}
-.button.text.danger {
-	color: var(--color-error);
-}
-.button.text.danger:hover,
-.button.text.danger:focus-visible,
-.button.text.danger:active {
-	opacity: 0.6;
-	background-color: var(--color-error);
-	color: var(--color-text-white);
 }
