@@ -1,4 +1,4 @@
-.grid-line-gutter {
+.grid-line__gutter {
 	background-color: #0000ff20;
 	width: var(--gutter);
 	height: 100%;

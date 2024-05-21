@@ -5,6 +5,8 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import GridLineColumn from "./GridLineColumn";
 import GridLineGutter from "./GridLineGutter";
 import { Platform } from "../types/constants";
+import createBEMSelector from "../utils/createBEMSelector";
+import { GRID_LINE_BLOCK } from "./constants";
 
 const GRID_COMPONENTS: Record<
 	Platform,
@@ -102,13 +104,20 @@ const GRID_LAYOUT: Record<Platform, ("column" | "gutter")[]> = {
 function GridLine() {
 	const platform = useMediaQuery();
 	const layouts = GRID_LAYOUT[platform];
+	const blockClassname = createBEMSelector({
+		block: GRID_LINE_BLOCK,
+	});
+	const contentsClassname = createBEMSelector({
+		block: GRID_LINE_BLOCK,
+		element: "contents",
+	});
 
 	return ReactDOM.createPortal(
 		<div
 			style={GRID_COMPONENTS[platform] as CSSProperties}
-			className={`grid-line`}
+			className={blockClassname}
 		>
-			<div className="grid-line-contents">
+			<div className={contentsClassname}>
 				{layouts.map((layout, index) => {
 					if (layout === "column") {
 						return <GridLineColumn key={`column-${index}`} />;
