@@ -1,5 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import "./Button.styles.css";
+import createBEMSelector from "../utils/createBEMSelector";
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
 	variant?: "primary" | "default" | "text";
@@ -16,14 +17,34 @@ const Button: React.FC<ButtonProps> = ({
 	className,
 	...props
 }) => {
-	const prefix = "button";
-	const classNames: (string | null | undefined)[] = [prefix, size, variant];
+	const block = "button";
+	const buttonClassname = createBEMSelector({
+		block,
+	});
+	const variantClassname = createBEMSelector({
+		block,
+		modifier: ["variant", variant],
+	});
+	const sizeClassname = createBEMSelector({
+		block,
+		modifier: ["size", size],
+	});
+	let dangerClassname;
 
-	if (!props.disabled) {
-		classNames.push(danger ? "danger" : null);
+	if (!!danger) {
+		dangerClassname = createBEMSelector({
+			block,
+			modifier: "danger",
+		});
 	}
 
-	classNames.push(className);
+	const classNames: (string | null | undefined)[] = [
+		buttonClassname,
+		variantClassname,
+		sizeClassname,
+		dangerClassname,
+		className,
+	];
 
 	return (
 		<button className={classNames.filter(Boolean).join(" ")} {...props}>
