@@ -26,6 +26,7 @@ const Paragraph: React.FC<ParagraphProps> = ({
 			underline,
 			del,
 			mark,
+			strong,
 			variant,
 			strong,
 		},
