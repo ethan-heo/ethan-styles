@@ -1,5 +1,4 @@
 .typograph__text {
 	display: inline-block;
-	font: var(--text-size-medium);
-	font-weight: var(--text-weight-medium);
+	font-size: var(--text-size-medium);
 }
