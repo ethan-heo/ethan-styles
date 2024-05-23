@@ -28,7 +28,6 @@ const Paragraph: React.FC<ParagraphProps> = ({
 			mark,
 			strong,
 			variant,
-			strong,
 		},
 		className,
 	);
