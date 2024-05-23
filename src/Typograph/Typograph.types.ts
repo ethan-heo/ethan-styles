@@ -5,7 +5,7 @@ export interface TypographCommonProps {
 	del?: boolean;
 	mark?: boolean;
 	variant?:
-		| "priamry"
+		| "primary"
 		| "secondary"
 		| "accent"
 		| "success"
