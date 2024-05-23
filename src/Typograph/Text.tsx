@@ -26,6 +26,7 @@ const Text: React.FC<TextProps> = ({
 			underline,
 			del,
 			mark,
+			strong,
 			variant,
 		},
 		className,
