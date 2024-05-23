@@ -121,44 +121,56 @@
 			}
 		}
 	},
-	"text-size": {
-		"2-extra-large": {
+	"text": {
+		"family": {
 			"$type": "string",
-			"$value": "normal {font-size.rem.8}/{line-height.140} {font-family.default}"
+			"$value": "{font-family.default}"
 		},
-		"extra-large": {
-			"$type": "string",
-			"$value": "normal {font-size.rem.6}/{line-height.140} {font-family.default}"
+		"size": {
+			"2-extra-large": {
+				"$type": "string",
+				"$value": "{font-size.rem.8}"
+			},
+			"extra-large": {
+				"$type": "string",
+				"$value": "{font-size.rem.6}"
+			},
+			"large": {
+				"$type": "string",
+				"$value": "{font-size.rem.4}"
+			},
+			"medium": {
+				"$type": "string",
+				"$value": "{font-size.rem.3}"
+			},
+			"small": {
+				"$type": "string",
+				"$value": "{font-size.rem.2}"
+			},
+			"extra-small": {
+				"$type": "string",
+				"$value": "{font-size.rem.1}"
+			}
 		},
-		"large": {
-			"$type": "string",
-			"$value": "normal {font-size.rem.4}/{line-height.140} {font-family.default}"
+		"weight": {
+			"bold": {
+				"$type": "fontWeight",
+				"$value": "{font-weight.700}"
+			},
+			"medium": {
+				"$type": "fontWeight",
+				"$value": "{font-weight.500}"
+			},
+			"light": {
+				"$type": "fontWeight",
+				"$value": "{font-weight.300}"
+			}
 		},
-		"medium": {
-			"$type": "string",
-			"$value": "normal {font-size.rem.3}/{line-height.120} {font-family.default}"
-		},
-		"small": {
-			"$type": "string",
-			"$value": "normal {font-size.rem.2}/{line-height.120} {font-family.default}"
-		},
-		"extra-small": {
-			"$type": "string",
-			"$value": "normal {font-size.rem.1}/{line-height.120} {font-family.default}"
-		}
-	},
-	"text-weight": {
-		"bold": {
-			"$type": "fontWeight",
-			"$value": "{font-weight.700}"
-		},
-		"medium": {
-			"$type": "fontWeight",
-			"$value": "{font-weight.500}"
-		},
-		"light": {
-			"$type": "fontWeight",
-			"$value": "{font-weight.300}"
+		"line-height": {
+			"{line-height}": {
+				"$type": "number",
+				"$value": "{$value}"
+			}
 		}
 	},
 	"color": {
@@ -200,46 +212,32 @@
 		}
 	},
 	"border": {
-		"thin": {
-			"$type": "string",
-			"$value": "{border-width.1x.1} {border-style.solid} transparent"
-		},
-		"light": {
-			"$type": "string",
-			"$value": "{border-width.1x.2} {border-style.solid} transparent"
-		},
-		"medium": {
-			"$type": "string",
-			"$value": "{border-width.1x.3} {border-style.solid} transparent"
-		},
-		"bold": {
-			"$type": "string",
-			"$value": "{border-width.1x.4} {border-style.solid} transparent"
-		},
-		"heavy": {
-			"$type": "string",
-			"$value": "{border-width.1x.5} {border-style.solid} transparent"
-		},
-		"{color}": {
+		"width": {
 			"thin": {
 				"$type": "string",
-				"$value": "{border-width.1x.1} {border-style.solid} {$value}"
+				"$value": "{border-width.1x.1}"
 			},
 			"light": {
 				"$type": "string",
-				"$value": "{border-width.1x.2} {border-style.solid} {$value}"
+				"$value": "{border-width.1x.2}"
 			},
 			"medium": {
 				"$type": "string",
-				"$value": "{border-width.1x.3} {border-style.solid} {$value}"
+				"$value": "{border-width.1x.3}"
 			},
 			"bold": {
 				"$type": "string",
-				"$value": "{border-width.1x.4} {border-style.solid} {$value}"
+				"$value": "{border-width.1x.4}"
 			},
 			"heavy": {
 				"$type": "string",
-				"$value": "{border-width.1x.5} {border-style.solid} {$value}"
+				"$value": "{border-width.1x.5}"
+			}
+		},
+		"style": {
+			"{border-style}": {
+				"$type": "string",
+				"$value": "{$value}"
 			}
 		}
 	},

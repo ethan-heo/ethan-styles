@@ -33,6 +33,7 @@ const Link: React.FC<LinkProps> = ({
 			underline,
 			del,
 			mark,
+			strong,
 			variant,
 		},
 		className,

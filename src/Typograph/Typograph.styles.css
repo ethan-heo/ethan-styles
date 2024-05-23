@@ -20,7 +20,7 @@
 	color: var(--color-text);
 }
 .typograph--style-strong {
-	font-weight: var(--text-weight-700);
+	font-weight: var(--text-weight-bold);
 }
 .typograph--style-italic {
 	font-style: italic;

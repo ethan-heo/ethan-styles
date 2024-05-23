@@ -58,6 +58,11 @@ const meta = {
 			description: "문맥적 표현을 위해 사용합니다.",
 			defaultValue: false,
 		},
+		strong: {
+			control: "boolean",
+			description: "문맥적 표현을 위해 사용합니다.",
+			defaultValue: false,
+		},
 	},
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 } satisfies Meta<typeof Paragraph>;
