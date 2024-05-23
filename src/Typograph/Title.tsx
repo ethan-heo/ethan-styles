@@ -5,10 +5,9 @@ import "./Typograph.styles.css";
 import createTypographClassnames from "./utils/createTypographClassnames";
 
 type Level = 1 | 2 | 3;
-type EnhancedTypographCommonProps = Omit<TypographCommonProps, "string">;
 
 interface TitleProps
-	extends EnhancedTypographCommonProps,
+	extends TypographCommonProps,
 		HTMLAttributes<HTMLHeadingElement> {
 	level?: Level;
 }
@@ -19,6 +18,7 @@ const Title: React.FC<TitleProps> = ({
 	underline,
 	del,
 	mark,
+	strong,
 	variant = "default",
 	className,
 	children,
@@ -31,6 +31,7 @@ const Title: React.FC<TitleProps> = ({
 			underline,
 			del,
 			mark,
+			strong,
 			variant,
 		},
 		className,
