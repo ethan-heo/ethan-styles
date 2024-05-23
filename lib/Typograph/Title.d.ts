@@ -3,8 +3,7 @@ import { TypographCommonProps } from "./Typograph.types";
 import "./Title.styles.css";
 import "./Typograph.styles.css";
 type Level = 1 | 2 | 3;
-type EnhancedTypographCommonProps = Omit<TypographCommonProps, "string">;
-interface TitleProps extends EnhancedTypographCommonProps, HTMLAttributes<HTMLHeadingElement> {
+interface TitleProps extends TypographCommonProps, HTMLAttributes<HTMLHeadingElement> {
     level?: Level;
 }
 declare const Title: React.FC<TitleProps>;
