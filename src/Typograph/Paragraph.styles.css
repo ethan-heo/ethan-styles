@@ -1,4 +1,3 @@
 .typograph__paragraph {
-	font: var(--text-size-medium);
-	font-weight: var(--text-weight-medium);
+	font-size: var(--text-size-medium);
 }
