@@ -1,155 +1,213 @@
 :root {
-	--grid-mobile-landscape-column: calc((100% - 24px * 5) / 4);
+  --grid-mobile-portrait-columns: 4;
 
-	--grid-mobile-landscape-row: 8px;
+  --grid-mobile-portrait-gutter: 8px;
 
-	--grid-mobile-landscape-gutter: 24px;
+  --grid-mobile-portrait-margin: 14px;
 
-	--grid-mobile-landscape-margin: 24px;
+  --grid-mobile-landscape-columns: 6;
 
-	--grid-mobile-portrait-column: calc((100% - 16px * 5) / 4);
+  --grid-mobile-landscape-gutter: 10px;
 
-	--grid-mobile-portrait-row: 8px;
+  --grid-mobile-landscape-margin: 18px;
 
-	--grid-mobile-portrait-gutter: 16px;
+  --grid-tablet-portrait-columns: 8;
 
-	--grid-mobile-portrait-margin: 16px;
+  --grid-tablet-portrait-gutter: 12px;
 
-	--grid-tablet-column: calc((100% - 24px * 9) / 8);
+  --grid-tablet-portrait-margin: 22px;
 
-	--grid-tablet-row: 8px;
+  --grid-tablet-landscape-columns: 12;
 
-	--grid-tablet-gutter: 24px;
+  --grid-tablet-landscape-gutter: 14px;
 
-	--grid-tablet-margin: 24px;
+  --grid-tablet-landscape-margin: 26px;
 
-	--grid-desktop-column: 72px;
+  --grid-desktop-columns: 12;
 
-	--grid-desktop-row: 8px;
+  --grid-desktop-gutter: 16px;
 
-	--grid-desktop-gutter: 24px;
+  --grid-desktop-margin: 0 auto;
 
-	--grid-desktop-margin: auto;
+  --responsive-mobile-portrait-max: 428px;
 
-	--responsive-mobile-landscape-min-width: 576px;
+  --responsive-mobile-landscape-min: 429px;
 
-	--responsive-mobile-landscape-max-width: 767px;
+  --responsive-mobile-landscape-max: 768px;
 
-	--responsive-mobile-portrait-max-width: 575px;
+  --responsive-tablet-portrait-min: 769px;
 
-	--responsive-tablet-min-width: 768px;
+  --responsive-tablet-portrait-max: 1024px;
 
-	--responsive-tablet-max-width: 991px;
+  --responsive-tablet-landscape-min: 1025px;
 
-	--responsive-desktop-min-width: 992px;
+  --responsive-tablet-landscape-max: 1280px;
 
-	--responsive-desktop-max-width: 1199px;
+  --responsive-desktop-min: 1281px;
 
-	--responsive-desktop-large-min-width: 1200px;
+  --font-size-extra-large: 2rem;
 
-	--text-family: "Roboto", Arial, sans-serif;
+  --font-size-large: 1.5rem;
 
-	--text-size-2-extra-large: 2rem;
+  --font-size-medium: 1rem;
 
-	--text-size-extra-large: 1.6rem;
+  --font-size-small: 0.875rem;
 
-	--text-size-large: 1.2rem;
+  --font-size-extra-small: 0.625rem;
 
-	--text-size-medium: 1rem;
+  --font-weight-thin: 100;
 
-	--text-size-small: 0.8rem;
+  --font-weight-extra-light: 200;
 
-	--text-size-extra-small: 0.6rem;
+  --font-weight-light: 300;
 
-	--text-weight-bold: 700;
+  --font-weight-normal: 400;
 
-	--text-weight-medium: 500;
+  --font-weight-medium: 500;
 
-	--text-weight-light: 300;
+  --font-weight-semi-bold: 600;
 
-	--text-line-height-120: 1.2;
+  --font-weight-bold: 700;
 
-	--text-line-height-140: 1.4;
+  --font-weight-extra-bold: 800;
 
-	--text-line-height-160: 1.6;
+  --font-weight-black: 900;
 
-	--text-line-height-180: 1.8;
+  --line-height-extra-large: 2;
 
-	--color-primary: #f97300;
+  --line-height-large: 1.5;
 
-	--color-secondary: #e2dfd0;
+  --line-height-medium: 1;
 
-	--color-accent: #32012f;
+  --line-height-small: 0.875;
 
-	--color-success: #102c57;
+  --line-height-extra-small: 0.625;
 
-	--color-warning: #e9b824;
+  --color-primary: #ffa500;
 
-	--color-error: #cd1818;
+  --color-secondary: #ffffff;
 
-	--color-text: #171615;
+  --color-accent: #ffb733;
 
-	--color-text-white: #ffffff;
+  --color-success: #bcf5bc;
 
-	--color-background: #ffffff;
+  --color-warning: #ffd700;
 
-	--border-width-thin: 1px;
+  --color-error: #ff3333;
 
-	--border-width-light: 2px;
+  --color-text: #333333;
 
-	--border-width-medium: 3px;
+  --color-background: #ffffff;
 
-	--border-width-bold: 4px;
+  --border-hidden-thin: 1px hidden;
 
-	--border-width-heavy: 5px;
+  --border-hidden-medium: 2px hidden;
 
-	--border-style-none: none;
+  --border-hidden-bold: 3px hidden;
 
-	--border-style-hidden: hidden;
+  --border-hidden-black: 4px hidden;
 
-	--border-style-dotted: dotted;
+  --border-dotted-thin: 1px dotted;
 
-	--border-style-dashed: dashed;
+  --border-dotted-medium: 2px dotted;
 
-	--border-style-solid: solid;
+  --border-dotted-bold: 3px dotted;
 
-	--border-style-double: double;
+  --border-dotted-black: 4px dotted;
 
-	--border-style-groove: groove;
+  --border-dashed-thin: 1px dashed;
 
-	--border-style-ridge: ridge;
+  --border-dashed-medium: 2px dashed;
 
-	--border-style-inset: inset;
+  --border-dashed-bold: 3px dashed;
 
-	--border-style-outset: outset;
+  --border-dashed-black: 4px dashed;
 
-	--border-radius-small: 4px;
+  --border-double-thin: 1px double;
 
-	--border-radius-medium: 8px;
+  --border-double-medium: 2px double;
 
-	--border-radius-large: 16px;
+  --border-double-bold: 3px double;
 
-	--border-radius-round: 100%;
+  --border-double-black: 4px double;
 
-	--spacing-1: 8px;
+  --border-groove-thin: 1px groove;
 
-	--spacing-2: 16px;
+  --border-groove-medium: 2px groove;
 
-	--spacing-3: 24px;
+  --border-groove-bold: 3px groove;
 
-	--spacing-4: 32px;
+  --border-groove-black: 4px groove;
 
-	--spacing-5: 40px;
+  --border-ridge-thin: 1px ridge;
 
-	--spacing-6: 48px;
+  --border-ridge-medium: 2px ridge;
 
-	--spacing-7: 56px;
+  --border-ridge-bold: 3px ridge;
 
-	--spacing-8: 64px;
+  --border-ridge-black: 4px ridge;
 
-	--spacing-9: 72px;
+  --border-inset-thin: 1px inset;
 
-	--spacing-10: 80px;
+  --border-inset-medium: 2px inset;
 
-	--shadow-thin: 2px 2px 3px -3px #171615;
+  --border-inset-bold: 3px inset;
+
+  --border-inset-black: 4px inset;
+
+  --border-outset-thin: 1px outset;
+
+  --border-outset-medium: 2px outset;
+
+  --border-outset-bold: 3px outset;
+
+  --border-outset-black: 4px outset;
+
+  --border-radius-extra-large: 20px;
+
+  --border-radius-large: 16px;
+
+  --border-radius-medium: 12px;
+
+  --border-radius-small: 8px;
+
+  --border-radius-extra-small: 4px;
+
+  --border-radius-full: 100%;
+
+  --spacing-extra-large: 24px;
+
+  --spacing-large: 20px;
+
+  --spacing-medium: 16px;
+
+  --spacing-small: 12px;
+
+  --spacing-extra-small: 8px;
+
+  --shadow-top-left-large: -12px -12px 20px 2px;
+
+  --shadow-top-left-medium: -8px -8px 14px 2px;
+
+  --shadow-top-left-small: -2px -2px 10px 2px;
+
+  --shadow-top-right-large: 12px -12px 20px 2px;
+
+  --shadow-top-right-medium: 8px -8px 14px 2px;
+
+  --shadow-top-right-small: 2px -2px 10px 2px;
+
+  --shadow-bottom-left-large: -12px 12px 20px 2px;
+
+  --shadow-bottom-left-medium: -8px 8px 14px 2px;
+
+  --shadow-bottom-left-small: -2px 2px 10px 2px;
+
+  --shadow-bottom-right-large: 12px 12px 20px 2px;
+
+  --shadow-bottom-right-medium: 8px 8px 14px 2px;
+
+  --shadow-bottom-right-small: 2px 2px 10px 2px;
+
+  --font-family: Times, "Times New Roman", Georgia, serif;
 }
