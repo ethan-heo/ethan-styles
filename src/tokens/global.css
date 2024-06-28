@@ -341,7 +341,8 @@
 
   --line-height-20: 3;
 
-  --font-family-default: Times, "Times New Roman", Georgia, serif;
+  --font-family-default: 맑은 고딕, malgun gothic, AppleGothicNeoSD,
+    Apple SD 산돌고딕 Neo, Microsoft NeoGothic, Droid sans, sans-serif;
 
   --spacing-1: 8px;
 
