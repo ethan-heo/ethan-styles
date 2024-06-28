@@ -22,12 +22,11 @@ const meta = {
 		},
 	},
 	// This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-	tags: ["autodocs"],
 	// More on argTypes: https://storybook.js.org/docs/api/argtypes
 	argTypes: {
 		justify: {
 			control: "select",
-			description: "가로 배치를 정의할 때 사용합니다.",
+			description: "가로 정렬을 위해 사용합니다.",
 			defaultValue: "flex-start",
 			options: [
 				"flex-start",
@@ -41,18 +40,18 @@ const meta = {
 		},
 		align: {
 			control: "select",
-			description: "세로 배치를 정의할 때 사용합니다.",
+			description: "세로 정렬을 위해 사용합니다.",
 			defaultValue: "flex-start",
 			options: ["flex-start", "flex-end", "center"],
 		},
 		vertical: {
 			control: "boolean",
-			description: "순서를 가로로 변경할 때 사용합니다.",
+			description: "세로 배치를 위해 사용합니다.",
 			defaultValue: false,
 		},
 		reverse: {
 			control: "boolean",
-			description: "배치를 거꾸로 정의할 때 사용합니다.",
+			description: "반대로 배치하기 위해 사용합니다.",
 			defaultValue: false,
 		},
 		wrap: {
@@ -63,7 +62,7 @@ const meta = {
 		gap: {
 			control: "select",
 			description: "사이 간격을 정의할 때 사용합니다.",
-			options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+			options: ["extra-large", "large", "medium", "small", "extra-small"],
 		},
 	},
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -80,9 +79,9 @@ export const Default: Story = {
 				{...props}
 				style={{
 					width: "400px",
-					padding: "var(--spacing-1)",
-					borderRadius: "var(--border-radius-small)",
-					border: "var(--border-primary-thin)",
+					padding: "var(--spacing-small)",
+					borderRadius: "var(--border-radius-extra-small)",
+					border: "var(--border-solid-thin) var(--color-text)",
 				}}
 			>
 				<Button>button1</Button>

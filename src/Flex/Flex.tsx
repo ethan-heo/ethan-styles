@@ -17,7 +17,7 @@ interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	vertical?: boolean;
 	reverse?: boolean;
 	wrap?: boolean;
-	gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+	gap?: "extra-large" | "large" | "medium" | "small" | "extra-small";
 }
 
 const Flex: React.FC<FlexProps> = ({
@@ -57,7 +57,7 @@ const Flex: React.FC<FlexProps> = ({
 	if (gap) {
 		gapClassname = createBEMSelector({
 			block,
-			modifier: ["gap", `${gap}`],
+			modifier: ["gap", gap],
 		});
 	}
 	if (wrap) {
