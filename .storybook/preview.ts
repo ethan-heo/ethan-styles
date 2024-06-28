@@ -12,11 +12,11 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
-		// options: {
-		// 	storySort: {
-		// 		order: ["Introduction", "Design System"],
-		// 	},
-		// },
+		options: {
+			storySort: {
+				order: ["Introduction", "Design System"],
+			},
+		},
 	},
 };
 
