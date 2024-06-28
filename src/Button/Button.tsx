@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
 	});
 	let dangerClassname;
 
-	if (!!danger) {
+	if (danger && !props.disabled) {
 		dangerClassname = createBEMSelector({
 			block,
 			modifier: "danger",

@@ -163,6 +163,14 @@
 
   --border-outset-black: 4px outset;
 
+  --border-solid-thin: 1px solid;
+
+  --border-solid-medium: 2px solid;
+
+  --border-solid-bold: 3px solid;
+
+  --border-solid-black: 4px solid;
+
   --border-radius-extra-large: 20px;
 
   --border-radius-large: 16px;

@@ -7,38 +7,39 @@
 	cursor: pointer;
 	outline: inherit;
 	background-color: var(--color-background);
-	color: var(--color-text-black);
+	color: var(--color-text);
 	box-sizing: border-box;
-	font-weight: var(--text-weight-medium);
+	font-weight: var(--font-weight-light);
 }
 
 /*
 	Button 크기
 */
 .button--size-x-large {
-	padding: calc(var(--spacing-3) / 2) var(--spacing-3);
-	font-size: var(--text-size-extra-large);
-	border-radius: var(--border-radius-medium);
+	padding: calc(var(--spacing-medium) / 2) var(--spacing-medium);
+	font-size: var(--font-size-extra-large);
+	border-radius: var(--border-radius-extra-small);
 }
 .button--size-large {
-	padding: calc(var(--spacing-2) / 2) var(--spacing-2);
-	font-size: var(--text-size-large);
-	border-radius: var(--border-radius-medium);
+	padding: calc(var(--spacing-small) / 2) var(--spacing-small);
+	font-size: var(--font-size-large);
+	border-radius: var(--border-radius-extra-small);
 }
 .button--size-medium {
-	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
-	font-size: var(--text-size-medium);
-	border-radius: var(--border-radius-small);
+	padding: calc(var(--spacing-extra-small) / 2) var(--spacing-extra-small);
+	font-size: var(--font-size-medium);
+	border-radius: var(--border-radius-extra-small);
 }
 .button--size-small {
-	padding: calc(var(--spacing-1) / 2) var(--spacing-1);
-	font-size: var(--text-size-small);
-	border-radius: var(--border-radius-small);
+	padding: calc(var(--spacing-extra-small) / 2) var(--spacing-extra-small);
+	font-size: var(--font-size-small);
+	border-radius: var(--border-radius-extra-small);
 }
 .button--size-x-small {
-	padding: calc(var(--spacing-3) / 4) calc(var(--spacing-3) / 2);
-	font-size: var(--text-size-extra-small);
-	border-radius: calc(var(--border-radius-small) / 2);
+	padding: calc(var(--spacing-extra-small) / 4)
+		calc(var(--spacing-extra-small) / 2);
+	font-size: var(--font-size-extra-small);
+	border-radius: calc(var(--border-radius-extra-small) / 2);
 }
 
 /*
@@ -47,7 +48,6 @@
 .button--variant-primary {
 	background-color: var(--color-primary);
 	color: var(--color-text-white);
-	box-shadow: var(--shadow-thin);
 }
 .button--variant-primary:hover,
 .button--variant-primary:focus-visible,
@@ -55,23 +55,19 @@
 	opacity: 0.6;
 }
 .button--variant-default {
-	border-width: var(--border-width-light);
-	border-style: var(--border-style-solid);
-	border-color: var(--color-secondary);
-	box-shadow: var(--shadow-thin);
+	border: var(--border-solid-thin) var(--color-secondary);
 }
 .button--variant-default:hover,
 .button--variant-default:focus-visible,
 .button--variant-default:active {
-	border-width: var(--border-width-light);
-	border-style: var(--border-style-solid);
-	border-color: var(--color-primary);
+	border: var(--border-solid-thin) var(--color-primary);
 	color: var(--color-primary);
 }
 .button--variant-text:hover,
 .button--variant-text:focus-visible,
 .button--variant-text:active {
 	background-color: var(--color-secondary);
+	color: var(--color-primary);
 }
 
 /*
@@ -82,9 +78,7 @@
 	color: var(--color-text-white);
 }
 .button--variant-default.button--danger {
-	border-width: var(--border-width-light);
-	border-style: var(--border-style-solid);
-	border-color: var(--color-error);
+	border: var(--border-solid-thin) var(--color-error);
 	color: var(--color-error);
 }
 .button--variant-default.button--danger:hover,
@@ -99,8 +93,7 @@
 .button--variant-text.button--danger:focus-visible,
 .button--variant-text.button--danger:active {
 	opacity: 0.6;
-	background-color: var(--color-error);
-	color: var(--color-text-white);
+	color: var(--color-error);
 }
 
 /*
@@ -108,20 +101,19 @@
 */
 .button:disabled {
 	cursor: not-allowed;
+	opacity: 0.6;
 }
 .button--variant-primary:disabled {
 	background-color: var(--color-secondary);
-	border-width: var(--border-width-light);
-	border-style: var(--border-style-solid);
-	border-color: var(--color-secondary);
-	color: var(--color-text-white);
+	border: var(--border-solid-thin) var(--color-secondary);
+	color: var(--color-secondary);
 }
 .button--variant-default:disabled {
 	background-color: var(--color-background);
-	border-width: var(--border-width-light);
-	border-style: var(--border-style-solid);
+	border: var(--border-solid-thin) var(--color-secondary);
 	border-color: var(--color-secondary);
-	color: var(--color-secondary);
+	color: var(--color-text);
+	opacity: 0.6;
 }
 .button--variant-primary:disabled:hover,
 .button--variant-primary:disabled:focus-visible,
@@ -137,7 +129,9 @@
 .button--variant-default:disabled:active {
 	opacity: initial;
 	background-color: var(--color-background);
+	opacity: 0.6;
 }
 .button--variant-text:disabled {
-	color: var(--color-secondary);
+	color: var(--color-text);
+	opacity: 0.6;
 }

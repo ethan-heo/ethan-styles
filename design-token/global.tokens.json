@@ -720,7 +720,7 @@
 	"font-family": {
 		"default": {
 			"$type": "string",
-			"$value": "Times, 'Times New Roman', Georgia, serif;"
+			"$value": "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;"
 		}
 	},
 	"spacing": {
@@ -1093,6 +1093,10 @@
 		"outset": {
 			"$type": "string",
 			"$value": "outset"
+		},
+		"solid": {
+			"$type": "string",
+			"$value": "solid"
 		}
 	},
 	"border-width": {
