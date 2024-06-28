@@ -21,13 +21,12 @@ const meta = {
 		},
 	},
 	// This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-	tags: ["autodocs"],
+	// tags: ["autodocs"],
 	// More on argTypes: https://storybook.js.org/docs/api/argtypes
 	argTypes: {
 		variant: {
 			control: "select",
-			description:
-				"버튼 유형을 나타냅니다.\n- **primary**: 주요한 액션을 수행할 때 사용합니다.\n- **default**: 보조적인 액션을 수행할 때 사용합니다.\n- **text**: 보조적인 액션을 수행할 때 사용합니다.",
+			description: "버튼 유형을 나타냅니다.",
 			defaultValue: "medium",
 			options: ["primary", "default", "text"],
 		},
@@ -65,90 +64,5 @@ export const Default: Story = {
 		size: "medium",
 		disabled: false,
 		danger: false,
-	},
-};
-
-export const PrimaryButton: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: "주요한 액션을 수행할 때 사용합니다.",
-			},
-		},
-	},
-	args: {
-		children: "Hello world",
-		variant: "primary",
-		size: "medium",
-		disabled: false,
-		danger: false,
-	},
-};
-
-export const DefaultButton: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: "보조 액션을 수행할 때 사용합니다.",
-			},
-		},
-	},
-	args: {
-		children: "Hello world",
-		variant: "default",
-		size: "medium",
-		disabled: false,
-		danger: false,
-	},
-};
-
-export const TextButton: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: "보조 액션을 수행할 때 사용합니다.",
-			},
-		},
-	},
-	args: {
-		children: "Hello world",
-		variant: "text",
-		size: "medium",
-		disabled: false,
-		danger: false,
-	},
-};
-
-export const DangerButton: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: "위험도가 있는 액션을 수행할 때 사용합니다.",
-			},
-		},
-	},
-	args: {
-		children: "Hello world",
-		variant: "text",
-		size: "medium",
-		disabled: false,
-		danger: true,
-	},
-};
-
-export const DisabledButton: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: "액션을 비활성화할 때 사용합니다.",
-			},
-		},
-	},
-	args: {
-		children: "Hello world",
-		variant: "text",
-		size: "medium",
-		disabled: true,
-		danger: true,
 	},
 };

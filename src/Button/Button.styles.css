@@ -55,7 +55,7 @@
 	opacity: 0.6;
 }
 .button--variant-default {
-	border: var(--border-solid-thin) var(--color-secondary);
+	border: var(--border-solid-thin) var(--color-text);
 }
 .button--variant-default:hover,
 .button--variant-default:focus-visible,
@@ -110,8 +110,7 @@
 }
 .button--variant-default:disabled {
 	background-color: var(--color-background);
-	border: var(--border-solid-thin) var(--color-secondary);
-	border-color: var(--color-secondary);
+	border: var(--border-solid-thin) var(--color-text);
 	color: var(--color-text);
 	opacity: 0.6;
 }

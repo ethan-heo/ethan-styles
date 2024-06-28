@@ -1,0 +1,31 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+
+import * as ButtonStories from "./Button.stories";
+
+<Meta of={ButtonStories} title="Ethan-ui | Button" />
+
+## Button
+
+<Canvas of={ButtonStories.Default} />
+<Controls />
+
+버튼 컴포넌트는 사용자 액션을 통해 다음 동작을 수행시키기 위한 역할을 합니다.
+
+## 형태
+
+버튼 컴포넌트는 크게 3가지(primary, default, text) 형태로 구성되며 역할이 구분되어 있습니다.
+
+- **primary**: 사용자의 액션에 따라 액션을 수행하는 역할을 하며 하나의 섹션에서 하나만 사용합니다.
+- **default**: 가장 기본적인 버튼 형태이며 연속적인 액션을 위한 역할로 사용합니다.
+- **text**: 보조 액션을 위한 역할로 사용합니다.
+
+이 3가지 형태는 옵션의 variant를 통해 사용할 수 있습니다.
+
+## 옵션
+
+섹션 내 전체적인 맥락을 구성하는데 필요한 옵션을 제공합니다.
+
+- **variant**: 섹션에서 특정한 액션을 처리하기 위해 사용합니다.
+- **size**: 디자인 구성에 필요한 사이즈를 설정하기 위해 사용합니다.
+- **disabled**: 섹션에서 특정한 액션을 비활성화 하기 위해 사용합니다.
+- **danger**: 섹션에서 위험한 액션을 수행하기 전 경고의 의미를 전달하기 위해 사용합니다.
