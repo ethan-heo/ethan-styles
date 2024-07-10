@@ -136,13 +136,13 @@
 }
 
 .typograph__heading1 {
-	font-size: var(--text-size-2-extra-large);
+	font-size: var(--font-size-extra-large);
 }
 .typograph__heading2 {
-	font-size: var(--text-size-extra-large);
+	font-size: var(--font-size-large);
 }
 .typograph__heading3 {
-	font-size: var(--text-size-large);
+	font-size: var(--font-size-medium);
 }
 
 .typograph--color-primary {
@@ -180,21 +180,22 @@
 }
 .typograph--style-mark {
 	background-color: var(--color-primary);
-	border-radius: var(--border-radius-small);
-	color: var(--color-text-white);
+	border-radius: var(--border-radius-extra-small);
+	padding: 0 calc(var(--spacing-extra-small) / 2);
+	color: var(--color-secondary);
 }
 
 .typograph__paragraph {
-	font-size: var(--text-size-medium);
+	font-size: var(--font-size-medium);
 }
 
 .typograph__text {
 	display: inline-block;
-	font-size: var(--text-size-medium);
+	font-size: var(--font-size-medium);
 }
 
 .typograph__link {
-	font-size: var(--text-size-medium);
+	font-size: var(--font-size-medium);
 }
 .typograph__link:hover {
 	opacity: 0.6;

@@ -1,31 +1,27 @@
 import globalToken from "../../design-token/global.tokens.json";
 import lightThemeToken from "../../design-token/light.themes.tokens.json";
 import creator from "./creator";
-import { Token } from "./generateToken.token";
 import mapper from "./mapper";
 import generateDesignToken from "generate-design-token";
 
-type GenerateTokenOptions = {
-	token: Token;
-	baseTokens: Token[];
-	fileName: string;
+const generate = async () => {
+	await creator(
+		mapper(generateDesignToken(globalToken, [globalToken])),
+		"global.css",
+		"variables",
+	);
+	await creator(
+		mapper(
+			generateDesignToken(lightThemeToken, [lightThemeToken, globalToken]),
+		),
+		"light-theme.css",
+		"variables",
+	);
+	await creator(
+		mapper(generateDesignToken(globalToken, [globalToken])),
+		"light-theme.constants.ts",
+		"constants",
+	);
 };
 
-const generateToken = async ({
-	token,
-	baseTokens,
-	fileName,
-}: GenerateTokenOptions) => {
-	await creator(mapper(generateDesignToken(token, baseTokens)), fileName);
-};
-
-generateToken({
-	token: globalToken,
-	baseTokens: [globalToken],
-	fileName: "global",
-});
-generateToken({
-	token: lightThemeToken,
-	baseTokens: [lightThemeToken, globalToken],
-	fileName: "light-theme",
-});
+generate();

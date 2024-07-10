@@ -33,6 +33,7 @@
 }
 .typograph--style-mark {
 	background-color: var(--color-primary);
-	border-radius: var(--border-radius-small);
-	color: var(--color-text-white);
+	border-radius: var(--border-radius-extra-small);
+	padding: 0 calc(var(--spacing-extra-small) / 2);
+	color: var(--color-secondary);
 }

@@ -7,15 +7,17 @@ import fs from "fs/promises";
 const TEMPLATE_PATH = path.resolve(__dirname, "../../design-token/templates");
 const TEMPLATE_FILE = {
 	variables: path.resolve(TEMPLATE_PATH, "variables.ejs"),
+	constants: path.resolve(TEMPLATE_PATH, "constants.ejs"),
 };
 const OUTPUT_PATH = path.resolve(__dirname, "../../src/tokens");
 
 const creator = async (
 	generatedTokens: Record<string, TokenObj>,
 	fileName: string,
+	type: keyof typeof TEMPLATE_FILE,
 ) => {
 	const contents = await ejs.renderFile(
-		TEMPLATE_FILE.variables,
+		TEMPLATE_FILE[type],
 		{ variables: Object.entries(generatedTokens) },
 		{ async: true },
 	);
@@ -24,11 +26,7 @@ const creator = async (
 	});
 
 	await fs.mkdir(OUTPUT_PATH, { recursive: true });
-	await fs.writeFile(
-		`${OUTPUT_PATH}/${fileName}.css`,
-		formattedContents,
-		"utf-8",
-	);
+	await fs.writeFile(`${OUTPUT_PATH}/${fileName}`, formattedContents, "utf-8");
 };
 
 export default creator;

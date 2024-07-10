@@ -1,9 +1,9 @@
 .typograph__heading1 {
-	font-size: var(--text-size-2-extra-large);
+	font-size: var(--font-size-extra-large);
 }
 .typograph__heading2 {
-	font-size: var(--text-size-extra-large);
+	font-size: var(--font-size-large);
 }
 .typograph__heading3 {
-	font-size: var(--text-size-large);
+	font-size: var(--font-size-medium);
 }
