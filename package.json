@@ -1,81 +1,19 @@
 {
-	"name": "@ethanheo/ui",
-	"description": "이든의 극히 개인적인 디자인 시스템",
-	"private": false,
-	"version": "0.0.5",
-	"license": "MIT",
-	"author": "ethan-heo <ethanheo.dev@gmail.com> (https://github.com/ethan-heo/generate-design-token)",
-	"repository": "https://github.com/ethan-heo/ethan-ui.git",
-	"types": "./lib/index.d.ts",
-	"publishConfig": {
-		"access": "public"
-	},
-	"keywords": [
-		"design token",
-		"design system"
-	],
-	"exports": {
-		".": "./lib/index.js",
-		"./styles/components.css": "./lib/tokens/components.css",
-		"./styles/light-theme.css": "./lib/tokens/light-theme.css"
-	},
+	"name": "ethan-ui",
+	"private": true,
 	"scripts": {
-		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
-		"dev:lib": "node scripts/build.mjs --watch",
-		"dev:storybook": "storybook dev -p 6006",
-		"build:lib": "node scripts/build.mjs",
-		"build:docs": "storybook build -o docs",
-		"test": "vitest --config ./configs/vitest.config.mjs",
-		"dev": "run-p dev:storybook dev:lib",
-		"build": "run-s build:lib build:docs"
-	},
-	"peerDependencies": {
-		"react": "^18.0.0",
-		"react-dom": "^18.0.0",
-		"typescript": "^5.4.2"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.24.3",
-		"@babel/preset-env": "^7.24.3",
-		"@babel/preset-react": "^7.24.1",
-		"@chromatic-com/storybook": "^1.2.25",
-		"@rollup/plugin-babel": "^6.0.4",
-		"@rollup/plugin-typescript": "^11.1.6",
-		"@storybook/addon-essentials": "^8.0.4",
-		"@storybook/addon-interactions": "^8.0.4",
-		"@storybook/addon-links": "^8.0.4",
-		"@storybook/addon-onboarding": "^8.0.4",
-		"@storybook/blocks": "^8.0.4",
-		"@storybook/react": "^8.0.4",
-		"@storybook/react-vite": "^8.0.4",
-		"@storybook/test": "^8.0.4",
-		"@types/react-dom": "^18.3.0",
-		"ejs": "^3.1.10",
-		"generate-design-token": "^0.0.4",
-		"npm-run-all": "^4.1.5",
-		"postcss": "^8.4.38",
-		"prettier": "^3.2.5",
-		"rollup": "^4.12.1",
-		"rollup-plugin-copy-assets": "^2.0.3",
-		"rollup-plugin-peer-deps-external": "^2.2.4",
-		"rollup-plugin-postcss": "^4.0.2",
-		"storybook": "^8.0.4",
-		"ts-node": "^10.9.2",
-		"tslib": "^2.6.2",
-		"typescript": "^5.4.2",
-		"vite": "^5.2.6",
-		"vite-tsconfig-paths": "^4.3.2",
-		"vitest": "^1.5.0",
-		"yargs": "^17.7.2"
+		"dev": "turbo dev",
+		"build": "turbo build"
 	},
 	"engines": {
 		"node": ">=18"
 	},
-	"dependencies": {
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+	"packageManager": "yarn@1.22.22",
+	"devDependencies": {
+		"turbo": "^2.0.9"
 	},
-	"resolutions": {
-		"jackspeak": "2.1.1"
-	}
+	"workspaces": [
+		"apps/**",
+		"packages/**"
+	]
 }

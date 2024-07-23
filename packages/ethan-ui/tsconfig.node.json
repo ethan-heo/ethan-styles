@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "Node",
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"resolveJsonModule": true
+	},
+	"include": ["scripts/**/*"],
+	"exclude": ["node_modules"]
+}

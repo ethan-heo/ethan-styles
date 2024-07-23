@@ -1,0 +1,222 @@
+:root {
+  --grid-mobile-portrait-columns: 4;
+
+  --grid-mobile-portrait-gutter: 8px;
+
+  --grid-mobile-portrait-margin: 14px;
+
+  --grid-mobile-landscape-columns: 6;
+
+  --grid-mobile-landscape-gutter: 10px;
+
+  --grid-mobile-landscape-margin: 18px;
+
+  --grid-tablet-portrait-columns: 8;
+
+  --grid-tablet-portrait-gutter: 12px;
+
+  --grid-tablet-portrait-margin: 22px;
+
+  --grid-tablet-landscape-columns: 12;
+
+  --grid-tablet-landscape-gutter: 14px;
+
+  --grid-tablet-landscape-margin: 26px;
+
+  --grid-desktop-columns: 12;
+
+  --grid-desktop-gutter: 16px;
+
+  --grid-desktop-margin: 0 auto;
+
+  --responsive-mobile-portrait-max: 428px;
+
+  --responsive-mobile-landscape-min: 429px;
+
+  --responsive-mobile-landscape-max: 768px;
+
+  --responsive-tablet-portrait-min: 769px;
+
+  --responsive-tablet-portrait-max: 1024px;
+
+  --responsive-tablet-landscape-min: 1025px;
+
+  --responsive-tablet-landscape-max: 1280px;
+
+  --responsive-desktop-min: 1281px;
+
+  --font-size-extra-large: 2rem;
+
+  --font-size-large: 1.5rem;
+
+  --font-size-medium: 1rem;
+
+  --font-size-small: 0.875rem;
+
+  --font-size-extra-small: 0.625rem;
+
+  --font-weight-thin: 100;
+
+  --font-weight-extra-light: 200;
+
+  --font-weight-light: 300;
+
+  --font-weight-normal: 400;
+
+  --font-weight-medium: 500;
+
+  --font-weight-semi-bold: 600;
+
+  --font-weight-bold: 700;
+
+  --font-weight-extra-bold: 800;
+
+  --font-weight-black: 900;
+
+  --line-height-extra-large: 2;
+
+  --line-height-large: 1.5;
+
+  --line-height-medium: 1;
+
+  --line-height-small: 0.875;
+
+  --line-height-extra-small: 0.625;
+
+  --color-primary: #ffa500;
+
+  --color-secondary: #ffffff;
+
+  --color-accent: #ffb733;
+
+  --color-success: #bcf5bc;
+
+  --color-warning: #ffd700;
+
+  --color-error: #ff3333;
+
+  --color-text: #333333;
+
+  --color-background: #ffffff;
+
+  --border-hidden-thin: 1px hidden;
+
+  --border-hidden-medium: 2px hidden;
+
+  --border-hidden-bold: 3px hidden;
+
+  --border-hidden-black: 4px hidden;
+
+  --border-dotted-thin: 1px dotted;
+
+  --border-dotted-medium: 2px dotted;
+
+  --border-dotted-bold: 3px dotted;
+
+  --border-dotted-black: 4px dotted;
+
+  --border-dashed-thin: 1px dashed;
+
+  --border-dashed-medium: 2px dashed;
+
+  --border-dashed-bold: 3px dashed;
+
+  --border-dashed-black: 4px dashed;
+
+  --border-double-thin: 1px double;
+
+  --border-double-medium: 2px double;
+
+  --border-double-bold: 3px double;
+
+  --border-double-black: 4px double;
+
+  --border-groove-thin: 1px groove;
+
+  --border-groove-medium: 2px groove;
+
+  --border-groove-bold: 3px groove;
+
+  --border-groove-black: 4px groove;
+
+  --border-ridge-thin: 1px ridge;
+
+  --border-ridge-medium: 2px ridge;
+
+  --border-ridge-bold: 3px ridge;
+
+  --border-ridge-black: 4px ridge;
+
+  --border-inset-thin: 1px inset;
+
+  --border-inset-medium: 2px inset;
+
+  --border-inset-bold: 3px inset;
+
+  --border-inset-black: 4px inset;
+
+  --border-outset-thin: 1px outset;
+
+  --border-outset-medium: 2px outset;
+
+  --border-outset-bold: 3px outset;
+
+  --border-outset-black: 4px outset;
+
+  --border-solid-thin: 1px solid;
+
+  --border-solid-medium: 2px solid;
+
+  --border-solid-bold: 3px solid;
+
+  --border-solid-black: 4px solid;
+
+  --border-radius-extra-large: 20px;
+
+  --border-radius-large: 16px;
+
+  --border-radius-medium: 12px;
+
+  --border-radius-small: 8px;
+
+  --border-radius-extra-small: 4px;
+
+  --border-radius-full: 100%;
+
+  --spacing-extra-large: 24px;
+
+  --spacing-large: 20px;
+
+  --spacing-medium: 16px;
+
+  --spacing-small: 12px;
+
+  --spacing-extra-small: 8px;
+
+  --shadow-top-left-large: -12px -12px 20px 2px;
+
+  --shadow-top-left-medium: -8px -8px 14px 2px;
+
+  --shadow-top-left-small: -2px -2px 10px 2px;
+
+  --shadow-top-right-large: 12px -12px 20px 2px;
+
+  --shadow-top-right-medium: 8px -8px 14px 2px;
+
+  --shadow-top-right-small: 2px -2px 10px 2px;
+
+  --shadow-bottom-left-large: -12px 12px 20px 2px;
+
+  --shadow-bottom-left-medium: -8px 8px 14px 2px;
+
+  --shadow-bottom-left-small: -2px 2px 10px 2px;
+
+  --shadow-bottom-right-large: 12px 12px 20px 2px;
+
+  --shadow-bottom-right-medium: 8px 8px 14px 2px;
+
+  --shadow-bottom-right-small: 2px 2px 10px 2px;
+
+  --font-family: 맑은 고딕, malgun gothic, AppleGothicNeoSD,
+    Apple SD 산돌고딕 Neo, Microsoft NeoGothic, Droid sans, sans-serif;
+}

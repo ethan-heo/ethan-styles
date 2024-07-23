@@ -1,0 +1,72 @@
+{
+	"name": "@ethanheo/ui",
+	"description": "이든의 극히 개인적인 디자인 시스템",
+	"private": false,
+	"version": "0.0.5",
+	"license": "MIT",
+	"author": "ethan-heo <ethanheo.dev@gmail.com> (https://github.com/ethan-heo/generate-design-token)",
+	"repository": "https://github.com/ethan-heo/ethan-ui.git",
+	"types": "./lib/index.d.ts",
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": [
+		"design token",
+		"design system"
+	],
+	"exports": {
+		".": "./dist/index.js",
+		"./styles/components.css": "./dist/tokens/components.css",
+		"./styles/light-theme.css": "./dist/tokens/light-theme.css"
+	},
+	"scripts": {
+		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
+		"dev": "node scripts/build.mjs --watch",
+		"build": "node scripts/build.mjs",
+		"test": "vitest --config ./configs/vitest.config.mjs"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"typescript": "^5.4.2"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.24.3",
+		"@babel/preset-env": "^7.24.3",
+		"@babel/preset-react": "^7.24.1",
+		"@chromatic-com/storybook": "^1.2.25",
+		"@rollup/plugin-babel": "^6.0.4",
+		"@rollup/plugin-typescript": "^11.1.6",
+		"@types/ejs": "^3.1.5",
+		"@types/node": "^20.14.11",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"ejs": "^3.1.10",
+		"generate-design-token": "^0.0.4",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^8.4.38",
+		"prettier": "^3.2.5",
+		"rollup": "^4.12.1",
+		"rollup-plugin-copy-assets": "^2.0.3",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-postcss": "^4.0.2",
+		"ts-node": "^10.9.2",
+		"tslib": "^2.6.2",
+		"turbo": "^2.0.9",
+		"typescript": "^5.4.2",
+		"vite": "^5.2.6",
+		"vite-tsconfig-paths": "^4.3.2",
+		"vitest": "^1.5.0",
+		"yargs": "^17.7.2"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"resolutions": {
+		"jackspeak": "2.1.1"
+	}
+}
