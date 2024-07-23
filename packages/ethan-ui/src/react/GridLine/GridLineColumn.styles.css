@@ -1,5 +1,5 @@
 .grid-line__column {
 	background-color: #ff000020;
-	width: var(--column);
+	width: calc((100% - var(--gutter) * (var(--column) - 1)) / var(--column));
 	height: 100%;
 }

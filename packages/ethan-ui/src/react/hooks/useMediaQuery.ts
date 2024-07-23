@@ -7,16 +7,18 @@ const useMediaQuery = () => {
 
 	useLayoutEffect(() => {
 		const MEDIA_QUERIES = [
-			"(orientation: portrait) and (max-width: 575px)",
-			"(orientation: landscape) and (min-width: 576px) and (max-width: 767px)",
-			"(min-width: 768px) and (max-width: 991px)",
-			"(min-width: 992px)",
+			"(max-width: 428px)",
+			"(min-width: 429px) and (max-width: 768px)",
+			"(min-width: 769px) and (max-width: 1024px)",
+			"(min-width: 1025px) and (max-width: 1280px)",
+			"(min-width: 1281px)",
 		];
 		const MATCHER: Record<number, Platform> = {
 			0: "mobile-portrait",
 			1: "mobile-landscape",
-			2: "tablet",
-			3: "desktop",
+			2: "tablet-portrait",
+			3: "tablet-landscape",
+			4: "desktop",
 		};
 
 		MEDIA_QUERIES.forEach((media_query_str, index) => {

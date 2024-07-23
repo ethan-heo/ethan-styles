@@ -1,5 +1,6 @@
 export type Platform =
 	| "mobile-portrait"
 	| "mobile-landscape"
-	| "tablet"
+	| "tablet-portrait"
+	| "tablet-landscape"
 	| "desktop";

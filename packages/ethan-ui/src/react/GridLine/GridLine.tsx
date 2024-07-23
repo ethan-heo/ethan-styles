@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import "./GridLine.styles.css";
 import useMediaQuery from "../hooks/useMediaQuery";
@@ -12,29 +12,34 @@ const GRID_COMPONENTS: Record<
 	Platform,
 	{
 		"--column": string;
-		"--row": string;
 		"--gutter": string;
+		"--margin": string;
 	}
 > = {
 	desktop: {
-		"--column": "var(--grid-desktop-column)",
-		"--row": "var(--grid-desktop-row)",
+		"--column": "var(--grid-desktop-columns)",
 		"--gutter": "var(--grid-desktop-gutter)",
+		"--margin": "var(--grid-desktop-margin)",
 	},
 	"mobile-landscape": {
-		"--column": "var(--grid-mobile-landscape-column)",
-		"--row": "var(--grid-mobile-landscape-row)",
+		"--column": "var(--grid-mobile-landscape-columns)",
 		"--gutter": "var(--grid-mobile-landscape-gutter)",
+		"--margin": "var(--grid-mobile-landscape-margin)",
 	},
 	"mobile-portrait": {
-		"--column": "var(--grid-mobile-portrait-column)",
-		"--row": "var(--grid-mobile-portrait-row)",
+		"--column": "var(--grid-mobile-portrait-columns)",
 		"--gutter": "var(--grid-mobile-portrait-gutter)",
+		"--margin": "var(--grid-mobile-portrait-margin)",
 	},
-	tablet: {
-		"--column": "var(--grid-tablet-column)",
-		"--row": "var(--grid-tablet-row)",
-		"--gutter": "var(--grid-tablet-gutter)",
+	"tablet-landscape": {
+		"--column": "var(--grid-tablet-landscape-columns)",
+		"--gutter": "var(--grid-tablet-landscape-gutter)",
+		"--margin": "var(--grid-tablet-landscape-margin)",
+	},
+	"tablet-portrait": {
+		"--column": "var(--grid-tablet-portrait-columns)",
+		"--gutter": "var(--grid-tablet-portrait-gutter)",
+		"--margin": "var(--grid-tablet-portrait-margin)",
 	},
 };
 
@@ -64,7 +69,32 @@ const GRID_LAYOUT: Record<Platform, ("column" | "gutter")[]> = {
 		"gutter",
 		"column",
 	],
-	tablet: [
+	"tablet-portrait": [
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+	],
+	"tablet-landscape": [
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
+		"gutter",
 		"column",
 		"gutter",
 		"column",
@@ -89,6 +119,10 @@ const GRID_LAYOUT: Record<Platform, ("column" | "gutter")[]> = {
 		"column",
 		"gutter",
 		"column",
+		"gutter",
+		"column",
+		"gutter",
+		"column",
 	],
 	"mobile-portrait": [
 		"column",
@@ -102,6 +136,7 @@ const GRID_LAYOUT: Record<Platform, ("column" | "gutter")[]> = {
 };
 
 function GridLine() {
+	const el = useRef<HTMLDivElement>(null);
 	const platform = useMediaQuery();
 	const layouts = GRID_LAYOUT[platform];
 	const blockClassname = createBEMSelector({
@@ -112,12 +147,21 @@ function GridLine() {
 		element: "contents",
 	});
 
-	return ReactDOM.createPortal(
+	useEffect(() => {
+		const parentEl = el.current?.parentElement;
+
+		if (parentEl) {
+			parentEl.style.position = "relative";
+		}
+	}, []);
+
+	return (
 		<div
+			ref={el}
 			style={GRID_COMPONENTS[platform] as CSSProperties}
 			className={blockClassname}
 		>
-			<div className={contentsClassname}>
+			<div className={`${contentsClassname} ${platform}`}>
 				{layouts.map((layout, index) => {
 					if (layout === "column") {
 						return <GridLineColumn key={`column-${index}`} />;
@@ -126,8 +170,7 @@ function GridLine() {
 					}
 				})}
 			</div>
-		</div>,
-		document.body,
+		</div>
 	);
 }
 
