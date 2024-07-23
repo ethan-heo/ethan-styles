@@ -17,11 +17,13 @@ const generate = async () => {
 		"light-theme.css",
 		"variables",
 	);
-	// await creator(
-	// 	mapper(generateDesignToken(globalToken, [globalToken])),
-	// 	"light-theme.constants.ts",
-	// 	"constants",
-	// );
+	await creator(
+		mapper(
+			generateDesignToken(lightThemeToken, [lightThemeToken, globalToken]),
+		),
+		"light-theme.constants.ts",
+		"constants",
+	);
 };
 
 generate();

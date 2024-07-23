@@ -1,0 +1,7 @@
+const LIGHT_THEME = {
+<% for (const [name, token] of variables) { %>
+    <%= name.replace(/\-/g, '_').toUpperCase() %> : "<%- token.$value %>",
+<% } %>   
+};
+
+export default LIGHT_THEME
