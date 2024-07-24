@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect, useMemo } from 'react';
 
 const createBEMSelector = ({ block, element, modifier, }) => {
     let _block = block;
@@ -147,164 +147,118 @@ const useMediaQuery = () => {
 
 const GRID_LINE_BLOCK = "grid-line";
 
-const GridLineColumn = () => {
-    return (React.createElement("div", { className: createBEMSelector({
-            block: GRID_LINE_BLOCK,
-            element: "column",
-        }) }));
-};
+function useCssVariables(el) {
+    const cssVariables = useRef(new CssVariables()).current;
+    const [variables, setVariables] = useState(new Map());
+    useEffect(() => {
+        const subscribeCallback = (variables) => {
+            setVariables(variables);
+        };
+        cssVariables.subscribe(subscribeCallback);
+        cssVariables.update(el);
+        return () => {
+            cssVariables.unsubscribe(subscribeCallback);
+        };
+    }, [el]);
+    return variables;
+}
+class CssVariables {
+    variables;
+    callbacks = [];
+    subscribe(callback) {
+        this.callbacks.push(callback);
+    }
+    publish() {
+        const variables = this.variables;
+        if (!variables)
+            return;
+        this.callbacks.forEach((callback) => {
+            callback(variables);
+        });
+    }
+    unsubscribe(callback) {
+        const self = this;
+        self.callbacks = self.callbacks.filter((_callback) => callback !== _callback);
+    }
+    update(el) {
+        const self = this;
+        let style;
+        if (el) {
+            style = getComputedStyle(el);
+        }
+        else {
+            const cssStyleRule = Array.from(document.styleSheets)
+                .map((styleSheet) => Array.from(styleSheet.cssRules))
+                .flat()
+                .find((cssRule) => cssRule.selectorText === ":root");
+            style = cssStyleRule?.style;
+        }
+        if (!style)
+            return;
+        self.variables = new Map();
+        for (const key of style) {
+            if (key.startsWith("--")) {
+                self.variables.set(key, style.getPropertyValue(key).trim());
+            }
+        }
+        self.publish();
+    }
+}
 
-const GridLineGutter = () => {
-    return (React.createElement("div", { className: createBEMSelector({
-            block: GRID_LINE_BLOCK,
-            element: "gutter",
-        }) }));
-};
-
-const GRID_COMPONENTS = {
-    desktop: {
-        "--column": "var(--grid-desktop-columns)",
-        "--gutter": "var(--grid-desktop-gutter)",
-        "--margin": "var(--grid-desktop-margin)",
-    },
-    "mobile-landscape": {
-        "--column": "var(--grid-mobile-landscape-columns)",
-        "--gutter": "var(--grid-mobile-landscape-gutter)",
-        "--margin": "var(--grid-mobile-landscape-margin)",
-    },
-    "mobile-portrait": {
-        "--column": "var(--grid-mobile-portrait-columns)",
-        "--gutter": "var(--grid-mobile-portrait-gutter)",
-        "--margin": "var(--grid-mobile-portrait-margin)",
-    },
-    "tablet-landscape": {
-        "--column": "var(--grid-tablet-landscape-columns)",
-        "--gutter": "var(--grid-tablet-landscape-gutter)",
-        "--margin": "var(--grid-tablet-landscape-margin)",
-    },
-    "tablet-portrait": {
-        "--column": "var(--grid-tablet-portrait-columns)",
-        "--gutter": "var(--grid-tablet-portrait-gutter)",
-        "--margin": "var(--grid-tablet-portrait-margin)",
-    },
-};
-const GRID_LAYOUT = {
-    desktop: [
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-    ],
-    "tablet-portrait": [
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-    ],
-    "tablet-landscape": [
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-    ],
-    "mobile-landscape": [
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-    ],
-    "mobile-portrait": [
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-        "gutter",
-        "column",
-    ],
-};
 function GridLine() {
     const el = useRef(null);
     const platform = useMediaQuery();
-    const layouts = GRID_LAYOUT[platform];
-    const blockClassname = createBEMSelector({
-        block: GRID_LINE_BLOCK,
-    });
-    const contentsClassname = createBEMSelector({
-        block: GRID_LINE_BLOCK,
-        element: "contents",
-    });
+    const variables = useCssVariables();
+    const gradient = useMemo(() => {
+        if (!Array.from(variables.keys()).length)
+            return "";
+        let columns;
+        let gutter;
+        const columnColor = variables.get("--color-primary");
+        const gutterColor = variables.get("--color-accent");
+        switch (platform) {
+            case "mobile-portrait":
+                columns = variables.get("--grid-mobile-portrait-columns");
+                gutter = variables.get("--grid-mobile-portrait-gutter");
+                variables.get("--grid-mobile-portrait-margin");
+                break;
+            case "mobile-landscape":
+                columns = variables.get("--grid-mobile-landscape-columns");
+                gutter = variables.get("--grid-mobile-landscape-gutter");
+                variables.get("--grid-mobile-landscape-margin");
+                break;
+            case "tablet-portrait":
+                columns = variables.get("--grid-tablet-portrait-columns");
+                gutter = variables.get("--grid-tablet-portrait-gutter");
+                variables.get("--grid-tablet-portrait-margin");
+                break;
+            case "tablet-landscape":
+                columns = variables.get("--grid-tablet-landscape-columns");
+                gutter = variables.get("--grid-tablet-landscape-gutter");
+                variables.get("--grid-tablet-landscape-margin");
+                break;
+            default:
+                columns = variables.get("--grid-desktop-columns");
+                gutter = variables.get("--grid-desktop-gutter");
+                variables.get("--grid-desktop-margin");
+        }
+        const columnWidth = `calc((100% - (${gutter} * (${columns} - 1))) / ${columns})`;
+        const gradientColors = Array.from({ length: columns * 2 - 1 }).map((_, idx) => idx % 2 === 0
+            ? `${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)}), ${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth})`
+            : `${gutterColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth}), ${gutterColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2) + 1})`);
+        return `linear-gradient(to right, ${gradientColors.join(",")})`;
+    }, [variables, platform]);
     useEffect(() => {
         const parentEl = el.current?.parentElement;
         if (parentEl) {
             parentEl.style.position = "relative";
         }
     }, []);
-    return (React.createElement("div", { ref: el, style: GRID_COMPONENTS[platform], className: blockClassname },
-        React.createElement("div", { className: `${contentsClassname} ${platform}` }, layouts.map((layout, index) => {
-            if (layout === "column") {
-                return React.createElement(GridLineColumn, { key: `column-${index}` });
-            }
-            else {
-                return React.createElement(GridLineGutter, { key: `gutter-${index}` });
-            }
-        }))));
+    return (React.createElement("div", { ref: el, style: {
+            background: gradient,
+        }, className: createBEMSelector({
+            block: GRID_LINE_BLOCK,
+        }) }));
 }
 
 const TYPOGRAPH_BLOCK = "typograph";

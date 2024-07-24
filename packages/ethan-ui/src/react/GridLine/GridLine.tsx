@@ -1,151 +1,59 @@
-import React, { CSSProperties, useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useMemo, useRef } from "react";
 import "./GridLine.styles.css";
 import useMediaQuery from "../hooks/useMediaQuery";
-import GridLineColumn from "./GridLineColumn";
-import GridLineGutter from "./GridLineGutter";
-import { Platform } from "../../types/constants";
 import createBEMSelector from "../../utils/createBEMSelector";
 import { GRID_LINE_BLOCK } from "./constants";
-
-const GRID_COMPONENTS: Record<
-	Platform,
-	{
-		"--column": string;
-		"--gutter": string;
-		"--margin": string;
-	}
-> = {
-	desktop: {
-		"--column": "var(--grid-desktop-columns)",
-		"--gutter": "var(--grid-desktop-gutter)",
-		"--margin": "var(--grid-desktop-margin)",
-	},
-	"mobile-landscape": {
-		"--column": "var(--grid-mobile-landscape-columns)",
-		"--gutter": "var(--grid-mobile-landscape-gutter)",
-		"--margin": "var(--grid-mobile-landscape-margin)",
-	},
-	"mobile-portrait": {
-		"--column": "var(--grid-mobile-portrait-columns)",
-		"--gutter": "var(--grid-mobile-portrait-gutter)",
-		"--margin": "var(--grid-mobile-portrait-margin)",
-	},
-	"tablet-landscape": {
-		"--column": "var(--grid-tablet-landscape-columns)",
-		"--gutter": "var(--grid-tablet-landscape-gutter)",
-		"--margin": "var(--grid-tablet-landscape-margin)",
-	},
-	"tablet-portrait": {
-		"--column": "var(--grid-tablet-portrait-columns)",
-		"--gutter": "var(--grid-tablet-portrait-gutter)",
-		"--margin": "var(--grid-tablet-portrait-margin)",
-	},
-};
-
-const GRID_LAYOUT: Record<Platform, ("column" | "gutter")[]> = {
-	desktop: [
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-	],
-	"tablet-portrait": [
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-	],
-	"tablet-landscape": [
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-	],
-	"mobile-landscape": [
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-	],
-	"mobile-portrait": [
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-		"gutter",
-		"column",
-	],
-};
+import useCssVariables from "../hooks/useCssVariables";
 
 function GridLine() {
 	const el = useRef<HTMLDivElement>(null);
 	const platform = useMediaQuery();
-	const layouts = GRID_LAYOUT[platform];
-	const blockClassname = createBEMSelector({
-		block: GRID_LINE_BLOCK,
-	});
-	const contentsClassname = createBEMSelector({
-		block: GRID_LINE_BLOCK,
-		element: "contents",
-	});
+	const variables = useCssVariables();
+	const gradient = useMemo(() => {
+		if (!Array.from(variables.keys()).length) return "";
+
+		let columns;
+		let gutter;
+		let margin;
+		const columnColor = variables.get("--color-primary");
+		const gutterColor = variables.get("--color-accent");
+
+		switch (platform) {
+			case "mobile-portrait":
+				columns = variables.get("--grid-mobile-portrait-columns");
+				gutter = variables.get("--grid-mobile-portrait-gutter");
+				margin = variables.get("--grid-mobile-portrait-margin");
+				break;
+			case "mobile-landscape":
+				columns = variables.get("--grid-mobile-landscape-columns");
+				gutter = variables.get("--grid-mobile-landscape-gutter");
+				margin = variables.get("--grid-mobile-landscape-margin");
+				break;
+			case "tablet-portrait":
+				columns = variables.get("--grid-tablet-portrait-columns");
+				gutter = variables.get("--grid-tablet-portrait-gutter");
+				margin = variables.get("--grid-tablet-portrait-margin");
+				break;
+			case "tablet-landscape":
+				columns = variables.get("--grid-tablet-landscape-columns");
+				gutter = variables.get("--grid-tablet-landscape-gutter");
+				margin = variables.get("--grid-tablet-landscape-margin");
+				break;
+			default:
+				columns = variables.get("--grid-desktop-columns");
+				gutter = variables.get("--grid-desktop-gutter");
+				margin = variables.get("--grid-desktop-margin");
+		}
+
+		const columnWidth = `calc((100% - (${gutter} * (${columns} - 1))) / ${columns})`;
+		const gradientColors = Array.from({ length: columns * 2 - 1 }).map(
+			(_, idx) =>
+				idx % 2 === 0
+					? `${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)}), ${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth})`
+					: `${gutterColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth}), ${gutterColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2) + 1})`,
+		);
+		return `linear-gradient(to right, ${gradientColors.join(",")})`;
+	}, [variables, platform]);
 
 	useEffect(() => {
 		const parentEl = el.current?.parentElement;
@@ -158,19 +66,13 @@ function GridLine() {
 	return (
 		<div
 			ref={el}
-			style={GRID_COMPONENTS[platform] as CSSProperties}
-			className={blockClassname}
-		>
-			<div className={`${contentsClassname} ${platform}`}>
-				{layouts.map((layout, index) => {
-					if (layout === "column") {
-						return <GridLineColumn key={`column-${index}`} />;
-					} else {
-						return <GridLineGutter key={`gutter-${index}`} />;
-					}
-				})}
-			</div>
-		</div>
+			style={{
+				background: gradient,
+			}}
+			className={createBEMSelector({
+				block: GRID_LINE_BLOCK,
+			})}
+		/>
 	);
 }
 
