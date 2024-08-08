@@ -4,7 +4,7 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
 const bundlers = [];
-const options = [rollupOptions.options];
+const options = [rollupOptions.options, rollupOptions.tsOptions];
 const argv = yargs(hideBin(process.argv)).parse();
 let watcher;
 

@@ -1,7 +1,5 @@
 import React from "react";
-import createBEMSelector from "../../utils/createBEMSelector";
-import { Platform } from "../../types/constants";
-import withGridLayout from "../hocs/WithGridLayout";
+import withGridLayout from "../hocs/withGridLayout";
 
 type Props<Tag extends React.ElementType> = {
 	as?: Tag;
@@ -10,16 +8,17 @@ type Props<Tag extends React.ElementType> = {
 export type ContainerProps<Tag extends React.ElementType> = Props<Tag> &
 	React.ComponentPropsWithoutRef<Tag>;
 
-function Container<Tag extends React.ElementType = "div">({
-	as,
-	children,
-	classNames,
-	...props
-}: ContainerProps<Tag>) {
-	const Component = as || "div";
-	const BLOCK = "container";
+const Container = withGridLayout(
+	<Tag extends React.ElementType = "div">({
+		as,
+		children,
+		...props
+	}: ContainerProps<Tag>) => {
+		const Component = as || "div";
+		const BLOCK = "container";
 
-	return <Component {...props}>{children}</Component>;
-}
+		return <Component {...props}>{children}</Component>;
+	},
+);
 
-export default withGridLayout(Container);
+export default Container;

@@ -3,7 +3,9 @@
 	"private": true,
 	"scripts": {
 		"dev": "turbo dev",
-		"build": "turbo build"
+		"build": "turbo build",
+		"dev:lib": "turbo dev --filter=@ethanheo/ui --filter=examples",
+		"gen:token": "yarn workspace generate-design-token gen:token"
 	},
 	"engines": {
 		"node": ">=18"

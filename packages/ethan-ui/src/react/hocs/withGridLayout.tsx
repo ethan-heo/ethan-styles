@@ -4,7 +4,7 @@ type PlatformColumn = `col-${"mp" | "ml" | "tp" | "tl" | "d"}-${number}`;
 
 type ResponsiveColumn = `col-${number}`;
 
-interface WithGridLayoutProps {
+export interface WithGridLayoutProps {
 	column?: PlatformColumn | ResponsiveColumn;
 	className?: string;
 }

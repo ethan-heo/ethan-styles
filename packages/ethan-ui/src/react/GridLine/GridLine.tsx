@@ -45,6 +45,12 @@ function GridLine() {
 				margin = variables.get("--grid-desktop-margin");
 		}
 
+		if (!columns || !gutter || !margin) {
+			throw new Error(`grid 속성이 정의되지 않았습니다.`);
+		}
+
+		columns = parseInt(columns);
+
 		const columnWidth = `calc((100% - (${gutter} * (${columns} - 1))) / ${columns})`;
 		const gradientColors = Array.from({ length: columns * 2 - 1 }).map(
 			(_, idx) =>
