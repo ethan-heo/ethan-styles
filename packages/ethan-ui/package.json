@@ -22,7 +22,7 @@
 	"scripts": {
 		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
 		"dev": "node scripts/build.mjs --watch",
-		"build": "node scripts/build.mjs",
+		"build": "tsc -p tsconfig.build.json && node scripts/build.mjs",
 		"test": "vitest --config ./configs/vitest.config.mjs"
 	},
 	"peerDependencies": {

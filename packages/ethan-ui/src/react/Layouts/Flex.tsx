@@ -1,7 +1,9 @@
 import React from "react";
-import "./Flex.styles.css";
-import { PickCSSProperty } from "../../types/utils";
 import createBEMSelector from "../../utils/createBEMSelector";
+import { PickCSSProperty } from "../../types/utils";
+import { LayoutProps } from "./Layouts.types";
+import "./Flex.styles.css";
+import "./Layouts.styles.css";
 
 export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	justify?: PickCSSProperty<
@@ -17,10 +19,10 @@ export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	vertical?: boolean;
 	reverse?: boolean;
 	wrap?: boolean;
-	gap?: "extra-large" | "large" | "medium" | "small" | "extra-small";
+	gap?: boolean;
 }
 
-const Flex: React.FC<FlexProps> = ({
+const Flex = <Tag extends React.ElementType>({
 	justify = "flex-start",
 	align = "flex-start",
 	vertical,
@@ -29,8 +31,11 @@ const Flex: React.FC<FlexProps> = ({
 	wrap,
 	children,
 	className,
+	as,
+	column = 12,
 	...props
-}) => {
+}: LayoutProps<Tag, FlexProps>) => {
+	const Component = as || "div";
 	const block = "flex";
 	const blockClassName = createBEMSelector({
 		block,
@@ -43,6 +48,7 @@ const Flex: React.FC<FlexProps> = ({
 		block,
 		modifier: ["align", align],
 	});
+	const columnClassName = `col-${column}`;
 	let reverseClassname;
 	let gapClassname;
 	let wrapClassname;
@@ -57,7 +63,7 @@ const Flex: React.FC<FlexProps> = ({
 	if (gap) {
 		gapClassname = createBEMSelector({
 			block,
-			modifier: ["gap", gap],
+			modifier: ["gap"],
 		});
 	}
 	if (wrap) {
@@ -77,6 +83,7 @@ const Flex: React.FC<FlexProps> = ({
 		blockClassName,
 		justifyClassName,
 		alignClassName,
+		columnClassName,
 		reverseClassname,
 		gapClassname,
 		wrapClassname,
@@ -85,9 +92,9 @@ const Flex: React.FC<FlexProps> = ({
 	];
 
 	return (
-		<div className={classNames.filter(Boolean).join(" ")} {...props}>
+		<Component className={classNames.filter(Boolean).join(" ")} {...props}>
 			{children}
-		</div>
+		</Component>
 	);
 };
 

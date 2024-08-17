@@ -28,7 +28,7 @@ const LIGHT_THEME = {
 
     GRID_DESKTOP_GUTTER : "16px",
 
-    GRID_DESKTOP_MARGIN : "0 auto",
+    GRID_DESKTOP_MARGIN : "auto",
 
     RESPONSIVE_MOBILE_PORTRAIT_MAX : "428px",
 

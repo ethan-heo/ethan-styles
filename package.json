@@ -5,7 +5,7 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"dev:lib": "turbo dev --filter=@ethanheo/ui --filter=examples",
-		"gen:token": "yarn workspace generate-design-token gen:token"
+		"gen:token": "yarn workspace @ethanheo/ui gen:token"
 	},
 	"engines": {
 		"node": ">=18"

@@ -43,18 +43,6 @@
 .flex--align-center {
 	align-items: center;
 }
-.flex--gap-extra-large {
-	gap: var(--spacing-extra-large);
-}
-.flex--gap-large {
-	gap: var(--spacing-large);
-}
-.flex--gap-medium {
-	gap: var(--spacing-medium);
-}
-.flex--gap-small {
-	gap: var(--spacing-small);
-}
-.flex--gap-extra-small {
-	gap: var(--spacing-extra-small);
+.flex--gap {
+	gap: var(--gutter);
 }

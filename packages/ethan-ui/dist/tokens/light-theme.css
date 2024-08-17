@@ -27,7 +27,7 @@
 
   --grid-desktop-gutter: 16px;
 
-  --grid-desktop-margin: 0 auto;
+  --grid-desktop-margin: auto;
 
   --responsive-mobile-portrait-max: 428px;
 
