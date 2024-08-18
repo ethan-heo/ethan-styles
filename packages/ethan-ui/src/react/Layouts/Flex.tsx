@@ -32,7 +32,7 @@ const Flex = <Tag extends React.ElementType>({
 	children,
 	className,
 	as,
-	column = 12,
+	column = "col-12",
 	...props
 }: LayoutProps<Tag, FlexProps>) => {
 	const Component = as || "div";
@@ -48,7 +48,7 @@ const Flex = <Tag extends React.ElementType>({
 		block,
 		modifier: ["align", align],
 	});
-	const columnClassName = `col-${column}`;
+	let columnClassName;
 	let reverseClassname;
 	let gapClassname;
 	let wrapClassname;
@@ -77,6 +77,9 @@ const Flex = <Tag extends React.ElementType>({
 			block,
 			modifier: ["vertical"],
 		});
+	}
+	if (column) {
+		columnClassName = Array.isArray(column) ? column.join(" ") : column;
 	}
 
 	const classNames = [
