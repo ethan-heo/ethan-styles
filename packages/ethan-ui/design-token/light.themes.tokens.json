@@ -67,7 +67,7 @@
 			},
 			"margin": {
 				"$type": "dimension",
-				"$value": "0 auto"
+				"$value": "auto"
 			}
 		}
 	},

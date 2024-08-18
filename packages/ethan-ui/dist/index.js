@@ -1,4 +1,18 @@
-import React, { useState, useRef, useLayoutEffect, useEffect, useMemo } from 'react';
+import { jsx } from 'react/jsx-runtime';
+import { useState, useRef, useLayoutEffect, useEffect, useMemo } from 'react';
+
+function __rest(s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+}
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+  var e = new Error(message);
+  return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};
 
 const createBEMSelector = ({ block, element, modifier, }) => {
     let _block = block;
@@ -26,7 +40,8 @@ const createBEMSelector = ({ block, element, modifier, }) => {
     return `${_block}__${_element}--${_modifier}`;
 };
 
-const Button = ({ variant = "default", size = "medium", danger, children, className, ...props }) => {
+const Button = (_a) => {
+    var { variant = "default", size = "medium", danger, children, className } = _a, props = __rest(_a, ["variant", "size", "danger", "children", "className"]);
     const block = "button";
     const buttonClassname = createBEMSelector({
         block,
@@ -53,61 +68,7 @@ const Button = ({ variant = "default", size = "medium", danger, children, classN
         dangerClassname,
         className,
     ];
-    return (React.createElement("button", { className: classNames.filter(Boolean).join(" "), ...props }, children));
-};
-
-const Flex = ({ justify = "flex-start", align = "flex-start", vertical, reverse, gap, wrap, children, className, ...props }) => {
-    const block = "flex";
-    const blockClassName = createBEMSelector({
-        block,
-    });
-    const justifyClassName = createBEMSelector({
-        block,
-        modifier: ["justify", justify],
-    });
-    const alignClassName = createBEMSelector({
-        block,
-        modifier: ["align", align],
-    });
-    let reverseClassname;
-    let gapClassname;
-    let wrapClassname;
-    let verticalClassname;
-    if (reverse) {
-        reverseClassname = createBEMSelector({
-            block,
-            modifier: ["reverse"],
-        });
-    }
-    if (gap) {
-        gapClassname = createBEMSelector({
-            block,
-            modifier: ["gap", gap],
-        });
-    }
-    if (wrap) {
-        wrapClassname = createBEMSelector({
-            block,
-            modifier: ["wrap"],
-        });
-    }
-    if (vertical) {
-        verticalClassname = createBEMSelector({
-            block,
-            modifier: ["vertical"],
-        });
-    }
-    const classNames = [
-        blockClassName,
-        justifyClassName,
-        alignClassName,
-        reverseClassname,
-        gapClassname,
-        wrapClassname,
-        verticalClassname,
-        className,
-    ];
-    return (React.createElement("div", { className: classNames.filter(Boolean).join(" "), ...props }, children));
+    return (jsx("button", Object.assign({ className: classNames.filter(Boolean).join(" ") }, props, { children: children })));
 };
 
 const useMediaQuery = () => {
@@ -163,8 +124,9 @@ function useCssVariables(el) {
     return variables;
 }
 class CssVariables {
-    variables;
-    callbacks = [];
+    constructor() {
+        this.callbacks = [];
+    }
     subscribe(callback) {
         this.callbacks.push(callback);
     }
@@ -191,7 +153,7 @@ class CssVariables {
                 .map((styleSheet) => Array.from(styleSheet.cssRules))
                 .flat()
                 .find((cssRule) => cssRule.selectorText === ":root");
-            style = cssStyleRule?.style;
+            style = cssStyleRule === null || cssStyleRule === void 0 ? void 0 : cssStyleRule.style;
         }
         if (!style)
             return;
@@ -214,34 +176,39 @@ function GridLine() {
             return "";
         let columns;
         let gutter;
+        let margin;
         const columnColor = variables.get("--color-primary");
         const gutterColor = variables.get("--color-accent");
         switch (platform) {
             case "mobile-portrait":
                 columns = variables.get("--grid-mobile-portrait-columns");
                 gutter = variables.get("--grid-mobile-portrait-gutter");
-                variables.get("--grid-mobile-portrait-margin");
+                margin = variables.get("--grid-mobile-portrait-margin");
                 break;
             case "mobile-landscape":
                 columns = variables.get("--grid-mobile-landscape-columns");
                 gutter = variables.get("--grid-mobile-landscape-gutter");
-                variables.get("--grid-mobile-landscape-margin");
+                margin = variables.get("--grid-mobile-landscape-margin");
                 break;
             case "tablet-portrait":
                 columns = variables.get("--grid-tablet-portrait-columns");
                 gutter = variables.get("--grid-tablet-portrait-gutter");
-                variables.get("--grid-tablet-portrait-margin");
+                margin = variables.get("--grid-tablet-portrait-margin");
                 break;
             case "tablet-landscape":
                 columns = variables.get("--grid-tablet-landscape-columns");
                 gutter = variables.get("--grid-tablet-landscape-gutter");
-                variables.get("--grid-tablet-landscape-margin");
+                margin = variables.get("--grid-tablet-landscape-margin");
                 break;
             default:
                 columns = variables.get("--grid-desktop-columns");
                 gutter = variables.get("--grid-desktop-gutter");
-                variables.get("--grid-desktop-margin");
+                margin = variables.get("--grid-desktop-margin");
         }
+        if (!columns || !gutter || !margin) {
+            throw new Error(`grid 속성이 정의되지 않았습니다.`);
+        }
+        columns = parseInt(columns);
         const columnWidth = `calc((100% - (${gutter} * (${columns} - 1))) / ${columns})`;
         const gradientColors = Array.from({ length: columns * 2 - 1 }).map((_, idx) => idx % 2 === 0
             ? `${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)}), ${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth})`
@@ -249,12 +216,13 @@ function GridLine() {
         return `linear-gradient(to right, ${gradientColors.join(",")})`;
     }, [variables, platform]);
     useEffect(() => {
-        const parentEl = el.current?.parentElement;
+        var _a;
+        const parentEl = (_a = el.current) === null || _a === void 0 ? void 0 : _a.parentElement;
         if (parentEl) {
             parentEl.style.position = "relative";
         }
     }, []);
-    return (React.createElement("div", { ref: el, style: {
+    return (jsx("div", { ref: el, style: {
             background: gradient,
         }, className: createBEMSelector({
             block: GRID_LINE_BLOCK,
@@ -265,7 +233,8 @@ const TYPOGRAPH_BLOCK = "typograph";
 const TYPOGRAPH_MODIFIER_COLOR = "color";
 const TYPOGRAPH_MODIFIER_STYLE = "style";
 
-const createTypographClassnames = (component, { variant = "default", ...styles }, ...classNames) => {
+const createTypographClassnames = (component, _a, ...classNames) => {
+    var { variant = "default" } = _a, styles = __rest(_a, ["variant"]);
     const block = createBEMSelector({
         block: [TYPOGRAPH_BLOCK],
         element: component,
@@ -292,7 +261,8 @@ const createTypographClassnames = (component, { variant = "default", ...styles }
         .join(" ");
 };
 
-const Title = ({ level = 1, italic, underline, del, mark, strong, variant = "default", className, children, ...props }) => {
+const Title = (_a) => {
+    var { level = 1, italic, underline, del, mark, strong, variant = "default", className, children } = _a, props = __rest(_a, ["level", "italic", "underline", "del", "mark", "strong", "variant", "className", "children"]);
     const classNames = createTypographClassnames(`heading${level}`, {
         italic,
         underline,
@@ -303,15 +273,16 @@ const Title = ({ level = 1, italic, underline, del, mark, strong, variant = "def
     }, className);
     switch (level) {
         case 2:
-            return (React.createElement("h2", { className: classNames, ...props }, children));
+            return (jsx("h2", Object.assign({ className: classNames }, props, { children: children })));
         case 3:
-            return (React.createElement("h3", { className: classNames, ...props }, children));
+            return (jsx("h3", Object.assign({ className: classNames }, props, { children: children })));
         default:
-            return (React.createElement("h1", { className: classNames, ...props }, children));
+            return (jsx("h1", Object.assign({ className: classNames }, props, { children: children })));
     }
 };
 
-const Paragraph = ({ strong, italic, underline, del, mark, variant = "default", children, className, ...props }) => {
+const Paragraph = (_a) => {
+    var { strong, italic, underline, del, mark, variant = "default", children, className } = _a, props = __rest(_a, ["strong", "italic", "underline", "del", "mark", "variant", "children", "className"]);
     const classNames = createTypographClassnames("paragraph", {
         italic,
         underline,
@@ -320,10 +291,11 @@ const Paragraph = ({ strong, italic, underline, del, mark, variant = "default", 
         strong,
         variant,
     }, className);
-    return (React.createElement("p", { className: classNames, ...props }, children));
+    return (jsx("p", Object.assign({ className: classNames }, props, { children: children })));
 };
 
-const Text = ({ strong, italic, underline, del, mark, variant = "default", children, className, ...props }) => {
+const Text = (_a) => {
+    var { strong, italic, underline, del, mark, variant = "default", children, className } = _a, props = __rest(_a, ["strong", "italic", "underline", "del", "mark", "variant", "children", "className"]);
     const classNames = createTypographClassnames("text", {
         italic,
         underline,
@@ -332,10 +304,11 @@ const Text = ({ strong, italic, underline, del, mark, variant = "default", child
         strong,
         variant,
     }, className);
-    return (React.createElement("span", { className: classNames, ...props }, children));
+    return (jsx("span", Object.assign({ className: classNames }, props, { children: children })));
 };
 
-const Link = ({ italic, underline, strong, del, mark, variant = "default", className, children, ...props }) => {
+const Link = (_a) => {
+    var { italic, underline, strong, del, mark, variant = "default", className, children } = _a, props = __rest(_a, ["italic", "underline", "strong", "del", "mark", "variant", "className", "children"]);
     const classNames = createTypographClassnames("link", {
         italic,
         underline,
@@ -344,7 +317,68 @@ const Link = ({ italic, underline, strong, del, mark, variant = "default", class
         strong,
         variant,
     }, className);
-    return (React.createElement("a", { className: classNames, ...props }, children));
+    return (jsx("a", Object.assign({ className: classNames }, props, { children: children })));
+};
+
+const Flex = (_a) => {
+    var { justify = "flex-start", align = "flex-start", vertical, reverse, gap, wrap, children, className, as, column = "col-12" } = _a, props = __rest(_a, ["justify", "align", "vertical", "reverse", "gap", "wrap", "children", "className", "as", "column"]);
+    const Component = as || "div";
+    const block = "flex";
+    const blockClassName = createBEMSelector({
+        block,
+    });
+    const justifyClassName = createBEMSelector({
+        block,
+        modifier: ["justify", justify],
+    });
+    const alignClassName = createBEMSelector({
+        block,
+        modifier: ["align", align],
+    });
+    let columnClassName;
+    let reverseClassname;
+    let gapClassname;
+    let wrapClassname;
+    let verticalClassname;
+    if (reverse) {
+        reverseClassname = createBEMSelector({
+            block,
+            modifier: ["reverse"],
+        });
+    }
+    if (gap) {
+        gapClassname = createBEMSelector({
+            block,
+            modifier: ["gap"],
+        });
+    }
+    if (wrap) {
+        wrapClassname = createBEMSelector({
+            block,
+            modifier: ["wrap"],
+        });
+    }
+    if (vertical) {
+        verticalClassname = createBEMSelector({
+            block,
+            modifier: ["vertical"],
+        });
+    }
+    if (column) {
+        columnClassName = Array.isArray(column) ? column.join(" ") : column;
+    }
+    const classNames = [
+        blockClassName,
+        justifyClassName,
+        alignClassName,
+        columnClassName,
+        reverseClassname,
+        gapClassname,
+        wrapClassname,
+        verticalClassname,
+        className,
+    ];
+    return (jsx(Component, Object.assign({ className: classNames.filter(Boolean).join(" ") }, props, { children: children })));
 };
 
 const LIGHT_THEME = {
@@ -362,7 +396,7 @@ const LIGHT_THEME = {
     GRID_TABLET_LANDSCAPE_MARGIN: "26px",
     GRID_DESKTOP_COLUMNS: "12",
     GRID_DESKTOP_GUTTER: "16px",
-    GRID_DESKTOP_MARGIN: "0 auto",
+    GRID_DESKTOP_MARGIN: "auto",
     RESPONSIVE_MOBILE_PORTRAIT_MAX: "428px",
     RESPONSIVE_MOBILE_LANDSCAPE_MIN: "429px",
     RESPONSIVE_MOBILE_LANDSCAPE_MAX: "768px",
