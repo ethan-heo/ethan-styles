@@ -2,7 +2,7 @@
 	"name": "@ethanheo/ui",
 	"description": "이든의 극히 개인적인 디자인 시스템",
 	"private": false,
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"license": "MIT",
 	"author": "ethan-heo <ethanheo.dev@gmail.com> (https://github.com/ethan-heo/generate-design-token)",
 	"repository": "https://github.com/ethan-heo/ethan-ui.git",
