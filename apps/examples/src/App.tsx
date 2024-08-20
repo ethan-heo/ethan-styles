@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button, Flex, GridLine, Paragraph, Title } from "@ethanheo/ui";
+import { Button, Flex, GridLine, Input, Paragraph, Title } from "@ethanheo/ui";
 
 function App() {
 	return (
@@ -48,6 +48,9 @@ function App() {
 			</Flex>
 			<Flex>
 				<Paragraph>hello world</Paragraph>
+			</Flex>
+			<Flex>
+				<Input fontSize="medium" placeholder="hello world" />
 			</Flex>
 		</main>
 	);
