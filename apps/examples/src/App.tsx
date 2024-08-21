@@ -1,7 +1,25 @@
 import "./App.css";
-import { Button, Flex, GridLine, Input, Paragraph, Title } from "@ethanheo/ui";
+import {
+	Button,
+	Flex,
+	GridLine,
+	Input,
+	Paragraph,
+	Title,
+	useFormState,
+} from "@ethanheo/ui";
 
 function App() {
+	const { name } = useFormState({
+		name: {
+			id: "test",
+			defaultValue: "",
+			event: "change",
+			onValidate: (value) => /[0-9]/g.test(value),
+		},
+	});
+
+	console.log(name);
 	return (
 		<main className="container">
 			<GridLine />
@@ -50,7 +68,7 @@ function App() {
 				<Paragraph>hello world</Paragraph>
 			</Flex>
 			<Flex>
-				<Input fontSize="medium" placeholder="hello world" />
+				<Input fontSize="medium" placeholder="hello world" {...name} />
 			</Flex>
 		</main>
 	);
