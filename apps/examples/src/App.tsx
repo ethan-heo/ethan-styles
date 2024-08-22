@@ -15,7 +15,18 @@ function App() {
 			id: "test",
 			defaultValue: "",
 			event: "change",
-			onValidate: (value) => /[0-9]/g.test(value),
+			onValidate: (value) => {
+				if (/[0-9]/g.test(value)) {
+					return {
+						msg: "숫자가 입력되면 안됩니다",
+						valid: false,
+					};
+				} else {
+					return {
+						valid: true,
+					};
+				}
+			},
 		},
 	});
 

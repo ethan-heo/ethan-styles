@@ -5,7 +5,7 @@ const createAction =
 	<P extends object>(payload: P) => ({ type, payload });
 
 const CHANGE_VALUE_ACTION_TYPE = "@FORM_STATE/CHANGE_VALUE";
-const changeValueAction = createAction("@FORM_STATE/CHANGE_VALUE")<{
+const changeValueAction = createAction(CHANGE_VALUE_ACTION_TYPE)<{
 	name: string;
 	value: any;
 }>;
@@ -32,17 +32,7 @@ const useFormState = <
 		},
 	};
 
-	const result = { ...state };
-
-	for (const key in state) {
-		const _handlers = handlers[prop[key].event];
-
-		if (_handlers) {
-			Object.assign(result[key], _handlers);
-		}
-	}
-
-	return result;
+	return assignHandlers(state);
 
 	/**
 	 * internal functions =====================
@@ -77,6 +67,19 @@ const useFormState = <
 		}
 
 		return state;
+	}
+	function assignHandlers(state: State) {
+		const result = { ...state };
+
+		for (const key in state) {
+			const _handlers = handlers[prop[key].event];
+
+			if (_handlers) {
+				Object.assign(result[key], _handlers);
+			}
+		}
+
+		return result;
 	}
 };
 
@@ -118,7 +121,10 @@ type BehaviorEventHandler = {
 /**
  * Validate ================================
  */
-type UseFormStateValidateResult = {};
+export type UseFormStateValidateResult = {
+	msg?: string;
+	valid: boolean;
+};
 /**
  * [Todo]
  *  UseFormStateValidateResult 값을 정의해야 함
