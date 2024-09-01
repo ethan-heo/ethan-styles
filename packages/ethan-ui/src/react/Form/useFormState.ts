@@ -164,7 +164,7 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	// assign submit
 	result.onSubmit = handleSubmit;
 
-	return state;
+	return result;
 };
 
 export default useFormState;

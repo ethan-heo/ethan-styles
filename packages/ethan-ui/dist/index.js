@@ -515,7 +515,7 @@ const useFormState = (prop, initializedState = {}) => {
     }
     // assign submit
     result.onSubmit = handleSubmit;
-    return state;
+    return result;
 };
 
 const LIGHT_THEME = {
