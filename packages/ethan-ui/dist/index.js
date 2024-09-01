@@ -436,12 +436,11 @@ const useFormState = (prop, initializedState = {}) => {
         switch (action.type) {
             case CHANGE_VALUE_ACTION_TYPE: {
                 const { name, value, error } = action.payload;
-                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { value,
-                            error }) }) });
+                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { element: Object.assign(Object.assign({}, state.form[name].element), { value }), error }) }) });
             }
             case RESET_VALUE_ACTION_TYPE: {
                 const { name, defaultValue } = action.payload;
-                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { value: resetValue(state.form[name].value, defaultValue) }) }) });
+                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { element: Object.assign(Object.assign({}, state.form[name].element), { value: resetValue(state.form[name].element.value, defaultValue) }) }) }) });
             }
             default:
                 return state;
@@ -451,9 +450,11 @@ const useFormState = (prop, initializedState = {}) => {
             const _p = prop.form[key];
             state.form = {
                 [key]: {
-                    name: key,
-                    id: _p.id,
-                    value: _p.defaultValue,
+                    element: {
+                        name: key,
+                        id: _p.id,
+                        value: _p.defaultValue,
+                    },
                     event: _p.event,
                 },
             };
@@ -490,7 +491,7 @@ const useFormState = (prop, initializedState = {}) => {
         const formData = new FormData();
         const _state = state;
         for (const name in _state.form) {
-            formData.append(name, _state.form[name].value);
+            formData.append(name, _state.form[name].element.value);
         }
         (_a = prop.submit) === null || _a === void 0 ? void 0 : _a.call(prop, formData);
     };
@@ -507,7 +508,7 @@ const useFormState = (prop, initializedState = {}) => {
         const _handlers = handlers[propFormField.event];
         // assign handlers
         if (_handlers) {
-            Object.assign(stateFormField, _handlers);
+            Object.assign(stateFormField.element, _handlers);
         }
         stateFormField.reset = handleReset(key);
         stateFormField.change = handleChange(key);

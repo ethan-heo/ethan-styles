@@ -44,7 +44,10 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 							...state.form,
 							[name]: {
 								...state.form[name],
-								value,
+								element: {
+									...state.form[name].element,
+									value,
+								},
 								error,
 							},
 						},
@@ -58,7 +61,13 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 							...state.form,
 							[name]: {
 								...state.form[name],
-								value: resetValue(state.form[name].value, defaultValue),
+								element: {
+									...state.form[name].element,
+									value: resetValue(
+										state.form[name].element.value,
+										defaultValue,
+									),
+								},
 							},
 						},
 					};
@@ -74,9 +83,11 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 
 				state.form = {
 					[key]: {
-						name: key,
-						id: _p.id,
-						value: _p.defaultValue,
+						element: {
+							name: key,
+							id: _p.id,
+							value: _p.defaultValue,
+						},
 						event: _p.event,
 					},
 				} as S["form"];
@@ -118,7 +129,7 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 		const _state = state as S;
 
 		for (const name in _state.form) {
-			formData.append(name, _state.form[name].value as string);
+			formData.append(name, _state.form[name].element.value as string);
 		}
 
 		prop.submit?.(formData);
@@ -144,7 +155,7 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 
 		// assign handlers
 		if (_handlers) {
-			Object.assign(stateFormField, _handlers);
+			Object.assign(stateFormField.element, _handlers);
 		}
 
 		stateFormField.reset = handleReset(key);
@@ -178,16 +189,18 @@ type Params<T> = {
 type State<T extends Params<any>["form"]> = {
 	form: {
 		[K in keyof T]: {
-			name: K;
-			id: T[K]["id"];
-			value: T[K]["defaultValue"];
+			element: {
+				name: K;
+				id: T[K]["id"];
+				value: T[K]["defaultValue"];
+			} & FormEventMap[T[K]["event"]];
 			event: T[K]["event"];
 			error?: T[K]["validate"] extends (args: any[]) => void
 				? ReturnType<T[K]["validate"]>
 				: undefined;
 			reset: (value?: T[K]["defaultValue"]) => void;
 			change: (value: T[K]["defaultValue"]) => void;
-		} & FormEventMap[T[K]["event"]];
+		};
 	};
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
