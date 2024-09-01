@@ -10,12 +10,9 @@ const changeValueAction = createAction(CHANGE_VALUE_ACTION_TYPE)<{
 	value: any;
 }>;
 
-const useFormState = <
-	Prop extends UseFormStateProp<string>,
-	State extends UseFormState<Prop>,
->(
-	prop: Prop,
-	initializedState = {} as State,
+const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
+	prop: P,
+	initializedState = {} as S,
 ) => {
 	const [state, dispatch] = useReducer(
 		useFormReducer,
@@ -23,63 +20,97 @@ const useFormState = <
 		initializeState,
 	);
 
-	const handlers: BehaviorEventHandler = {
+	const handlers = {
 		change: {
-			onChange: (e: React.FormEvent<HTMLElement>) => {
+			onChange: (e: React.ChangeEvent<HTMLElement>) => {
+				const { value, name } = e.target as any;
+				console.log(name, value);
+				dispatch(changeValueAction({ name, value }));
+			},
+		},
+		blur: {
+			onBlur: (e: React.ChangeEvent<HTMLElement>) => {
 				const { value, name } = e.target as any;
 				dispatch(changeValueAction({ name, value }));
 			},
 		},
 	};
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 
-	return assignHandlers(state);
+		const formData = new FormData();
+		const _state = state as S;
+
+		for (const name in _state.form) {
+			formData.append(name, _state.form[name].value as string);
+		}
+
+		prop.submit?.(formData);
+	};
+
+	return assign(state)(assignHandlers, assignSubmit);
 
 	/**
 	 * internal functions =====================
 	 */
-	function useFormReducer(state: State, action: UseFormStateAction) {
+	function useFormReducer(state: S, action: FormStateAction) {
 		switch (action.type) {
 			case CHANGE_VALUE_ACTION_TYPE:
 				const { name, value } = action.payload;
-				const validator = prop[name].onValidate ?? ((_: any) => undefined);
+				const validator = prop.form[name].validate ?? ((_: any) => undefined);
 				const error = validator(value);
 
 				return {
 					...state,
-					[name]: {
-						...state[name],
-						value,
-						error,
+					form: {
+						...state.form,
+						[name]: {
+							...state.form[name],
+							value,
+							error,
+						},
 					},
 				};
 			default:
 				return state;
 		}
 	}
-	function initializeState(state: State) {
-		for (const key in prop) {
-			const _p = prop[key];
+	function initializeState(state: S) {
+		for (const key in prop.form) {
+			const _p = prop.form[key];
 
-			state[key] = {} as State[typeof key];
-			state[key]["id"] = _p.id;
-			state[key]["name"] = key;
-			state[key]["value"] = _p.defaultValue;
+			state.form = {
+				[key]: {
+					id: _p.id,
+					name: key,
+					value: _p.defaultValue,
+				},
+			} as S["form"];
 		}
 
 		return state;
 	}
-	function assignHandlers(state: State) {
+	function assignHandlers(state: S) {
 		const result = { ...state };
 
-		for (const key in state) {
-			const _handlers = handlers[prop[key].event];
+		for (const key in state.form) {
+			const _handlers = handlers[prop.form[key].event];
 
 			if (_handlers) {
-				Object.assign(result[key], _handlers);
+				Object.assign(result.form[key], _handlers);
 			}
 		}
 
 		return result;
+	}
+	function assignSubmit(state: S) {
+		return Object.assign(state, { onSubmit: handleSubmit });
+	}
+
+	function assign(state: S) {
+		return function (...fns: ((state: S) => S)[]) {
+			return fns.reduce((acc, fn) => fn(acc), state);
+		};
 	}
 };
 
@@ -88,29 +119,43 @@ export default useFormState;
 /**
  * Props, State ================================
  */
-type BehaviorEvent = "change";
-type UseFormStateProp<Name extends string, Value = any> = Record<
-	Name,
-	{
-		id: string;
-		defaultValue: Value;
-		event: BehaviorEvent;
-		onValidate?: UseFormStateValidate<Value>;
-	}
->;
-type UseFormState<Prop extends UseFormStateProp<string>> = {
-	[K in keyof Prop]: {
-		name: K;
-		id: Prop[keyof Prop]["id"];
-		value: Prop[keyof Prop]["defaultValue"];
-		error: Prop[keyof Prop]["onValidate"] extends UseFormStateValidate<any>
-			? ReturnType<Prop[keyof Prop]["onValidate"]>
-			: undefined;
-	} & BehaviorEventHandler[Prop[keyof Prop]["event"]];
+type BehaviorEvent = "change" | "blur";
+
+type ParamsFormField<T = any> = {
+	id: string;
+	defaultValue: T;
+	event: BehaviorEvent;
+	validate?: (value: T) => FormStateValidateResult;
 };
-type BehaviorEventHandler = {
+
+// 타입스크립트에서 엄격함, 엄격하지 않음을 어떻게 구분할까?
+type Params<T> = {
+	form: {
+		[K in keyof T]: ParamsFormField<T[K]>;
+	};
+	submit?: (formData: FormData) => void;
+};
+
+type State<T extends Params<any>["form"]> = {
+	form: {
+		[K in keyof T]: {
+			name: K;
+			id: T[K]["id"];
+			value: T[K]["defaultValue"];
+			event: T[K]["event"];
+			error?: T[K]["validate"] extends (args: any[]) => void
+				? ReturnType<T[K]["validate"]>
+				: undefined;
+		} & FormEventMap[T[K]["event"]];
+	};
+};
+
+type FormEventMap = {
 	change: {
 		onChange: (e: React.ChangeEvent<HTMLElement>) => void;
+	};
+	blur: {
+		onBlur: (e: React.ChangeEvent<HTMLElement>) => void;
 	};
 };
 
@@ -121,17 +166,11 @@ type BehaviorEventHandler = {
 /**
  * Validate ================================
  */
-export type UseFormStateValidateResult = {
+type FormStateValidateResult = {
 	msg?: string;
 	valid: boolean;
 };
 /**
- * [Todo]
- *  UseFormStateValidateResult 값을 정의해야 함
- */
-type UseFormStateValidate<V> = (value: V) => UseFormStateValidateResult;
-
-/**
  * Actions ================================
  */
-type UseFormStateAction = ReturnType<typeof changeValueAction>;
+type FormStateAction = ReturnType<typeof changeValueAction>;
