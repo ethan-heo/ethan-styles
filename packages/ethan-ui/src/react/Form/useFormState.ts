@@ -8,6 +8,7 @@ const CHANGE_VALUE_ACTION_TYPE = "@FORM_STATE/CHANGE_VALUE";
 const changeValueAction = createAction(CHANGE_VALUE_ACTION_TYPE)<{
 	name: string;
 	value: any;
+	error?: FormStateValidateResult;
 }>;
 
 const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
@@ -15,23 +16,67 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	initializedState = {} as S,
 ) => {
 	const [state, dispatch] = useReducer(
-		useFormReducer,
-		initializedState,
-		initializeState,
-	);
+		(state: S, action: FormStateAction) => {
+			switch (action.type) {
+				case CHANGE_VALUE_ACTION_TYPE:
+					const { name, value, error } = action.payload;
 
+					return {
+						...state,
+						form: {
+							...state.form,
+							[name]: {
+								...state.form[name],
+								value,
+								error,
+							},
+						},
+					};
+				default:
+					return state;
+			}
+		},
+		initializedState,
+		(state) => {
+			for (const key in prop.form) {
+				const _p = prop.form[key];
+
+				state.form = {
+					[key]: {
+						name: key,
+						id: _p.id,
+						value: _p.defaultValue,
+						event: _p.event,
+					},
+				} as S["form"];
+			}
+
+			return state;
+		},
+	);
 	const handlers = {
 		change: {
 			onChange: (e: React.ChangeEvent<HTMLElement>) => {
 				const { value, name } = e.target as any;
-				console.log(name, value);
-				dispatch(changeValueAction({ name, value }));
+				dispatch(
+					changeValueAction({
+						name,
+						value,
+						error: prop.form[name].validate?.(value),
+					}),
+				);
 			},
 		},
 		blur: {
 			onBlur: (e: React.ChangeEvent<HTMLElement>) => {
 				const { value, name } = e.target as any;
-				dispatch(changeValueAction({ name, value }));
+				dispatch(
+					changeValueAction({
+						name,
+						value,
+						error: prop.form[name].validate?.(value),
+					}),
+				);
 			},
 		},
 	};
@@ -48,77 +93,26 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 		prop.submit?.(formData);
 	};
 
-	return assign(state)(assignHandlers, assignSubmit);
+	const result = {
+		...state,
+	};
 
-	/**
-	 * internal functions =====================
-	 */
-	function useFormReducer(state: S, action: FormStateAction) {
-		switch (action.type) {
-			case CHANGE_VALUE_ACTION_TYPE:
-				const { name, value } = action.payload;
-				const validator = prop.form[name].validate ?? ((_: any) => undefined);
-				const error = validator(value);
+	// assign handlers
+	for (const key in result.form) {
+		const _handlers = handlers[prop.form[key].event];
 
-				return {
-					...state,
-					form: {
-						...state.form,
-						[name]: {
-							...state.form[name],
-							value,
-							error,
-						},
-					},
-				};
-			default:
-				return state;
+		if (_handlers) {
+			Object.assign(result.form[key], _handlers);
 		}
 	}
-	function initializeState(state: S) {
-		for (const key in prop.form) {
-			const _p = prop.form[key];
+	// assign submit
+	result.onSubmit = handleSubmit;
 
-			state.form = {
-				[key]: {
-					id: _p.id,
-					name: key,
-					value: _p.defaultValue,
-				},
-			} as S["form"];
-		}
-
-		return state;
-	}
-	function assignHandlers(state: S) {
-		const result = { ...state };
-
-		for (const key in state.form) {
-			const _handlers = handlers[prop.form[key].event];
-
-			if (_handlers) {
-				Object.assign(result.form[key], _handlers);
-			}
-		}
-
-		return result;
-	}
-	function assignSubmit(state: S) {
-		return Object.assign(state, { onSubmit: handleSubmit });
-	}
-
-	function assign(state: S) {
-		return function (...fns: ((state: S) => S)[]) {
-			return fns.reduce((acc, fn) => fn(acc), state);
-		};
-	}
+	return state;
 };
 
 export default useFormState;
 
-/**
- * Props, State ================================
- */
 type BehaviorEvent = "change" | "blur";
 
 type ParamsFormField<T = any> = {
@@ -148,6 +142,7 @@ type State<T extends Params<any>["form"]> = {
 				: undefined;
 		} & FormEventMap[T[K]["event"]];
 	};
+	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 type FormEventMap = {
@@ -159,18 +154,9 @@ type FormEventMap = {
 	};
 };
 
-/**
- * Return Type ================================
- */
-
-/**
- * Validate ================================
- */
 type FormStateValidateResult = {
 	msg?: string;
 	valid: boolean;
 };
-/**
- * Actions ================================
- */
+
 type FormStateAction = ReturnType<typeof changeValueAction>;
