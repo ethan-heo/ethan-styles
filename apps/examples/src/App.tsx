@@ -3,6 +3,7 @@ import "./App.css";
 import {
 	Button,
 	Flex,
+	Form,
 	GridLine,
 	Input,
 	Paragraph,
@@ -11,7 +12,7 @@ import {
 } from "@ethanheo/ui";
 
 function App() {
-	const { form } = useFormState({
+	const { form, onSubmit } = useFormState({
 		form: {
 			name: {
 				id: "test",
@@ -89,7 +90,13 @@ function App() {
 				<Paragraph>hello world</Paragraph>
 			</Flex>
 			<Flex>
-				<Input fontSize="medium" placeholder="hello world" {...form.name} />
+				<Form onSubmit={onSubmit}>
+					<Input
+						fontSize="medium"
+						placeholder="hello world"
+						{...form.name.element}
+					/>
+				</Form>
 			</Flex>
 		</main>
 	);

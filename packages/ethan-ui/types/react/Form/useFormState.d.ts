@@ -16,14 +16,16 @@ type Params<T> = {
 type State<T extends Params<any>["form"]> = {
     form: {
         [K in keyof T]: {
-            name: K;
-            id: T[K]["id"];
-            value: T[K]["defaultValue"];
+            element: {
+                name: K;
+                id: T[K]["id"];
+                value: T[K]["defaultValue"];
+            } & FormEventMap[T[K]["event"]];
             event: T[K]["event"];
             error?: T[K]["validate"] extends (args: any[]) => void ? ReturnType<T[K]["validate"]> : undefined;
             reset: (value?: T[K]["defaultValue"]) => void;
             change: (value: T[K]["defaultValue"]) => void;
-        } & FormEventMap[T[K]["event"]];
+        };
     };
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
