@@ -10,6 +10,23 @@ const changeValueAction = createAction(CHANGE_VALUE_ACTION_TYPE)<{
 	value: any;
 	error?: FormStateValidateResult;
 }>;
+const RESET_VALUE_ACTION_TYPE = "@FORM_STATE/RESET_VALUE";
+const resetValueAction = createAction(RESET_VALUE_ACTION_TYPE)<{
+	name: string;
+	defaultValue?: string | boolean;
+}>;
+
+type FormStateAction =
+	| ReturnType<typeof changeValueAction>
+	| ReturnType<typeof resetValueAction>;
+
+const resetValue = <T extends string | boolean>(value: T, defaultValue?: T) => {
+	if (typeof value === "string") {
+		return defaultValue ?? "";
+	} else {
+		return defaultValue ?? false;
+	}
+};
 
 const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	prop: P,
@@ -18,7 +35,7 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	const [state, dispatch] = useReducer(
 		(state: S, action: FormStateAction) => {
 			switch (action.type) {
-				case CHANGE_VALUE_ACTION_TYPE:
+				case CHANGE_VALUE_ACTION_TYPE: {
 					const { name, value, error } = action.payload;
 
 					return {
@@ -32,6 +49,20 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 							},
 						},
 					};
+				}
+				case RESET_VALUE_ACTION_TYPE: {
+					const { name, defaultValue } = action.payload;
+					return {
+						...state,
+						form: {
+							...state.form,
+							[name]: {
+								...state.form[name],
+								value: resetValue(state.form[name].value, defaultValue),
+							},
+						},
+					};
+				}
 				default:
 					return state;
 			}
@@ -92,18 +123,32 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 
 		prop.submit?.(formData);
 	};
+	const handleReset =
+		(name: keyof S["form"]) => (defaultValue?: string | boolean) => {
+			dispatch(resetValueAction({ name: name as string, defaultValue }));
+		};
+	const handleChange =
+		<N extends keyof S["form"]>(name: N) =>
+		(value: string | boolean) => {
+			dispatch(changeValueAction({ name: name as string, value }));
+		};
 
 	const result = {
 		...state,
 	};
 
-	// assign handlers
 	for (const key in result.form) {
-		const _handlers = handlers[prop.form[key].event];
+		const propFormField = prop.form[key];
+		const stateFormField = result.form[key];
+		const _handlers = handlers[propFormField.event];
 
+		// assign handlers
 		if (_handlers) {
-			Object.assign(result.form[key], _handlers);
+			Object.assign(stateFormField, _handlers);
 		}
+
+		stateFormField.reset = handleReset(key);
+		stateFormField.change = handleChange(key);
 	}
 	// assign submit
 	result.onSubmit = handleSubmit;
@@ -140,6 +185,8 @@ type State<T extends Params<any>["form"]> = {
 			error?: T[K]["validate"] extends (args: any[]) => void
 				? ReturnType<T[K]["validate"]>
 				: undefined;
+			reset: (value?: T[K]["defaultValue"]) => void;
+			change: (value: T[K]["defaultValue"]) => void;
 		} & FormEventMap[T[K]["event"]];
 	};
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -158,5 +205,3 @@ type FormStateValidateResult = {
 	msg?: string;
 	valid: boolean;
 };
-
-type FormStateAction = ReturnType<typeof changeValueAction>;

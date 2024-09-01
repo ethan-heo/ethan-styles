@@ -86,6 +86,15 @@ interface InputProps extends React$1.InputHTMLAttributes<HTMLInputElement>, Form
 }
 declare const Input: React$1.FC<InputProps>;
 
+/**
+ * [Requirements]
+ * 1. submit 관리 method[get, post], preventDefault
+ */
+
+interface FormProps extends React$1.FormHTMLAttributes<HTMLFormElement> {
+}
+declare const Form: React$1.FC<FormProps>;
+
 declare const useFormState: <P extends Params<any>, S extends State<P["form"]>>(prop: P, initializedState?: S) => S;
 
 type BehaviorEvent = "change" | "blur";
@@ -109,6 +118,8 @@ type State<T extends Params<any>["form"]> = {
             value: T[K]["defaultValue"];
             event: T[K]["event"];
             error?: T[K]["validate"] extends (args: any[]) => void ? ReturnType<T[K]["validate"]> : undefined;
+            reset: (value?: T[K]["defaultValue"]) => void;
+            change: (value: T[K]["defaultValue"]) => void;
         } & FormEventMap[T[K]["event"]];
     };
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -239,4 +250,4 @@ declare const LIGHT_THEME: {
     FONT_FAMILY: string;
 };
 
-export { Button, type ButtonProps, Flex, type FlexProps, GridLine, Input, LIGHT_THEME, Link, type LinkProps, Paragraph, type ParagraphProps, type PickCSSProperty, type Platform, Text, type TextProps, Title, type TitleProps, useFormState, useMediaQuery };
+export { Button, type ButtonProps, Flex, type FlexProps, Form, GridLine, Input, LIGHT_THEME, Link, type LinkProps, Paragraph, type ParagraphProps, type PickCSSProperty, type Platform, Text, type TextProps, Title, type TitleProps, useFormState, useMediaQuery };

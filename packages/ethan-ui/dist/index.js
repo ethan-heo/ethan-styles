@@ -413,16 +413,36 @@ const Input = (_a) => {
     return jsx("input", Object.assign({}, props, { className: _className }));
 };
 
+const Form = (_a) => {
+    var { children } = _a, props = __rest(_a, ["children"]);
+    return jsx("form", Object.assign({}, props, { children: children }));
+};
+
 const createAction = (type) => (payload) => ({ type, payload });
 const CHANGE_VALUE_ACTION_TYPE = "@FORM_STATE/CHANGE_VALUE";
 const changeValueAction = (createAction(CHANGE_VALUE_ACTION_TYPE));
+const RESET_VALUE_ACTION_TYPE = "@FORM_STATE/RESET_VALUE";
+const resetValueAction = (createAction(RESET_VALUE_ACTION_TYPE));
+const resetValue = (value, defaultValue) => {
+    if (typeof value === "string") {
+        return defaultValue !== null && defaultValue !== void 0 ? defaultValue : "";
+    }
+    else {
+        return defaultValue !== null && defaultValue !== void 0 ? defaultValue : false;
+    }
+};
 const useFormState = (prop, initializedState = {}) => {
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
-            case CHANGE_VALUE_ACTION_TYPE:
+            case CHANGE_VALUE_ACTION_TYPE: {
                 const { name, value, error } = action.payload;
                 return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { value,
                             error }) }) });
+            }
+            case RESET_VALUE_ACTION_TYPE: {
+                const { name, defaultValue } = action.payload;
+                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { value: resetValue(state.form[name].value, defaultValue) }) }) });
+            }
             default:
                 return state;
         }
@@ -474,13 +494,23 @@ const useFormState = (prop, initializedState = {}) => {
         }
         (_a = prop.submit) === null || _a === void 0 ? void 0 : _a.call(prop, formData);
     };
+    const handleReset = (name) => (defaultValue) => {
+        dispatch(resetValueAction({ name: name, defaultValue }));
+    };
+    const handleChange = (name) => (value) => {
+        dispatch(changeValueAction({ name: name, value }));
+    };
     const result = Object.assign({}, state);
-    // assign handlers
     for (const key in result.form) {
-        const _handlers = handlers[prop.form[key].event];
+        const propFormField = prop.form[key];
+        const stateFormField = result.form[key];
+        const _handlers = handlers[propFormField.event];
+        // assign handlers
         if (_handlers) {
-            Object.assign(result.form[key], _handlers);
+            Object.assign(stateFormField, _handlers);
         }
+        stateFormField.reset = handleReset(key);
+        stateFormField.change = handleChange(key);
     }
     // assign submit
     result.onSubmit = handleSubmit;
@@ -600,5 +630,5 @@ const LIGHT_THEME = {
     FONT_FAMILY: "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;",
 };
 
-export { Button, Flex, GridLine, Input, LIGHT_THEME, Link, Paragraph, Text, Title, useFormState, useMediaQuery };
+export { Button, Flex, Form, GridLine, Input, LIGHT_THEME, Link, Paragraph, Text, Title, useFormState, useMediaQuery };
 //# sourceMappingURL=index.js.map
