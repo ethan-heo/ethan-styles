@@ -21,6 +21,8 @@ type State<T extends Params<any>["form"]> = {
             value: T[K]["defaultValue"];
             event: T[K]["event"];
             error?: T[K]["validate"] extends (args: any[]) => void ? ReturnType<T[K]["validate"]> : undefined;
+            reset: (value?: T[K]["defaultValue"]) => void;
+            change: (value: T[K]["defaultValue"]) => void;
         } & FormEventMap[T[K]["event"]];
     };
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;

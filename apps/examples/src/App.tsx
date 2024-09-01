@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.css";
 import {
 	Button,
@@ -14,7 +15,7 @@ function App() {
 		form: {
 			name: {
 				id: "test",
-				defaultValue: 1,
+				defaultValue: "hello world111",
 				event: "change",
 				validate: (value) => {
 					if (/[0-9]/g.test(value)) {
@@ -33,6 +34,12 @@ function App() {
 	});
 
 	console.log(form.name);
+
+	useEffect(() => {
+		window.setTimeout(() => {
+			form.name.reset();
+		}, 1000);
+	}, []);
 
 	return (
 		<main className="container">
