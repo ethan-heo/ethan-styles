@@ -1,5 +1,5 @@
 import { jsx } from 'react/jsx-runtime';
-import { useState, useRef, useLayoutEffect, useEffect, useMemo } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect, useMemo, useReducer } from 'react';
 
 function __rest(s, e) {
   var t = {};
@@ -381,6 +381,112 @@ const Flex = (_a) => {
     return (jsx(Component, Object.assign({ className: classNames.filter(Boolean).join(" ") }, props, { children: children })));
 };
 
+const FORM_BLOCK = "form";
+
+const toKebabCase = (str) => {
+    return str.replace(/[A-Z]/g, (matcher) => `-${matcher.toLowerCase()}`);
+};
+const createFormClassnames = (component, props, ...classNames) => {
+    const block = createBEMSelector({
+        block: FORM_BLOCK,
+        element: component,
+    });
+    const createStyles = () => {
+        let result = [];
+        for (const [name, value] of Object.entries(props)) {
+            if (!value) {
+                continue;
+            }
+            result.push(createBEMSelector({
+                block: FORM_BLOCK,
+                modifier: [toKebabCase(name), value].filter((value) => typeof value === "string"),
+            }));
+        }
+        return result.join(" ");
+    };
+    return [block, createStyles(), ...classNames].filter(Boolean).join(" ");
+};
+
+const Input = (_a) => {
+    var { className, fontSize = "medium", invalid } = _a, props = __rest(_a, ["className", "fontSize", "invalid"]);
+    const _className = createFormClassnames("input", { fontSize, invalid }, className);
+    return jsx("input", Object.assign({}, props, { className: _className }));
+};
+
+const createAction = (type) => (payload) => ({ type, payload });
+const CHANGE_VALUE_ACTION_TYPE = "@FORM_STATE/CHANGE_VALUE";
+const changeValueAction = (createAction(CHANGE_VALUE_ACTION_TYPE));
+const useFormState = (prop, initializedState = {}) => {
+    const [state, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case CHANGE_VALUE_ACTION_TYPE:
+                const { name, value, error } = action.payload;
+                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { value,
+                            error }) }) });
+            default:
+                return state;
+        }
+    }, initializedState, (state) => {
+        for (const key in prop.form) {
+            const _p = prop.form[key];
+            state.form = {
+                [key]: {
+                    name: key,
+                    id: _p.id,
+                    value: _p.defaultValue,
+                    event: _p.event,
+                },
+            };
+        }
+        return state;
+    });
+    const handlers = {
+        change: {
+            onChange: (e) => {
+                var _a, _b;
+                const { value, name } = e.target;
+                dispatch(changeValueAction({
+                    name,
+                    value,
+                    error: (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, value),
+                }));
+            },
+        },
+        blur: {
+            onBlur: (e) => {
+                var _a, _b;
+                const { value, name } = e.target;
+                dispatch(changeValueAction({
+                    name,
+                    value,
+                    error: (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, value),
+                }));
+            },
+        },
+    };
+    const handleSubmit = (e) => {
+        var _a;
+        e.preventDefault();
+        const formData = new FormData();
+        const _state = state;
+        for (const name in _state.form) {
+            formData.append(name, _state.form[name].value);
+        }
+        (_a = prop.submit) === null || _a === void 0 ? void 0 : _a.call(prop, formData);
+    };
+    const result = Object.assign({}, state);
+    // assign handlers
+    for (const key in result.form) {
+        const _handlers = handlers[prop.form[key].event];
+        if (_handlers) {
+            Object.assign(result.form[key], _handlers);
+        }
+    }
+    // assign submit
+    result.onSubmit = handleSubmit;
+    return state;
+};
+
 const LIGHT_THEME = {
     GRID_MOBILE_PORTRAIT_COLUMNS: "4",
     GRID_MOBILE_PORTRAIT_GUTTER: "8px",
@@ -494,5 +600,5 @@ const LIGHT_THEME = {
     FONT_FAMILY: "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;",
 };
 
-export { Button, Flex, GridLine, LIGHT_THEME, Link, Paragraph, Text, Title, useMediaQuery };
+export { Button, Flex, GridLine, Input, LIGHT_THEME, Link, Paragraph, Text, Title, useFormState, useMediaQuery };
 //# sourceMappingURL=index.js.map

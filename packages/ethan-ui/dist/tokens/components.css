@@ -482,3 +482,39 @@ body {
 		width: 100%;
 	}
 }
+
+.form__input {
+	width: 100%;
+	border-radius: var(--border-radius-extra-small);
+	padding: calc(var(--spacing-extra-small) / 2) var(--spacing-extra-small);
+	border: 2px solid var(--color-secondary);
+	outline: none;
+	box-sizing: border-box;
+	font-family: inherit;
+}
+
+.form__input:focus-visible,
+.form__input:active,
+.form__input:hover {
+	border-color: var(--color-primary);
+}
+
+.form--font-size-x-large {
+	font-size: var(--font-size-extra-large);
+}
+.form--font-size-large {
+	font-size: var(--font-size-large);
+}
+.form--font-size-medium {
+	font-size: var(--font-size-medium);
+}
+.form--font-size-small {
+	font-size: var(--font-size-small);
+}
+.form--font-size-x-small {
+	font-size: var(--font-size-extra-small);
+}
+
+.form--invalid {
+	border-color: var(--color-error);
+}

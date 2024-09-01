@@ -10,27 +10,30 @@ import {
 } from "@ethanheo/ui";
 
 function App() {
-	const { name } = useFormState({
-		name: {
-			id: "test",
-			defaultValue: "",
-			event: "change",
-			onValidate: (value) => {
-				if (/[0-9]/g.test(value)) {
-					return {
-						msg: "숫자가 입력되면 안됩니다",
-						valid: false,
-					};
-				} else {
-					return {
-						valid: true,
-					};
-				}
+	const { form } = useFormState({
+		form: {
+			name: {
+				id: "test",
+				defaultValue: 1,
+				event: "change",
+				validate: (value) => {
+					if (/[0-9]/g.test(value)) {
+						return {
+							msg: "숫자가 입력되면 안됩니다",
+							valid: false,
+						};
+					} else {
+						return {
+							valid: true,
+						};
+					}
+				},
 			},
 		},
 	});
 
-	console.log(name);
+	console.log(form.name);
+
 	return (
 		<main className="container">
 			<GridLine />
@@ -79,7 +82,7 @@ function App() {
 				<Paragraph>hello world</Paragraph>
 			</Flex>
 			<Flex>
-				<Input fontSize="medium" placeholder="hello world" {...name} />
+				<Input fontSize="medium" placeholder="hello world" {...form.name} />
 			</Flex>
 		</main>
 	);
