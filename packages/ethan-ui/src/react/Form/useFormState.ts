@@ -125,14 +125,11 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const formData = new FormData();
-		const _state = state as S;
-
-		for (const name in _state.form) {
-			formData.append(name, _state.form[name].element.value as string);
-		}
-
-		prop.submit?.(formData);
+		/**
+		 * [TODO]
+		 * 에러를 해결하기 위한 임시 작업으로 any를 사용한 부분을 고친다.
+		 */
+		prop.submit?.(state.form as any);
 	};
 	const handleReset =
 		(name: keyof S["form"]) => (defaultValue?: string | boolean) => {
@@ -183,7 +180,7 @@ type Params<T> = {
 	form: {
 		[K in keyof T]: ParamsFormField<T[K]>;
 	};
-	submit?: (formData: FormData) => void;
+	submit?: (form: State<Params<T>["form"]>["form"]) => void;
 };
 
 type State<T extends Params<any>["form"]> = {

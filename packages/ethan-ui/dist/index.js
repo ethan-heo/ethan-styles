@@ -488,12 +488,7 @@ const useFormState = (prop, initializedState = {}) => {
     const handleSubmit = (e) => {
         var _a;
         e.preventDefault();
-        const formData = new FormData();
-        const _state = state;
-        for (const name in _state.form) {
-            formData.append(name, _state.form[name].element.value);
-        }
-        (_a = prop.submit) === null || _a === void 0 ? void 0 : _a.call(prop, formData);
+        (_a = prop.submit) === null || _a === void 0 ? void 0 : _a.call(prop, state.form);
     };
     const handleReset = (name) => (defaultValue) => {
         dispatch(resetValueAction({ name: name, defaultValue }));
