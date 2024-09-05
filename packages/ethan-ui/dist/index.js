@@ -488,6 +488,10 @@ const useFormState = (prop, initializedState = {}) => {
     const handleSubmit = (e) => {
         var _a;
         e.preventDefault();
+        /**
+         * [TODO]
+         * 에러를 해결하기 위한 임시 작업으로 any를 사용한 부분을 고친다.
+         */
         (_a = prop.submit) === null || _a === void 0 ? void 0 : _a.call(prop, state.form);
     };
     const handleReset = (name) => (defaultValue) => {

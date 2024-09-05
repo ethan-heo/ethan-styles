@@ -7,11 +7,12 @@ type ParamsFormField<T = any> = {
     event: BehaviorEvent;
     validate?: (value: T) => FormStateValidateResult;
 };
+type ParamsForm<T = any> = {
+    [K in keyof T]: ParamsFormField<T[K]>;
+};
 type Params<T> = {
-    form: {
-        [K in keyof T]: ParamsFormField<T[K]>;
-    };
-    submit?: (formData: FormData) => void;
+    form: ParamsForm<T>;
+    submit?: (stateForm: State<Params<T>["form"]>["form"]) => void;
 };
 type State<T extends Params<any>["form"]> = {
     form: {
