@@ -129,7 +129,7 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 		 * [TODO]
 		 * 에러를 해결하기 위한 임시 작업으로 any를 사용한 부분을 고친다.
 		 */
-		prop.submit?.(state.form as any);
+		prop.submit?.(state.form as State<Params<any>["form"]>["form"]);
 	};
 	const handleReset =
 		(name: keyof S["form"]) => (defaultValue?: string | boolean) => {
@@ -175,12 +175,14 @@ type ParamsFormField<T = any> = {
 	validate?: (value: T) => FormStateValidateResult;
 };
 
+type ParamsForm<T = any> = {
+	[K in keyof T]: ParamsFormField<T[K]>;
+};
+
 // 타입스크립트에서 엄격함, 엄격하지 않음을 어떻게 구분할까?
 type Params<T> = {
-	form: {
-		[K in keyof T]: ParamsFormField<T[K]>;
-	};
-	submit?: (form: State<Params<T>["form"]>["form"]) => void;
+	form: ParamsForm<T>;
+	submit?: (stateForm: State<Params<T>["form"]>["form"]) => void;
 };
 
 type State<T extends Params<any>["form"]> = {
