@@ -96,6 +96,29 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 			return state;
 		},
 	);
+	const handleValidateAll = () => {
+		let isValid = true;
+
+		for (const name in state.form) {
+			const form = state.form[name];
+			const result = prop.form[name].validate?.(form.element.value) ?? {
+				valid: true,
+			};
+
+			if (!result.valid) {
+				dispatch(
+					changeValueAction({
+						name,
+						value: form.element.value,
+						error: result,
+					}),
+				);
+				isValid = false;
+			}
+		}
+
+		return isValid;
+	};
 	const handlers = {
 		change: {
 			onChange: (e: React.ChangeEvent<HTMLElement>) => {
@@ -124,6 +147,10 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	};
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (!handleValidateAll()) {
+			return;
+		}
 
 		/**
 		 * [TODO]
