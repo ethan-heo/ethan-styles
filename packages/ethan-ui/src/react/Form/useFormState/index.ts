@@ -1,7 +1,11 @@
 import { useReducer } from "react";
-import { Params, State } from "./useFormState.types";
+import { FormStateHandlerOptions, Params, State } from "./useFormState.types";
 import useFormReducer, { initialUseFormReducerState } from "./formReducer";
-import { changeValueAction, resetValueAction } from "./formActions";
+import {
+	changeErrorAction,
+	changeValueAction,
+	resetValueAction,
+} from "./formActions";
 
 const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	prop: P,
@@ -35,16 +39,39 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 
 		return isValid;
 	};
-	const handleChangeValue = (e: React.ChangeEvent<HTMLElement>) => {
-		const { value, name } = e.target as any;
+	const handleChangeValue =
+		(options: FormStateHandlerOptions) =>
+		(e: React.ChangeEvent<HTMLElement>) => {
+			const { value, name } = e.target as any;
+			let error;
 
-		dispatch(
-			changeValueAction({
-				name,
-				value,
-			}),
-		);
-	};
+			if (options.useValidate) {
+				error = prop.form[name].validate?.(value);
+			}
+
+			dispatch(
+				changeValueAction({
+					name,
+					value,
+					error,
+				}),
+			);
+		};
+	const handleBlurWithValidation =
+		(options: FormStateHandlerOptions) =>
+		(e: React.ChangeEvent<HTMLElement>) => {
+			if (!options.useValidate) {
+				return;
+			}
+			const { value, name } = e.target as any;
+
+			dispatch(
+				changeErrorAction({
+					name,
+					error: prop.form[name].validate?.(value),
+				}),
+			);
+		};
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -75,7 +102,12 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	for (const key in result.form) {
 		const stateFormField = result.form[key];
 
-		stateFormField.element.onChange = handleChangeValue;
+		stateFormField.element.onBlur = handleBlurWithValidation({
+			useValidate: stateFormField.validationEvent === "blur",
+		});
+		stateFormField.element.onChange = handleChangeValue({
+			useValidate: stateFormField.validationEvent === "change",
+		});
 		stateFormField.reset = handleReset(key);
 		stateFormField.change = handleChange(key);
 	}

@@ -10,6 +10,11 @@ export const changeValueAction = createAction(CHANGE_VALUE_ACTION_TYPE)<{
 	value: any;
 	error?: FormStateValidateResult;
 }>;
+export const CHANGE_ERROR_ACTION_TYPE = "@FORM_STATE/CHANGE_ERROR";
+export const changeErrorAction = createAction(CHANGE_ERROR_ACTION_TYPE)<{
+	name: string;
+	error?: FormStateValidateResult;
+}>;
 export const RESET_VALUE_ACTION_TYPE = "@FORM_STATE/RESET_VALUE";
 export const resetValueAction = createAction(RESET_VALUE_ACTION_TYPE)<{
 	name: string;
@@ -18,4 +23,5 @@ export const resetValueAction = createAction(RESET_VALUE_ACTION_TYPE)<{
 
 export type FormStateAction =
 	| ReturnType<typeof changeValueAction>
-	| ReturnType<typeof resetValueAction>;
+	| ReturnType<typeof resetValueAction>
+	| ReturnType<typeof changeErrorAction>;

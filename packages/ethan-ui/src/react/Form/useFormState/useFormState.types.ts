@@ -26,7 +26,9 @@ export type State<T extends Params<any>["form"]> = {
 				id: T[K]["id"];
 				value: T[K]["defaultValue"];
 				onChange: (e: React.ChangeEvent<HTMLElement>) => void;
+				onBlur: (e: React.ChangeEvent<HTMLElement>) => void;
 			};
+			validationEvent: ValidationEvent;
 			error?: T[K]["validate"] extends (args: any[]) => void
 				? ReturnType<T[K]["validate"]>
 				: undefined;
@@ -37,7 +39,11 @@ export type State<T extends Params<any>["form"]> = {
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-export type FormStateValidateResult = {
+export interface FormStateValidateResult {
 	msg?: string;
 	valid: boolean;
-};
+}
+
+export interface FormStateHandlerOptions {
+	useValidate: boolean;
+}

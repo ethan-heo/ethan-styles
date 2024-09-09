@@ -1,4 +1,5 @@
 import {
+	CHANGE_ERROR_ACTION_TYPE,
 	CHANGE_VALUE_ACTION_TYPE,
 	FormStateAction,
 	RESET_VALUE_ACTION_TYPE,
@@ -26,6 +27,7 @@ export const initialUseFormReducerState =
 						id: _p.id,
 						value: _p.defaultValue,
 					},
+					validationEvent: _p.validationEvent,
 				},
 			} as S["form"];
 		}
@@ -39,7 +41,7 @@ const useFormReducer = <P extends Params<any>, S extends State<P["form"]>>(
 ) => {
 	switch (action.type) {
 		case CHANGE_VALUE_ACTION_TYPE: {
-			const { name, value } = action.payload;
+			const { name, value, error } = action.payload;
 
 			return {
 				...state,
@@ -51,6 +53,7 @@ const useFormReducer = <P extends Params<any>, S extends State<P["form"]>>(
 							...state.form[name].element,
 							value,
 						},
+						error,
 					},
 				},
 			};
@@ -68,6 +71,20 @@ const useFormReducer = <P extends Params<any>, S extends State<P["form"]>>(
 							value: resetValue(state.form[name].element.value, defaultValue),
 						},
 						error: undefined,
+					},
+				},
+			};
+		}
+		case CHANGE_ERROR_ACTION_TYPE: {
+			const { name, error } = action.payload;
+
+			return {
+				...state,
+				form: {
+					...state.form,
+					[name]: {
+						...state.form[name],
+						error,
 					},
 				},
 			};
