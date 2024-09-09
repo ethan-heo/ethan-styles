@@ -421,8 +421,11 @@ const Form = (_a) => {
 const createAction = (type) => (payload) => ({ type, payload });
 const CHANGE_VALUE_ACTION_TYPE = "@FORM_STATE/CHANGE_VALUE";
 const changeValueAction = (createAction(CHANGE_VALUE_ACTION_TYPE));
+const CHANGE_ERROR_ACTION_TYPE = "@FORM_STATE/CHANGE_ERROR";
+const changeErrorAction = (createAction(CHANGE_ERROR_ACTION_TYPE));
 const RESET_VALUE_ACTION_TYPE = "@FORM_STATE/RESET_VALUE";
 const resetValueAction = (createAction(RESET_VALUE_ACTION_TYPE));
+
 const resetValue = (value, defaultValue) => {
     if (typeof value === "string") {
         return defaultValue !== null && defaultValue !== void 0 ? defaultValue : "";
@@ -431,63 +434,92 @@ const resetValue = (value, defaultValue) => {
         return defaultValue !== null && defaultValue !== void 0 ? defaultValue : false;
     }
 };
-const useFormState = (prop, initializedState = {}) => {
-    const [state, dispatch] = useReducer((state, action) => {
-        switch (action.type) {
-            case CHANGE_VALUE_ACTION_TYPE: {
-                const { name, value, error } = action.payload;
-                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { element: Object.assign(Object.assign({}, state.form[name].element), { value }), error }) }) });
-            }
-            case RESET_VALUE_ACTION_TYPE: {
-                const { name, defaultValue } = action.payload;
-                return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { element: Object.assign(Object.assign({}, state.form[name].element), { value: resetValue(state.form[name].element.value, defaultValue) }) }) }) });
-            }
-            default:
-                return state;
-        }
-    }, initializedState, (state) => {
-        for (const key in prop.form) {
-            const _p = prop.form[key];
-            state.form = {
-                [key]: {
-                    element: {
-                        name: key,
-                        id: _p.id,
-                        value: _p.defaultValue,
-                    },
-                    event: _p.event,
+const initialUseFormReducerState = (prop) => (state) => {
+    for (const key in prop.form) {
+        const _p = prop.form[key];
+        state.form = {
+            [key]: {
+                element: {
+                    name: key,
+                    id: _p.id,
+                    value: _p.defaultValue,
                 },
-            };
+                validationEvent: _p.validationEvent,
+            },
+        };
+    }
+    return state;
+};
+const useFormReducer = (state, action) => {
+    switch (action.type) {
+        case CHANGE_VALUE_ACTION_TYPE: {
+            const { name, value, error } = action.payload;
+            return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { element: Object.assign(Object.assign({}, state.form[name].element), { value }), error }) }) });
         }
-        return state;
-    });
-    const handlers = {
-        change: {
-            onChange: (e) => {
-                var _a, _b;
-                const { value, name } = e.target;
+        case RESET_VALUE_ACTION_TYPE: {
+            const { name, defaultValue } = action.payload;
+            return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { element: Object.assign(Object.assign({}, state.form[name].element), { value: resetValue(state.form[name].element.value, defaultValue) }), error: undefined }) }) });
+        }
+        case CHANGE_ERROR_ACTION_TYPE: {
+            const { name, error } = action.payload;
+            return Object.assign(Object.assign({}, state), { form: Object.assign(Object.assign({}, state.form), { [name]: Object.assign(Object.assign({}, state.form[name]), { error }) }) });
+        }
+        default:
+            return state;
+    }
+};
+
+const useFormState = (prop, initializedState = {}) => {
+    const [state, dispatch] = useReducer(useFormReducer, initializedState, initialUseFormReducerState(prop));
+    const handleValidateAll = () => {
+        var _a, _b, _c;
+        let isValid = true;
+        for (const name in state.form) {
+            const form = state.form[name];
+            const result = (_c = (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, form.element.value)) !== null && _c !== void 0 ? _c : {
+                valid: true,
+            };
+            if (!result.valid) {
                 dispatch(changeValueAction({
                     name,
-                    value,
-                    error: (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, value),
+                    value: form.element.value,
+                    error: result,
                 }));
-            },
-        },
-        blur: {
-            onBlur: (e) => {
-                var _a, _b;
-                const { value, name } = e.target;
-                dispatch(changeValueAction({
-                    name,
-                    value,
-                    error: (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, value),
-                }));
-            },
-        },
+                isValid = false;
+            }
+        }
+        return isValid;
+    };
+    const handleChangeValue = (options) => (e) => {
+        var _a, _b;
+        const { value, name } = e.target;
+        let error;
+        if (options.useValidate) {
+            error = (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, value);
+        }
+        dispatch(changeValueAction({
+            name,
+            value,
+            error,
+        }));
+    };
+    const handleBlurWithValidation = (options) => (e) => {
+        var _a, _b;
+        if (!options.useValidate) {
+            return;
+        }
+        const { value, name } = e.target;
+        dispatch(changeErrorAction({
+            name,
+            error: (_b = (_a = prop.form[name]).validate) === null || _b === void 0 ? void 0 : _b.call(_a, value),
+        }));
     };
     const handleSubmit = (e) => {
         var _a;
         e.preventDefault();
+        if (prop.submitWithValidation && !handleValidateAll()) {
+            return;
+        }
         /**
          * [TODO]
          * 에러를 해결하기 위한 임시 작업으로 any를 사용한 부분을 고친다.
@@ -502,13 +534,13 @@ const useFormState = (prop, initializedState = {}) => {
     };
     const result = Object.assign({}, state);
     for (const key in result.form) {
-        const propFormField = prop.form[key];
         const stateFormField = result.form[key];
-        const _handlers = handlers[propFormField.event];
-        // assign handlers
-        if (_handlers) {
-            Object.assign(stateFormField.element, _handlers);
-        }
+        stateFormField.element.onBlur = handleBlurWithValidation({
+            useValidate: stateFormField.validationEvent === "blur",
+        });
+        stateFormField.element.onChange = handleChangeValue({
+            useValidate: stateFormField.validationEvent === "change",
+        });
         stateFormField.reset = handleReset(key);
         stateFormField.change = handleChange(key);
     }

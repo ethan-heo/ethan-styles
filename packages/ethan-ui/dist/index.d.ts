@@ -95,13 +95,11 @@ interface FormProps extends React$1.FormHTMLAttributes<HTMLFormElement> {
 }
 declare const Form: React$1.FC<FormProps>;
 
-declare const useFormState: <P extends Params<any>, S extends State<P["form"]>>(prop: P, initializedState?: S) => S;
-
-type BehaviorEvent = "change" | "blur";
+type ValidationEvent = "change" | "blur";
 type ParamsFormField<T = any> = {
     id: string;
     defaultValue: T;
-    event: BehaviorEvent;
+    validationEvent?: ValidationEvent;
     validate?: (value: T) => FormStateValidateResult;
 };
 type ParamsForm<T = any> = {
@@ -109,6 +107,7 @@ type ParamsForm<T = any> = {
 };
 type Params<T> = {
     form: ParamsForm<T>;
+    submitWithValidation?: boolean;
     submit?: (stateForm: State<Params<T>["form"]>["form"]) => void;
 };
 type State<T extends Params<any>["form"]> = {
@@ -118,8 +117,10 @@ type State<T extends Params<any>["form"]> = {
                 name: K;
                 id: T[K]["id"];
                 value: T[K]["defaultValue"];
-            } & FormEventMap[T[K]["event"]];
-            event: T[K]["event"];
+                onChange: (e: React.ChangeEvent<HTMLElement>) => void;
+                onBlur: (e: React.ChangeEvent<HTMLElement>) => void;
+            };
+            validationEvent: ValidationEvent;
             error?: T[K]["validate"] extends (args: any[]) => void ? ReturnType<T[K]["validate"]> : undefined;
             reset: (value?: T[K]["defaultValue"]) => void;
             change: (value: T[K]["defaultValue"]) => void;
@@ -127,17 +128,28 @@ type State<T extends Params<any>["form"]> = {
     };
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
-type FormEventMap = {
-    change: {
-        onChange: (e: React.ChangeEvent<HTMLElement>) => void;
-    };
-    blur: {
-        onBlur: (e: React.ChangeEvent<HTMLElement>) => void;
-    };
-};
-type FormStateValidateResult = {
+interface FormStateValidateResult {
     msg?: string;
     valid: boolean;
+}
+
+declare const useFormState: <P extends Params<any>, S extends State<P["form"]>>(prop: P, initializedState?: S) => {
+    form: {
+        [x: string]: {
+            element: {
+                name: string;
+                id: string;
+                value: any;
+                onChange: (e: React.ChangeEvent<HTMLElement>) => void;
+                onBlur: (e: React.ChangeEvent<HTMLElement>) => void;
+            };
+            validationEvent: ValidationEvent;
+            error?: undefined;
+            reset: (value?: any) => void;
+            change: (value: any) => void;
+        };
+    };
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 declare const LIGHT_THEME: {
