@@ -12,9 +12,9 @@ const useFormState = <P extends Params<any>, S extends State<P["form"]>>(
 	initializedState = {} as S,
 ) => {
 	const [state, dispatch] = useReducer(
-		useFormReducer,
+		useFormReducer<P, S>,
 		initializedState,
-		initialUseFormReducerState(prop),
+		initialUseFormReducerState<P, S>(prop),
 	);
 	const handleValidateAll = () => {
 		let isValid = true;

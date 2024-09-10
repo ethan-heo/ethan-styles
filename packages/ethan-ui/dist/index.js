@@ -470,7 +470,7 @@ const useFormReducer = (state, action) => {
 };
 
 const useFormState = (prop, initializedState = {}) => {
-    const [state, dispatch] = useReducer(useFormReducer, initializedState, initialUseFormReducerState(prop));
+    const [state, dispatch] = useReducer((useFormReducer), initializedState, initialUseFormReducerState(prop));
     const handleValidateAll = () => {
         var _a, _b, _c;
         let isValid = true;
