@@ -6,11 +6,17 @@
 	border: none;
 	cursor: pointer;
 	outline: inherit;
-	background-color: var(--color-background);
-	color: var(--color-text);
+	background-color: var(--color-background-default);
+	color: var(--color-surface-on-default);
 	box-sizing: border-box;
 	font-weight: var(--font-weight-light);
 	width: 100%;
+	border: var(--border-solid-thin) transparent;
+}
+
+.button:disabled {
+	cursor: not-allowed;
+	opacity: 0.3;
 }
 
 /*
@@ -44,94 +50,98 @@
 }
 
 /*
-	Button 유형
+	Button Variant - Primary, Text, Default
 */
 .button--variant-primary {
-	background-color: var(--color-primary);
-	color: var(--color-text-white);
+	background-color: var(--color-primary-default);
+	border-color: var(--color-primary-default);
+	color: var(--color-primary-on-default);
 }
 .button--variant-primary:hover,
 .button--variant-primary:focus-visible,
 .button--variant-primary:active {
-	opacity: 0.6;
+	background-color: var(--color-primary-container);
+	border-color: var(--color-primary-container);
+	color: var(--color-primary-on-container);
 }
 .button--variant-default {
-	border: var(--border-solid-thin) var(--color-text);
+	border-color: var(--color-surface-on-default);
+	color: var(--color-surface-on-default);
 }
 .button--variant-default:hover,
 .button--variant-default:focus-visible,
 .button--variant-default:active {
-	border: var(--border-solid-thin) var(--color-primary);
-	color: var(--color-primary);
+	border-color: var(--color-surface-on-variant);
+	color: var(--color-surface-on-variant);
+}
+.button--variant-text {
+	border-color: var(--color-background-default);
+	color: var(--color-background-on-default);
 }
 .button--variant-text:hover,
 .button--variant-text:focus-visible,
 .button--variant-text:active {
-	background-color: var(--color-secondary);
-	color: var(--color-primary);
+	border-color: var(--color-background-default);
+	color: var(--color-primary-default);
 }
 
 /*
-	Button danger
+	Button Status - disabled, error
 */
 .button--variant-primary.button--danger {
-	background-color: var(--color-error);
-	color: var(--color-text-white);
+	background-color: var(--color-error-default);
+	border-color: var(--color-error-default);
+	color: var(--color-error-on-default);
+}
+.button--variant-primary.button--danger:hover,
+.button--variant-primary.button--danger:focus-visible,
+.button--variant-primary.button--danger:active {
+	background-color: var(--color-error-container);
+	border-color: var(--color-error-container);
+	color: var(--color-error-on-container);
 }
 .button--variant-default.button--danger {
-	border: var(--border-solid-thin) var(--color-error);
-	color: var(--color-error);
+	background-color: var(--color-error-on-default);
+	border-color: var(--color-error-default);
+	color: var(--color-error-default);
 }
 .button--variant-default.button--danger:hover,
 .button--variant-default.button--danger:focus-visible,
 .button--variant-default.button--danger:active {
-	opacity: 0.6;
+	background-color: var(--color-error-on-default);
+	border-color: var(--color-error-on-container);
+	color: var(--color-error-on-container);
 }
 .button--variant-text.button--danger {
-	color: var(--color-error);
+	background-color: var(--color-error-on-default);
+	border-color: var(--color-error-on-default);
+	color: var(--color-error-default);
 }
 .button--variant-text.button--danger:hover,
 .button--variant-text.button--danger:focus-visible,
 .button--variant-text.button--danger:active {
-	opacity: 0.6;
-	color: var(--color-error);
+	background-color: var(--color-error-on-default);
+	border-color: var(--color-error-on-default);
+	color: var(--color-error-on-container);
 }
 
-/*
-	Button 상태
-*/
-.button:disabled {
-	cursor: not-allowed;
-	opacity: 0.6;
-}
-.button--variant-primary:disabled {
-	background-color: var(--color-secondary);
-	border: var(--border-solid-thin) var(--color-secondary);
-	color: var(--color-secondary);
-}
-.button--variant-default:disabled {
-	background-color: var(--color-background);
-	border: var(--border-solid-thin) var(--color-text);
-	color: var(--color-text);
-	opacity: 0.6;
-}
 .button--variant-primary:disabled:hover,
 .button--variant-primary:disabled:focus-visible,
 .button--variant-primary:disabled:active {
-	opacity: initial;
-	background-color: var(--color-secondary);
+	background-color: var(--color-primary-default);
+	border-color: var(--color-primary-default);
+	color: var(--color-primary-on-default);
 }
-.button--variant-text:disabled:hover,
-.button--variant-text:disabled:focus-visible,
-.button--variant-text:disabled:active,
 .button--variant-default:disabled:hover,
 .button--variant-default:disabled:focus-visible,
 .button--variant-default:disabled:active {
-	opacity: initial;
-	background-color: var(--color-background);
-	opacity: 0.6;
+	border-color: var(--color-surface-on-default);
+	color: var(--color-surface-on-default);
 }
-.button--variant-text:disabled {
-	color: var(--color-text);
-	opacity: 0.6;
+.button--variant-text:disabled.button--danger:hover,
+.button--variant-text:disabled.button--danger:focus-visible,
+.button--variant-text:disabled.button--danger:active {
+	background-color: var(--color-background-default);
+	border-color: var(--color-background-default);
+	color: var(--color-background-on-default);
 }
