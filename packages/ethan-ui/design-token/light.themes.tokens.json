@@ -199,36 +199,146 @@
 	},
 	"color": {
 		"primary": {
-			"$type": "color",
-			"$value": "{color.orange.1}"
+			"default": {
+				"$type": "color",
+				"$value": "#6750A4"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"container": {
+				"$type": "color",
+				"$value": "#EADDFF"
+			},
+			"on-container": {
+				"$type": "color",
+				"$value": "#21005D"
+			}
 		},
 		"secondary": {
-			"$type": "color",
-			"$value": "{color.white.1}"
+			"default": {
+				"$type": "color",
+				"$value": "#625B71"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"container": {
+				"$type": "color",
+				"$value": "#E8DEF8"
+			},
+			"on-container": {
+				"$type": "color",
+				"$value": "#1D192B"
+			}
 		},
-		"accent": {
-			"$type": "color",
-			"$value": "{color.orange.3}"
-		},
-		"success": {
-			"$type": "color",
-			"$value": "{color.light-green.5}"
-		},
-		"warning": {
-			"$type": "color",
-			"$value": "{color.golden.1}"
+		"tertiary": {
+			"default": {
+				"$type": "color",
+				"$value": "#7D5260"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"container": {
+				"$type": "color",
+				"$value": "#FFD8E4"
+			},
+			"on-container": {
+				"$type": "color",
+				"$value": "#31111D"
+			}
 		},
 		"error": {
-			"$type": "color",
-			"$value": "{color.red.3}"
-		},
-		"text": {
-			"$type": "color",
-			"$value": "{color.dark.3}"
+			"default": {
+				"$type": "color",
+				"$value": "#B3261E"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"container": {
+				"$type": "color",
+				"$value": "#F9DEDC"
+			},
+			"on-container": {
+				"$type": "color",
+				"$value": "#410E0B"
+			}
 		},
 		"background": {
-			"$type": "color",
-			"$value": "{color.white.1}"
+			"default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#1C1B1F"
+			}
+		},
+		"surface": {
+			"default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#1C1B1F"
+			},
+			"variant": {
+				"$type": "color",
+				"$value": "#E7E0EC"
+			},
+			"on-variant": {
+				"$type": "color",
+				"$value": "#49454F"
+			}
+		},
+		"outline": {
+			"default": {
+				"$type": "color",
+				"$value": "#79747E"
+			}
+		},
+		"success": {
+			"default": {
+				"$type": "color",
+				"$value": "#388E3C"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"container": {
+				"$type": "color",
+				"$value": "#C8E6C9"
+			},
+			"on-container": {
+				"$type": "color",
+				"$value": "#1B5E20"
+			}
+		},
+		"warning": {
+			"default": {
+				"$type": "color",
+				"$value": "#F57C00"
+			},
+			"on-default": {
+				"$type": "color",
+				"$value": "#FFFFFF"
+			},
+			"container": {
+				"$type": "color",
+				"$value": "#FFE0B2"
+			},
+			"on-container": {
+				"$type": "color",
+				"$value": "#E65100"
+			}
 		}
 	},
 	"border": {
