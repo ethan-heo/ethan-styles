@@ -21,11 +21,15 @@ export const initialUseFormReducerState =
 			const _p = prop.form[key];
 
 			state.form = {
+				...(state.form ?? {}),
 				[key]: {
 					element: {
 						name: key,
 						id: _p.id,
 						value: _p.defaultValue,
+					},
+					error: {
+						valid: true,
 					},
 					validationEvent: _p.validationEvent,
 				},
