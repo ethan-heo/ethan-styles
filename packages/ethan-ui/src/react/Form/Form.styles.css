@@ -13,7 +13,3 @@
 .form--font-size-x-small {
 	font-size: var(--font-size-extra-small);
 }
-
-.form--invalid {
-	border-color: var(--color-error);
-}
