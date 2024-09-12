@@ -3,5 +3,5 @@
 }
 
 .form__label.form--invalid {
-	color: var(--color-error);
+	color: var(--color-error-default);
 }
