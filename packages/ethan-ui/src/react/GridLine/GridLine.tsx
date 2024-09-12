@@ -15,8 +15,8 @@ function GridLine() {
 		let columns;
 		let gutter;
 		let margin;
-		const columnColor = variables.get("--color-primary");
-		const gutterColor = variables.get("--color-accent");
+		const columnColor = variables.get("--color-primary-default");
+		const gutterColor = variables.get("--color-primary-on-default");
 
 		switch (platform) {
 			case "mobile-portrait":
