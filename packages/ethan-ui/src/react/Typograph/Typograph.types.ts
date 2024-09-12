@@ -7,7 +7,7 @@ export interface TypographCommonProps {
 	variant?:
 		| "primary"
 		| "secondary"
-		| "accent"
+		| "tertiary"
 		| "success"
 		| "warning"
 		| "error"

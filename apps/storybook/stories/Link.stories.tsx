@@ -31,7 +31,7 @@ const meta = {
 			options: [
 				"primary",
 				"secondary",
-				"accent",
+				"tertiary",
 				"success",
 				"warning",
 				"error",
