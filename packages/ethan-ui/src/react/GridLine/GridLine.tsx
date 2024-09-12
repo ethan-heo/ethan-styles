@@ -15,8 +15,8 @@ function GridLine() {
 		let columns;
 		let gutter;
 		let margin;
-		const columnColor = variables.get("--color-primary-default");
-		const gutterColor = variables.get("--color-primary-on-default");
+		const columnColor = `${variables.get("--color-primary-default")}60`;
+		const gutterColor = `${variables.get("--color-primary-on-default")}60`;
 
 		switch (platform) {
 			case "mobile-portrait":
