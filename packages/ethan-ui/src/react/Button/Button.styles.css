@@ -65,14 +65,14 @@
 	color: var(--color-primary-on-container);
 }
 .button--variant-default {
-	border-color: var(--color-surface-on-default);
-	color: var(--color-surface-on-default);
+	border-color: var(--color-primary-default);
+	color: var(--color-primary-default);
 }
 .button--variant-default:hover,
 .button--variant-default:focus-visible,
 .button--variant-default:active {
-	border-color: var(--color-surface-on-variant);
-	color: var(--color-surface-on-variant);
+	border-color: var(--color-primary-container);
+	color: var(--color-primary-container);
 }
 .button--variant-text {
 	border-color: var(--color-background-default);
