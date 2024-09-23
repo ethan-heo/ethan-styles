@@ -1,9 +1,9 @@
 import React from "react";
 import createBEMSelector from "../../utils/createBEMSelector";
 import { PickCSSProperty } from "../../types/utils";
-import { LayoutProps } from "./Layouts.types";
+import { AliasingProps } from "./Layouts.types";
 import "./Flex.styles.css";
-import "./Layouts.styles.css";
+import withLayout from "./withLayout";
 
 export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	justify?: PickCSSProperty<
@@ -32,9 +32,8 @@ const Flex = <Tag extends React.ElementType>({
 	children,
 	className,
 	as,
-	column = "col-12",
 	...props
-}: LayoutProps<Tag, FlexProps>) => {
+}: AliasingProps<Tag>) => {
 	const Component = as || "div";
 	const block = "flex";
 	const blockClassName = createBEMSelector({
@@ -78,9 +77,6 @@ const Flex = <Tag extends React.ElementType>({
 			modifier: ["vertical"],
 		});
 	}
-	if (column) {
-		columnClassName = Array.isArray(column) ? column.join(" ") : column;
-	}
 
 	const classNames = [
 		blockClassName,
@@ -101,4 +97,4 @@ const Flex = <Tag extends React.ElementType>({
 	);
 };
 
-export default Flex;
+export default withLayout(Flex);

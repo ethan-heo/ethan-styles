@@ -22,5 +22,9 @@ export type LayoutProps<Tag extends React.ElementType, Prop = {}> = {
 } & AliasingComponentAttributes<Tag> &
 	Prop;
 
+export type AliasingProps<Tag extends React.ElementType> = {
+	as?: Tag;
+} & AliasingComponentAttributes<Tag>;
+
 type AliasingComponentAttributes<Tag extends React.ElementType> =
 	React.ComponentPropsWithoutRef<Tag>;
