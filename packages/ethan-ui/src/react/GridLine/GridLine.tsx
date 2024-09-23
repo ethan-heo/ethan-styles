@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from "react";
-import "./GridLine.styles.css";
 import useMediaQuery from "../hooks/useMediaQuery";
 import createBEMSelector from "../../utils/createBEMSelector";
 import { GRID_LINE_BLOCK } from "./constants";

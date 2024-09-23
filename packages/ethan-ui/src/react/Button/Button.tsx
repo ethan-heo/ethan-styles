@@ -1,5 +1,4 @@
 import React, { HTMLAttributes } from "react";
-import "./Button.styles.css";
 import createBEMSelector from "../../utils/createBEMSelector";
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {

@@ -1,8 +1,6 @@
 import React from "react";
 import { FormCommonProps } from "./Form.types";
 import createFormClassnames from "./utils/createFormClassnames";
-import "./Form.styles.css";
-import "./Label.styles.css";
 
 export interface LabelProps
 	extends React.LabelHTMLAttributes<HTMLElement>,

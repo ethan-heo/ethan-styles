@@ -45,6 +45,7 @@
 		"generate-design-token": "^0.0.4",
 		"npm-run-all": "^4.1.5",
 		"postcss": "^8.4.38",
+		"postcss-import": "^16.1.0",
 		"prettier": "^3.2.5",
 		"rollup": "^4.12.1",
 		"rollup-plugin-copy-assets": "^2.0.3",

@@ -9,8 +9,6 @@
 import React from "react";
 import { FormCommonProps } from "./Form.types";
 import createFormClassnames from "./utils/createFormClassnames";
-import "./Input.styles.css";
-import "./Form.styles.css";
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement>,
