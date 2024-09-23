@@ -7,8 +7,6 @@
  */
 import React from "react";
 import { FormCommonProps } from "./Form.types";
-import "./Input.styles.css";
-import "./Form.styles.css";
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>, FormCommonProps {
 }
 declare const Input: React.FC<InputProps>;

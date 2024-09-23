@@ -1,5 +1,4 @@
 import React, { HTMLAttributes } from "react";
-import "./Button.styles.css";
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     variant?: "primary" | "default" | "text";
     danger?: boolean;

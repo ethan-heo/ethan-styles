@@ -17,7 +17,7 @@ interface TypographCommonProps {
     underline?: boolean;
     del?: boolean;
     mark?: boolean;
-    variant?: "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "default";
+    variant?: "primary" | "secondary" | "tertiary" | "success" | "warning" | "error" | "default";
 }
 
 type Level = 1 | 2 | 3;
@@ -48,15 +48,10 @@ type Platform = "mobile-portrait" | "mobile-landscape" | "tablet-portrait" | "ta
 
 declare const useMediaQuery: () => Platform;
 
-type PickCSSProperty<P extends keyof React.CSSProperties, V = React.CSSProperties[P]> = Extract<React.CSSProperties[P], V>;
-
 type LayoutColumnNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type LayoutColumns = `col-${"mp" | "ml" | "tp" | "tl"}-${LayoutColumnNumber}` | `col-${LayoutColumnNumber}`;
-type LayoutProps<Tag extends React.ElementType, Prop = {}> = {
-    as?: Tag;
-    column?: LayoutColumns | LayoutColumns[];
-} & AliasingComponentAttributes<Tag> & Prop;
-type AliasingComponentAttributes<Tag extends React.ElementType> = React.ComponentPropsWithoutRef<Tag>;
+
+type PickCSSProperty<P extends keyof React.CSSProperties, V = React.CSSProperties[P]> = Extract<React.CSSProperties[P], V>;
 
 interface FlexProps extends React$1.HTMLAttributes<HTMLElement> {
     justify?: PickCSSProperty<"justifyContent", "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly">;
@@ -66,13 +61,22 @@ interface FlexProps extends React$1.HTMLAttributes<HTMLElement> {
     wrap?: boolean;
     gap?: boolean;
 }
-declare const Flex: <Tag extends React$1.ElementType>({ justify, align, vertical, reverse, gap, wrap, children, className, as, column, ...props }: LayoutProps<Tag, FlexProps>) => react_jsx_runtime.JSX.Element;
+declare const _default: ({ column, className, ...props }: {
+    as?: React$1.ElementType<any, keyof React$1.JSX.IntrinsicElements> | undefined;
+} & Omit<any, "ref"> & {
+    column?: LayoutColumns | LayoutColumns[];
+    className?: string;
+}) => react_jsx_runtime.JSX.Element;
 
 type FormFontSize = "x-large" | "large" | "medium" | "small" | "x-small";
 interface FormCommonProps {
     fontSize?: FormFontSize;
     invalid?: boolean;
 }
+
+interface LabelProps extends React$1.LabelHTMLAttributes<HTMLElement>, FormCommonProps {
+}
+declare const Label: ({ fontSize, invalid, className, ...props }: LabelProps) => react_jsx_runtime.JSX.Element;
 
 /**
  * [Requirement]
@@ -178,14 +182,37 @@ declare const LIGHT_THEME: {
     LINE_HEIGHT_MEDIUM: string;
     LINE_HEIGHT_SMALL: string;
     LINE_HEIGHT_EXTRA_SMALL: string;
-    COLOR_PRIMARY: string;
-    COLOR_SECONDARY: string;
-    COLOR_ACCENT: string;
-    COLOR_SUCCESS: string;
-    COLOR_WARNING: string;
-    COLOR_ERROR: string;
-    COLOR_TEXT: string;
-    COLOR_BACKGROUND: string;
+    COLOR_PRIMARY_DEFAULT: string;
+    COLOR_PRIMARY_ON_DEFAULT: string;
+    COLOR_PRIMARY_CONTAINER: string;
+    COLOR_PRIMARY_ON_CONTAINER: string;
+    COLOR_SECONDARY_DEFAULT: string;
+    COLOR_SECONDARY_ON_DEFAULT: string;
+    COLOR_SECONDARY_CONTAINER: string;
+    COLOR_SECONDARY_ON_CONTAINER: string;
+    COLOR_TERTIARY_DEFAULT: string;
+    COLOR_TERTIARY_ON_DEFAULT: string;
+    COLOR_TERTIARY_CONTAINER: string;
+    COLOR_TERTIARY_ON_CONTAINER: string;
+    COLOR_ERROR_DEFAULT: string;
+    COLOR_ERROR_ON_DEFAULT: string;
+    COLOR_ERROR_CONTAINER: string;
+    COLOR_ERROR_ON_CONTAINER: string;
+    COLOR_BACKGROUND_DEFAULT: string;
+    COLOR_BACKGROUND_ON_DEFAULT: string;
+    COLOR_SURFACE_DEFAULT: string;
+    COLOR_SURFACE_ON_DEFAULT: string;
+    COLOR_SURFACE_VARIANT: string;
+    COLOR_SURFACE_ON_VARIANT: string;
+    COLOR_OUTLINE_DEFAULT: string;
+    COLOR_SUCCESS_DEFAULT: string;
+    COLOR_SUCCESS_ON_DEFAULT: string;
+    COLOR_SUCCESS_CONTAINER: string;
+    COLOR_SUCCESS_ON_CONTAINER: string;
+    COLOR_WARNING_DEFAULT: string;
+    COLOR_WARNING_ON_DEFAULT: string;
+    COLOR_WARNING_CONTAINER: string;
+    COLOR_WARNING_ON_CONTAINER: string;
     BORDER_HIDDEN_THIN: string;
     BORDER_HIDDEN_MEDIUM: string;
     BORDER_HIDDEN_BOLD: string;
@@ -248,4 +275,4 @@ declare const LIGHT_THEME: {
     FONT_FAMILY: string;
 };
 
-export { Button, type ButtonProps, Flex, type FlexProps, Form, GridLine, Input, LIGHT_THEME, Link, type LinkProps, Paragraph, type ParagraphProps, type PickCSSProperty, type Platform, Text, type TextProps, Title, type TitleProps, useFormState, useMediaQuery };
+export { Button, type ButtonProps, _default as Flex, type FlexProps, Form, type FormProps, GridLine, Input, type InputProps, LIGHT_THEME, Label, type LabelProps, Link, type LinkProps, Paragraph, type ParagraphProps, type PickCSSProperty, type Platform, Text, type TextProps, Title, type TitleProps, useFormState, useMediaQuery };

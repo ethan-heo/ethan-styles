@@ -177,8 +177,8 @@ function GridLine() {
         let columns;
         let gutter;
         let margin;
-        const columnColor = variables.get("--color-primary");
-        const gutterColor = variables.get("--color-accent");
+        const columnColor = `${variables.get("--color-primary-default")}60`;
+        const gutterColor = `${variables.get("--color-primary-on-default")}60`;
         switch (platform) {
             case "mobile-portrait":
                 columns = variables.get("--grid-mobile-portrait-columns");
@@ -320,8 +320,14 @@ const Link = (_a) => {
     return (jsx("a", Object.assign({ className: classNames }, props, { children: children })));
 };
 
+const withLayout = (WrappedComponent) => (_a) => {
+    var { column, className } = _a, props = __rest(_a, ["column", "className"]);
+    const columnClassName = Array.isArray(column) ? column.join(" ") : column;
+    return (jsx(WrappedComponent, Object.assign({}, props, { className: [columnClassName, className].join(" ") })));
+};
+
 const Flex = (_a) => {
-    var { justify = "flex-start", align = "flex-start", vertical, reverse, gap, wrap, children, className, as, column = "col-12" } = _a, props = __rest(_a, ["justify", "align", "vertical", "reverse", "gap", "wrap", "children", "className", "as", "column"]);
+    var { justify = "flex-start", align = "flex-start", vertical, reverse, gap, wrap, children, className, as } = _a, props = __rest(_a, ["justify", "align", "vertical", "reverse", "gap", "wrap", "children", "className", "as"]);
     const Component = as || "div";
     const block = "flex";
     const blockClassName = createBEMSelector({
@@ -364,9 +370,6 @@ const Flex = (_a) => {
             modifier: ["vertical"],
         });
     }
-    if (column) {
-        columnClassName = Array.isArray(column) ? column.join(" ") : column;
-    }
     const classNames = [
         blockClassName,
         justifyClassName,
@@ -380,6 +383,7 @@ const Flex = (_a) => {
     ];
     return (jsx(Component, Object.assign({ className: classNames.filter(Boolean).join(" ") }, props, { children: children })));
 };
+var Flex$1 = withLayout(Flex);
 
 const FORM_BLOCK = "form";
 
@@ -405,6 +409,12 @@ const createFormClassnames = (component, props, ...classNames) => {
         return result.join(" ");
     };
     return [block, createStyles(), ...classNames].filter(Boolean).join(" ");
+};
+
+const Label = (_a) => {
+    var { fontSize, invalid, className } = _a, props = __rest(_a, ["fontSize", "invalid", "className"]);
+    const _className = createFormClassnames("label", { fontSize, invalid }, className);
+    return (jsx("label", Object.assign({}, props, { className: _className, children: props.children })));
 };
 
 const Input = (_a) => {
@@ -435,18 +445,20 @@ const resetValue = (value, defaultValue) => {
     }
 };
 const initialUseFormReducerState = (prop) => (state) => {
+    var _a;
     for (const key in prop.form) {
         const _p = prop.form[key];
-        state.form = {
-            [key]: {
+        state.form = Object.assign(Object.assign({}, ((_a = state.form) !== null && _a !== void 0 ? _a : {})), { [key]: {
                 element: {
                     name: key,
                     id: _p.id,
                     value: _p.defaultValue,
                 },
+                error: {
+                    valid: true,
+                },
                 validationEvent: _p.validationEvent,
-            },
-        };
+            } });
     }
     return state;
 };
@@ -592,14 +604,37 @@ const LIGHT_THEME = {
     LINE_HEIGHT_MEDIUM: "1",
     LINE_HEIGHT_SMALL: "0.875",
     LINE_HEIGHT_EXTRA_SMALL: "0.625",
-    COLOR_PRIMARY: "#ffa500",
-    COLOR_SECONDARY: "#ffffff",
-    COLOR_ACCENT: "#ffb733",
-    COLOR_SUCCESS: "#bcf5bc",
-    COLOR_WARNING: "#ffd700",
-    COLOR_ERROR: "#ff3333",
-    COLOR_TEXT: "#333333",
-    COLOR_BACKGROUND: "#ffffff",
+    COLOR_PRIMARY_DEFAULT: "#6750A4",
+    COLOR_PRIMARY_ON_DEFAULT: "#FFFFFF",
+    COLOR_PRIMARY_CONTAINER: "#EADDFF",
+    COLOR_PRIMARY_ON_CONTAINER: "#21005D",
+    COLOR_SECONDARY_DEFAULT: "#625B71",
+    COLOR_SECONDARY_ON_DEFAULT: "#FFFFFF",
+    COLOR_SECONDARY_CONTAINER: "#E8DEF8",
+    COLOR_SECONDARY_ON_CONTAINER: "#1D192B",
+    COLOR_TERTIARY_DEFAULT: "#7D5260",
+    COLOR_TERTIARY_ON_DEFAULT: "#FFFFFF",
+    COLOR_TERTIARY_CONTAINER: "#FFD8E4",
+    COLOR_TERTIARY_ON_CONTAINER: "#31111D",
+    COLOR_ERROR_DEFAULT: "#B3261E",
+    COLOR_ERROR_ON_DEFAULT: "#FFFFFF",
+    COLOR_ERROR_CONTAINER: "#F9DEDC",
+    COLOR_ERROR_ON_CONTAINER: "#410E0B",
+    COLOR_BACKGROUND_DEFAULT: "#FFFFFF",
+    COLOR_BACKGROUND_ON_DEFAULT: "#1C1B1F",
+    COLOR_SURFACE_DEFAULT: "#FFFFFF",
+    COLOR_SURFACE_ON_DEFAULT: "#1C1B1F",
+    COLOR_SURFACE_VARIANT: "#E7E0EC",
+    COLOR_SURFACE_ON_VARIANT: "#49454F",
+    COLOR_OUTLINE_DEFAULT: "#79747E",
+    COLOR_SUCCESS_DEFAULT: "#388E3C",
+    COLOR_SUCCESS_ON_DEFAULT: "#FFFFFF",
+    COLOR_SUCCESS_CONTAINER: "#C8E6C9",
+    COLOR_SUCCESS_ON_CONTAINER: "#1B5E20",
+    COLOR_WARNING_DEFAULT: "#F57C00",
+    COLOR_WARNING_ON_DEFAULT: "#FFFFFF",
+    COLOR_WARNING_CONTAINER: "#FFE0B2",
+    COLOR_WARNING_ON_CONTAINER: "#E65100",
     BORDER_HIDDEN_THIN: "1px hidden",
     BORDER_HIDDEN_MEDIUM: "2px hidden",
     BORDER_HIDDEN_BOLD: "3px hidden",
@@ -662,5 +697,5 @@ const LIGHT_THEME = {
     FONT_FAMILY: "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;",
 };
 
-export { Button, Flex, Form, GridLine, Input, LIGHT_THEME, Link, Paragraph, Text, Title, useFormState, useMediaQuery };
+export { Button, Flex$1 as Flex, Form, GridLine, Input, LIGHT_THEME, Label, Link, Paragraph, Text, Title, useFormState, useMediaQuery };
 //# sourceMappingURL=index.js.map
