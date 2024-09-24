@@ -1,5 +1,5 @@
 import { jsx } from 'react/jsx-runtime';
-import { useState, useRef, useLayoutEffect, useEffect, useMemo, useReducer } from 'react';
+import { useState, useRef, useLayoutEffect, useMemo, useEffect, useReducer } from 'react';
 
 function __rest(s, e) {
   var t = {};
@@ -71,34 +71,50 @@ const Button = (_a) => {
     return (jsx("button", Object.assign({ className: classNames.filter(Boolean).join(" ") }, props, { children: children })));
 };
 
+const getCSSVariablesInDocument = () => {
+    const result = new Map();
+    const cssStyleRule = Array.from(document.styleSheets)
+        .map((styleSheet) => Array.from(styleSheet.cssRules))
+        .flat()
+        .find((cssRule) => cssRule.selectorText === ":root");
+    if (!cssStyleRule)
+        return result;
+    const style = cssStyleRule.style;
+    for (const key of style) {
+        if (key.startsWith("--")) {
+            result.set(key, style.getPropertyValue(key).trim());
+        }
+    }
+    return result;
+};
+
 const useMediaQuery = () => {
     const [platform, setPlatform] = useState("desktop");
-    const media_queries = useRef(new Map()).current;
+    const variables = useRef(getCSSVariablesInDocument()).current;
+    const match_medias = useRef(new Map()).current;
     useLayoutEffect(() => {
         const MEDIA_QUERIES = [
-            "(max-width: 428px)",
-            "(min-width: 429px) and (max-width: 768px)",
-            "(min-width: 769px) and (max-width: 1024px)",
-            "(min-width: 1025px) and (max-width: 1280px)",
-            "(min-width: 1281px)",
+            `(max-width: ${variables.get("--responsive-desktop")})`,
+            `(max-width: ${variables.get("--responsive-tablet")})`,
+            `(max-width: ${variables.get("--responsive-mobile")})`,
         ];
         const MATCHER = {
-            0: "mobile-portrait",
-            1: "mobile-landscape",
-            2: "tablet-portrait",
-            3: "tablet-landscape",
-            4: "desktop",
+            0: "desktop",
+            1: "tablet",
+            2: "mobile",
         };
         MEDIA_QUERIES.forEach((media_query_str, index) => {
-            const media_query = window.matchMedia(media_query_str);
-            media_query.addEventListener("change", matchPlatform);
-            media_queries.set(MATCHER[index], media_query);
+            const match_media = window.matchMedia(media_query_str);
+            const platform = MATCHER[index];
+            match_media.addEventListener("change", matchPlatform);
+            match_medias.set(platform, match_media);
         });
         matchPlatform();
+        return () => { };
     }, []);
     function matchPlatform() {
-        media_queries.forEach((media_query, platform) => {
-            if (media_query.matches) {
+        match_medias.forEach((match_media, platform) => {
+            if (match_media.matches) {
                 setPlatform(platform);
             }
         });
@@ -108,69 +124,10 @@ const useMediaQuery = () => {
 
 const GRID_LINE_BLOCK = "grid-line";
 
-function useCssVariables(el) {
-    const cssVariables = useRef(new CssVariables()).current;
-    const [variables, setVariables] = useState(new Map());
-    useEffect(() => {
-        const subscribeCallback = (variables) => {
-            setVariables(variables);
-        };
-        cssVariables.subscribe(subscribeCallback);
-        cssVariables.update(el);
-        return () => {
-            cssVariables.unsubscribe(subscribeCallback);
-        };
-    }, [el]);
-    return variables;
-}
-class CssVariables {
-    constructor() {
-        this.callbacks = [];
-    }
-    subscribe(callback) {
-        this.callbacks.push(callback);
-    }
-    publish() {
-        const variables = this.variables;
-        if (!variables)
-            return;
-        this.callbacks.forEach((callback) => {
-            callback(variables);
-        });
-    }
-    unsubscribe(callback) {
-        const self = this;
-        self.callbacks = self.callbacks.filter((_callback) => callback !== _callback);
-    }
-    update(el) {
-        const self = this;
-        let style;
-        if (el) {
-            style = getComputedStyle(el);
-        }
-        else {
-            const cssStyleRule = Array.from(document.styleSheets)
-                .map((styleSheet) => Array.from(styleSheet.cssRules))
-                .flat()
-                .find((cssRule) => cssRule.selectorText === ":root");
-            style = cssStyleRule === null || cssStyleRule === void 0 ? void 0 : cssStyleRule.style;
-        }
-        if (!style)
-            return;
-        self.variables = new Map();
-        for (const key of style) {
-            if (key.startsWith("--")) {
-                self.variables.set(key, style.getPropertyValue(key).trim());
-            }
-        }
-        self.publish();
-    }
-}
-
 function GridLine() {
     const el = useRef(null);
     const platform = useMediaQuery();
-    const variables = useCssVariables();
+    const variables = useRef(getCSSVariablesInDocument()).current;
     const gradient = useMemo(() => {
         if (!Array.from(variables.keys()).length)
             return "";
@@ -180,25 +137,15 @@ function GridLine() {
         const columnColor = `${variables.get("--color-primary-default")}60`;
         const gutterColor = `${variables.get("--color-primary-on-default")}60`;
         switch (platform) {
-            case "mobile-portrait":
-                columns = variables.get("--grid-mobile-portrait-columns");
-                gutter = variables.get("--grid-mobile-portrait-gutter");
-                margin = variables.get("--grid-mobile-portrait-margin");
+            case "mobile":
+                columns = variables.get("--grid-mobile-columns");
+                gutter = variables.get("--grid-mobile-gutter");
+                margin = variables.get("--grid-mobile-margin");
                 break;
-            case "mobile-landscape":
-                columns = variables.get("--grid-mobile-landscape-columns");
-                gutter = variables.get("--grid-mobile-landscape-gutter");
-                margin = variables.get("--grid-mobile-landscape-margin");
-                break;
-            case "tablet-portrait":
-                columns = variables.get("--grid-tablet-portrait-columns");
-                gutter = variables.get("--grid-tablet-portrait-gutter");
-                margin = variables.get("--grid-tablet-portrait-margin");
-                break;
-            case "tablet-landscape":
-                columns = variables.get("--grid-tablet-landscape-columns");
-                gutter = variables.get("--grid-tablet-landscape-gutter");
-                margin = variables.get("--grid-tablet-landscape-margin");
+            case "tablet":
+                columns = variables.get("--grid-tablet-columns");
+                gutter = variables.get("--grid-tablet-gutter");
+                margin = variables.get("--grid-tablet-margin");
                 break;
             default:
                 columns = variables.get("--grid-desktop-columns");
@@ -562,29 +509,18 @@ const useFormState = (prop, initializedState = {}) => {
 };
 
 const LIGHT_THEME = {
-    GRID_MOBILE_PORTRAIT_COLUMNS: "4",
-    GRID_MOBILE_PORTRAIT_GUTTER: "8px",
-    GRID_MOBILE_PORTRAIT_MARGIN: "14px",
-    GRID_MOBILE_LANDSCAPE_COLUMNS: "6",
-    GRID_MOBILE_LANDSCAPE_GUTTER: "10px",
-    GRID_MOBILE_LANDSCAPE_MARGIN: "18px",
-    GRID_TABLET_PORTRAIT_COLUMNS: "8",
-    GRID_TABLET_PORTRAIT_GUTTER: "12px",
-    GRID_TABLET_PORTRAIT_MARGIN: "22px",
-    GRID_TABLET_LANDSCAPE_COLUMNS: "12",
-    GRID_TABLET_LANDSCAPE_GUTTER: "14px",
-    GRID_TABLET_LANDSCAPE_MARGIN: "26px",
+    GRID_MOBILE_COLUMNS: "4",
+    GRID_MOBILE_GUTTER: "8px",
+    GRID_MOBILE_MARGIN: "14px",
+    GRID_TABLET_COLUMNS: "8",
+    GRID_TABLET_GUTTER: "12px",
+    GRID_TABLET_MARGIN: "22px",
     GRID_DESKTOP_COLUMNS: "12",
     GRID_DESKTOP_GUTTER: "16px",
     GRID_DESKTOP_MARGIN: "auto",
-    RESPONSIVE_MOBILE_PORTRAIT_MAX: "428px",
-    RESPONSIVE_MOBILE_LANDSCAPE_MIN: "429px",
-    RESPONSIVE_MOBILE_LANDSCAPE_MAX: "768px",
-    RESPONSIVE_TABLET_PORTRAIT_MIN: "769px",
-    RESPONSIVE_TABLET_PORTRAIT_MAX: "1024px",
-    RESPONSIVE_TABLET_LANDSCAPE_MIN: "1025px",
-    RESPONSIVE_TABLET_LANDSCAPE_MAX: "1280px",
-    RESPONSIVE_DESKTOP_MIN: "1281px",
+    RESPONSIVE_MOBILE: "768px",
+    RESPONSIVE_TABLET: "1024px",
+    RESPONSIVE_DESKTOP: "1280px",
     FONT_SIZE_EXTRA_LARGE: "2rem",
     FONT_SIZE_LARGE: "1.5rem",
     FONT_SIZE_MEDIUM: "1rem",

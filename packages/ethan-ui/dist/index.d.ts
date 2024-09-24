@@ -44,14 +44,10 @@ interface LinkProps extends HTMLAttributes<HTMLAnchorElement>, TypographCommonPr
 }
 declare const Link: React$1.FC<LinkProps>;
 
-type Platform = "mobile-portrait" | "mobile-landscape" | "tablet-portrait" | "tablet-landscape" | "desktop";
-
-declare const useMediaQuery: () => Platform;
+declare const useMediaQuery: () => ResponsivePlatform;
 
 type LayoutColumnNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-type LayoutColumns = `col-${"mp" | "ml" | "tp" | "tl"}-${LayoutColumnNumber}` | `col-${LayoutColumnNumber}`;
-
-type PickCSSProperty<P extends keyof React.CSSProperties, V = React.CSSProperties[P]> = Extract<React.CSSProperties[P], V>;
+type LayoutColumns = `col-${"m" | "t"}-${LayoutColumnNumber}` | `col-${LayoutColumnNumber}`;
 
 interface FlexProps extends React$1.HTMLAttributes<HTMLElement> {
     justify?: PickCSSProperty<"justifyContent", "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly">;
@@ -140,29 +136,18 @@ interface FormStateValidateResult {
 declare const useFormState: <P extends Params<any>, S extends State<P["form"]>>(prop: P, initializedState?: S) => S;
 
 declare const LIGHT_THEME: {
-    GRID_MOBILE_PORTRAIT_COLUMNS: string;
-    GRID_MOBILE_PORTRAIT_GUTTER: string;
-    GRID_MOBILE_PORTRAIT_MARGIN: string;
-    GRID_MOBILE_LANDSCAPE_COLUMNS: string;
-    GRID_MOBILE_LANDSCAPE_GUTTER: string;
-    GRID_MOBILE_LANDSCAPE_MARGIN: string;
-    GRID_TABLET_PORTRAIT_COLUMNS: string;
-    GRID_TABLET_PORTRAIT_GUTTER: string;
-    GRID_TABLET_PORTRAIT_MARGIN: string;
-    GRID_TABLET_LANDSCAPE_COLUMNS: string;
-    GRID_TABLET_LANDSCAPE_GUTTER: string;
-    GRID_TABLET_LANDSCAPE_MARGIN: string;
+    GRID_MOBILE_COLUMNS: string;
+    GRID_MOBILE_GUTTER: string;
+    GRID_MOBILE_MARGIN: string;
+    GRID_TABLET_COLUMNS: string;
+    GRID_TABLET_GUTTER: string;
+    GRID_TABLET_MARGIN: string;
     GRID_DESKTOP_COLUMNS: string;
     GRID_DESKTOP_GUTTER: string;
     GRID_DESKTOP_MARGIN: string;
-    RESPONSIVE_MOBILE_PORTRAIT_MAX: string;
-    RESPONSIVE_MOBILE_LANDSCAPE_MIN: string;
-    RESPONSIVE_MOBILE_LANDSCAPE_MAX: string;
-    RESPONSIVE_TABLET_PORTRAIT_MIN: string;
-    RESPONSIVE_TABLET_PORTRAIT_MAX: string;
-    RESPONSIVE_TABLET_LANDSCAPE_MIN: string;
-    RESPONSIVE_TABLET_LANDSCAPE_MAX: string;
-    RESPONSIVE_DESKTOP_MIN: string;
+    RESPONSIVE_MOBILE: string;
+    RESPONSIVE_TABLET: string;
+    RESPONSIVE_DESKTOP: string;
     FONT_SIZE_EXTRA_LARGE: string;
     FONT_SIZE_LARGE: string;
     FONT_SIZE_MEDIUM: string;
@@ -275,4 +260,4 @@ declare const LIGHT_THEME: {
     FONT_FAMILY: string;
 };
 
-export { Button, type ButtonProps, _default as Flex, type FlexProps, Form, type FormProps, GridLine, Input, type InputProps, LIGHT_THEME, Label, type LabelProps, Link, type LinkProps, Paragraph, type ParagraphProps, type PickCSSProperty, type Platform, Text, type TextProps, Title, type TitleProps, useFormState, useMediaQuery };
+export { Button, type ButtonProps, _default as Flex, type FlexProps, Form, type FormProps, GridLine, Input, type InputProps, LIGHT_THEME, Label, type LabelProps, Link, type LinkProps, Paragraph, type ParagraphProps, Text, type TextProps, Title, type TitleProps, useFormState, useMediaQuery };
