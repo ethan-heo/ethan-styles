@@ -49,7 +49,7 @@ function App() {
 				style={{
 					backgroundColor: "#ff0000",
 				}}
-				column={["col-mp-6", "col-ml-8", "col-12"]}
+				column={["col-m-6", "col-t-8", "col-12"]}
 			>
 				<Flex
 					column="col-6"

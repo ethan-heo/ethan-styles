@@ -6,6 +6,7 @@ import postcss from "rollup-plugin-postcss";
 import copyAssets from "rollup-plugin-copy-assets";
 import dts from "rollup-plugin-dts";
 import atImport from "postcss-import";
+import vars from "postcss-simple-vars";
 
 const options = {
 	input: path.src + `/index.ts`,
@@ -22,7 +23,7 @@ const options = {
 		}),
 		peerDepsExternal(),
 		postcss({
-			plugins: [atImport()],
+			plugins: [atImport(), vars()],
 			extract: path.dist + `/tokens/components.css`,
 		}),
 		copyAssets({

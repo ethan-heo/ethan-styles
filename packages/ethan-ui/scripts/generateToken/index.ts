@@ -10,11 +10,13 @@ const TEMPLATE_FILES = {
 	VARIABLES: path.resolve(TEMPLATE_PATH, "variables.ejs"),
 	CONSTANTS: path.resolve(TEMPLATE_PATH, "constants.ejs"),
 	TYPES: path.resolve(TEMPLATE_PATH, "types.ejs"),
+	POSTCSS_VARIABLES: path.resolve(TEMPLATE_PATH, "postcss-variables.ejs"),
 };
 const OUTPUT_PATHS = {
 	VARIABLES: path.resolve(__dirname, "../../src/tokens"),
 	CONSTANTS: path.resolve(__dirname, "../../src/constants"),
 	TYPES: path.resolve(__dirname, "../../src/types"),
+	POSTCSS_VARIABLES: path.resolve(__dirname, "../../src/styles"),
 };
 
 const generate = async () => {
@@ -30,6 +32,12 @@ const generate = async () => {
 		fileName: "global.css",
 		outputPath: OUTPUT_PATHS.VARIABLES,
 		templatePath: TEMPLATE_FILES.VARIABLES,
+	});
+	await creator({
+		token: GENERATED_DESIGN_TOKEN_MAP.GLOBAL,
+		fileName: "variables.css",
+		outputPath: OUTPUT_PATHS.POSTCSS_VARIABLES,
+		templatePath: TEMPLATE_FILES.POSTCSS_VARIABLES,
 	});
 	await creator({
 		token: GENERATED_DESIGN_TOKEN_MAP.LIGHT_THEME,

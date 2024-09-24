@@ -13,7 +13,7 @@ export type LayoutColumnNumber =
 	| 12;
 
 export type LayoutColumns =
-	| `col-${"mp" | "ml" | "tp" | "tl"}-${LayoutColumnNumber}`
+	| `col-${"m" | "t"}-${LayoutColumnNumber}`
 	| `col-${LayoutColumnNumber}`;
 
 export type LayoutProps<Tag extends React.ElementType, Prop = {}> = {
