@@ -1,5 +1,6 @@
 .typograph__link {
 	font-size: var(--font-size-medium);
+	text-decoration: initial;
 }
 .typograph__link:hover {
 	opacity: 0.6;
