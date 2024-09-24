@@ -630,47 +630,17 @@
 		}
 	},
 	"breakpoint": {
-		"mobile-portrait": {
-			"max": {
-				"$type": "dimension",
-				"$value": "428px"
-			}
+		"mobile": {
+			"$type": "dimension",
+			"$value": "768px"
 		},
-		"mobile-landscape": {
-			"min": {
-				"$type": "dimension",
-				"$value": "429px"
-			},
-			"max": {
-				"$type": "dimension",
-				"$value": "768px"
-			}
-		},
-		"tablet-portrait": {
-			"min": {
-				"$type": "dimension",
-				"$value": "769px"
-			},
-			"max": {
-				"$type": "dimension",
-				"$value": "1024px"
-			}
-		},
-		"tablet-landscape": {
-			"min": {
-				"$type": "dimension",
-				"$value": "1025px"
-			},
-			"max": {
-				"$type": "dimension",
-				"$value": "1280px"
-			}
+		"tablet": {
+			"$type": "dimension",
+			"$value": "1280px"
 		},
 		"desktop": {
-			"min": {
-				"$type": "dimension",
-				"$value": "1281px"
-			}
+			"$type": "dimension",
+			"$value": "1440px"
 		}
 	}
 }

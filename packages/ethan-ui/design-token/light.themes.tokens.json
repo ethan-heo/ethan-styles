@@ -1,6 +1,6 @@
 {
 	"grid": {
-		"mobile-portrait": {
+		"mobile": {
 			"columns": {
 				"$type": "number",
 				"$value": "4"
@@ -14,21 +14,7 @@
 				"$value": "{spacing.4}"
 			}
 		},
-		"mobile-landscape": {
-			"columns": {
-				"$type": "number",
-				"$value": "6"
-			},
-			"gutter": {
-				"$type": "dimension",
-				"$value": "{spacing.2}"
-			},
-			"margin": {
-				"$type": "dimension",
-				"$value": "{spacing.6}"
-			}
-		},
-		"tablet-portrait": {
+		"tablet": {
 			"columns": {
 				"$type": "number",
 				"$value": "8"
@@ -40,20 +26,6 @@
 			"margin": {
 				"$type": "dimension",
 				"$value": "{spacing.8}"
-			}
-		},
-		"tablet-landscape": {
-			"columns": {
-				"$type": "number",
-				"$value": "12"
-			},
-			"gutter": {
-				"$type": "dimension",
-				"$value": "{spacing.4}"
-			},
-			"margin": {
-				"$type": "dimension",
-				"$value": "{spacing.10}"
 			}
 		},
 		"desktop": {
@@ -72,47 +44,9 @@
 		}
 	},
 	"responsive": {
-		"mobile-portrait": {
-			"max": {
-				"$type": "dimension",
-				"$value": "{breakpoint.mobile-portrait.max}"
-			}
-		},
-		"mobile-landscape": {
-			"min": {
-				"$type": "dimension",
-				"$value": "{breakpoint.mobile-landscape.min}"
-			},
-			"max": {
-				"$type": "dimension",
-				"$value": "{breakpoint.mobile-landscape.max}"
-			}
-		},
-		"tablet-portrait": {
-			"min": {
-				"$type": "dimension",
-				"$value": "{breakpoint.tablet-portrait.min}"
-			},
-			"max": {
-				"$type": "dimension",
-				"$value": "{breakpoint.tablet-portrait.max}"
-			}
-		},
-		"tablet-landscape": {
-			"min": {
-				"$type": "dimension",
-				"$value": "{breakpoint.tablet-landscape.min}"
-			},
-			"max": {
-				"$type": "dimension",
-				"$value": "{breakpoint.tablet-landscape.max}"
-			}
-		},
-		"desktop": {
-			"min": {
-				"$type": "dimension",
-				"$value": "{breakpoint.desktop.min}"
-			}
+		"{breakpoint}": {
+			"$type": "dimension",
+			"$value": "{$value}"
 		}
 	},
 	"font-size": {
