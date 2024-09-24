@@ -59,9 +59,9 @@ const meta = {
 			defaultValue: false,
 		},
 		gap: {
-			control: "select",
+			control: "boolean",
 			description: "사이 간격을 정의할 때 사용합니다.",
-			options: ["extra-large", "large", "medium", "small", "extra-small"],
+			defaultValue: false,
 		},
 	},
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
