@@ -5,6 +5,7 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"dev:lib": "turbo dev --filter=@ethanheo/ui --filter=examples",
+		"dev:story": "turbo dev --filter=@ethanheo/ui --filter=storybook",
 		"gen:token": "yarn workspace @ethanheo/ui gen:token"
 	},
 	"engines": {
