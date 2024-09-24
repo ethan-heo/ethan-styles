@@ -1,6 +1,5 @@
 import React from "react";
 import createBEMSelector from "../../utils/createBEMSelector";
-import { PickCSSProperty } from "../../types/utils";
 import { AliasingProps } from "./Layouts.types";
 import "./Flex.styles.css";
 import withLayout from "./withLayout";

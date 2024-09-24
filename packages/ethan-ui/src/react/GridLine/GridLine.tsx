@@ -2,12 +2,13 @@ import { useEffect, useMemo, useRef } from "react";
 import useMediaQuery from "../hooks/useMediaQuery";
 import createBEMSelector from "../../utils/createBEMSelector";
 import { GRID_LINE_BLOCK } from "./constants";
-import useCssVariables from "../hooks/useCssVariables";
+import getCSSVariablesInDocument from "../../utils/getCSSVariableInDocument";
 
 function GridLine() {
 	const el = useRef<HTMLDivElement>(null);
 	const platform = useMediaQuery();
-	const variables = useCssVariables();
+	const variables = useRef(getCSSVariablesInDocument()).current;
+
 	const gradient = useMemo(() => {
 		if (!Array.from(variables.keys()).length) return "";
 
@@ -18,25 +19,15 @@ function GridLine() {
 		const gutterColor = `${variables.get("--color-primary-on-default")}60`;
 
 		switch (platform) {
-			case "mobile-portrait":
-				columns = variables.get("--grid-mobile-portrait-columns");
-				gutter = variables.get("--grid-mobile-portrait-gutter");
-				margin = variables.get("--grid-mobile-portrait-margin");
+			case "mobile":
+				columns = variables.get("--grid-mobile-columns");
+				gutter = variables.get("--grid-mobile-gutter");
+				margin = variables.get("--grid-mobile-margin");
 				break;
-			case "mobile-landscape":
-				columns = variables.get("--grid-mobile-landscape-columns");
-				gutter = variables.get("--grid-mobile-landscape-gutter");
-				margin = variables.get("--grid-mobile-landscape-margin");
-				break;
-			case "tablet-portrait":
-				columns = variables.get("--grid-tablet-portrait-columns");
-				gutter = variables.get("--grid-tablet-portrait-gutter");
-				margin = variables.get("--grid-tablet-portrait-margin");
-				break;
-			case "tablet-landscape":
-				columns = variables.get("--grid-tablet-landscape-columns");
-				gutter = variables.get("--grid-tablet-landscape-gutter");
-				margin = variables.get("--grid-tablet-landscape-margin");
+			case "tablet":
+				columns = variables.get("--grid-tablet-columns");
+				gutter = variables.get("--grid-tablet-gutter");
+				margin = variables.get("--grid-tablet-margin");
 				break;
 			default:
 				columns = variables.get("--grid-desktop-columns");
@@ -57,6 +48,7 @@ function GridLine() {
 					? `${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)}), ${columnColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth})`
 					: `${gutterColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2)} + ${columnWidth}), ${gutterColor} calc((${columnWidth} + ${gutter}) * ${Math.floor(idx / 2) + 1})`,
 		);
+
 		return `linear-gradient(to right, ${gradientColors.join(",")})`;
 	}, [variables, platform]);
 
