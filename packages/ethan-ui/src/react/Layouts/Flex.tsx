@@ -3,6 +3,7 @@ import createBEMSelector from "../../utils/createBEMSelector";
 import { AliasingProps } from "./Layouts.types";
 import "./Flex.styles.css";
 import withLayout from "./withLayout";
+import { PickCSSProperty } from "../../types";
 
 export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
 	justify?: PickCSSProperty<

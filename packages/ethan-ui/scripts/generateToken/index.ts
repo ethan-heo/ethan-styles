@@ -47,29 +47,10 @@ const generate = async () => {
 	});
 	await creator({
 		token: GENERATED_DESIGN_TOKEN_MAP.LIGHT_THEME,
-		fileName: "css-variables.d.ts",
+		fileName: "css-variables.ts",
 		outputPath: OUTPUT_PATHS.TYPES,
 		templatePath: TEMPLATE_FILES.TYPES,
 	});
-	// await creator(
-	// 	mapper(generateDesignToken(globalToken, [globalToken])),
-	// 	"global.css",
-	// 	"variables",
-	// );
-	// await creator(
-	// 	mapper(
-	// 		generateDesignToken(lightThemeToken, [lightThemeToken, globalToken]),
-	// 	),
-	// 	"light-theme.css",
-	// 	"variables",
-	// );
-	// await creator(
-	// 	mapper(
-	// 		generateDesignToken(lightThemeToken, [lightThemeToken, globalToken]),
-	// 	),
-	// 	"light-theme.constants.ts",
-	// 	"constants",
-	// );
 };
 
 generate();

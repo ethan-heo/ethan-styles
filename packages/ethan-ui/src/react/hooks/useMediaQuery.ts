@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import getCSSVariablesInDocument from "../../utils/getCSSVariableInDocument";
+import { ResponsivePlatform } from "../../types";
 
 const useMediaQuery = () => {
 	const [platform, setPlatform] = useState<ResponsivePlatform>("desktop");

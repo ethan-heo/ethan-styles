@@ -1,3 +1,5 @@
+import { CSSVariables } from "../types";
+
 const getCSSVariablesInDocument = () => {
 	const result = new Map<keyof CSSVariables, string>();
 	const cssStyleRule = Array.from(document.styleSheets)

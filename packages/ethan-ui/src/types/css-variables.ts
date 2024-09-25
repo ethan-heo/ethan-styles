@@ -1,4 +1,4 @@
-interface CSSVariables {
+export interface CSSVariables {
   "--grid-mobile-columns": string;
   "--grid-mobile-gutter": string;
   "--grid-mobile-margin": string;

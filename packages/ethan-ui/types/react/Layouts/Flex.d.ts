@@ -1,5 +1,6 @@
 import React from "react";
 import "./Flex.styles.css";
+import { PickCSSProperty } from "../../types";
 export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
     justify?: PickCSSProperty<"justifyContent", "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly">;
     align?: PickCSSProperty<"alignItems", "flex-start" | "center" | "flex-end">;
