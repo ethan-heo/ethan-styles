@@ -1,56 +1,105 @@
 import path from "path";
-import globalToken from "../../design-token/global.tokens.json";
-import lightThemeToken from "../../design-token/light.themes.tokens.json";
-import creator from "./creator";
+import { GlobSync } from "glob";
+import { readFile, writeFile } from "fs/promises";
+import globalToken from "../../design-token/global.token.json";
 import mapper from "./mapper";
 import generateDesignToken from "generate-design-token";
+import ejs from "ejs";
+import prettier from "prettier";
 
-const TEMPLATE_PATH = path.resolve(__dirname, "../../design-token/templates");
-const TEMPLATE_FILES = {
-	VARIABLES: path.resolve(TEMPLATE_PATH, "variables.ejs"),
-	CONSTANTS: path.resolve(TEMPLATE_PATH, "constants.ejs"),
-	TYPES: path.resolve(TEMPLATE_PATH, "types.ejs"),
-	POSTCSS_VARIABLES: path.resolve(TEMPLATE_PATH, "postcss-variables.ejs"),
-};
-const OUTPUT_PATHS = {
-	VARIABLES: path.resolve(__dirname, "../../src/tokens"),
-	CONSTANTS: path.resolve(__dirname, "../../src/constants"),
-	TYPES: path.resolve(__dirname, "../../src/types"),
-	POSTCSS_VARIABLES: path.resolve(__dirname, "../../src/styles"),
-};
+async function generateToken() {
+	const TOKEN_DIR_PATH = path.resolve(__dirname, "../../design-token/tokens");
+	const THEME_OUTPUT_PATH = path.resolve(
+		__dirname,
+		"../../src/styles/theme.css",
+	);
+	const CSS_THEME_TEMPLATE = path.resolve(
+		__dirname,
+		"../../design-token/templates/css-theme.ejs",
+	);
+	const { found: tokenFilePaths } = new GlobSync(
+		TOKEN_DIR_PATH + `/**/*.token.json`,
+	);
+	const tokens = await Promise.all(
+		tokenFilePaths.map((path) => readFile(path, { encoding: "utf-8" })),
+	);
 
-const generate = async () => {
-	const GENERATED_DESIGN_TOKEN_MAP = {
-		GLOBAL: mapper(generateDesignToken(globalToken, [globalToken])),
-		LIGHT_THEME: mapper(
-			generateDesignToken(lightThemeToken, [lightThemeToken, globalToken]),
+	const themes: string[] = [];
+
+	for (const stringifiedToken of tokens) {
+		const { name, token } = JSON.parse(stringifiedToken);
+		const content = await ejs.renderFile(CSS_THEME_TEMPLATE, {
+			name,
+			variables: Object.entries(
+				mapper(generateDesignToken(token, [globalToken, token])),
+			),
+		});
+
+		themes.push(content);
+	}
+
+	const formattedTheme = await prettier.format(themes.join("\n"), {
+		parser: "css",
+	});
+
+	await writeFile(THEME_OUTPUT_PATH, formattedTheme, "utf-8");
+}
+
+async function generateGlobalThemeVariables() {
+	const GLOBAL_THEME_VARIABLES_TEMPLATE_PATH = path.resolve(
+		__dirname,
+		"../../design-token/templates/global-theme-postcss-var.ejs",
+	);
+	const GLOBAL_THEME_VARIABLES_OUTPUT_PATH = path.resolve(
+		__dirname,
+		"../../src/styles/global-theme-var.css",
+	);
+	const contents = await ejs.renderFile(GLOBAL_THEME_VARIABLES_TEMPLATE_PATH, {
+		variables: Object.entries(
+			mapper(generateDesignToken(globalToken, [globalToken])),
 		),
-	};
+	});
+	const formattedTheme = await prettier.format(contents, {
+		parser: "css",
+	});
+	await writeFile(GLOBAL_THEME_VARIABLES_OUTPUT_PATH, formattedTheme, "utf-8");
+}
 
-	await creator({
-		token: GENERATED_DESIGN_TOKEN_MAP.GLOBAL,
-		fileName: "global.css",
-		outputPath: OUTPUT_PATHS.VARIABLES,
-		templatePath: TEMPLATE_FILES.VARIABLES,
+async function generateThemeVariablesInterface() {
+	const CREATE_THEME_TEMPLATE_PATH = path.resolve(
+		__dirname,
+		"../../design-token/templates/create-theme.ejs",
+	);
+	const THEME_INTERFACE_TEMPLATE_PATH = path.resolve(
+		__dirname,
+		"../../design-token/templates/theme-interface.ejs",
+	);
+	const THEME_INTERFACE_OUTPUT_PATH = path.resolve(
+		__dirname,
+		"../../src/types/css-variables.ts",
+	);
+
+	const emptyTheme = JSON.parse(
+		await ejs.renderFile(CREATE_THEME_TEMPLATE_PATH),
+	);
+	const emptyContent = await ejs.renderFile(THEME_INTERFACE_TEMPLATE_PATH, {
+		variables: Object.entries(
+			mapper(
+				generateDesignToken(emptyTheme.token, [globalToken, emptyTheme.token]),
+			),
+		),
 	});
-	await creator({
-		token: GENERATED_DESIGN_TOKEN_MAP.GLOBAL,
-		fileName: "variables.css",
-		outputPath: OUTPUT_PATHS.POSTCSS_VARIABLES,
-		templatePath: TEMPLATE_FILES.POSTCSS_VARIABLES,
+
+	const formattedTheme = await prettier.format(emptyContent, {
+		parser: "typescript",
 	});
-	await creator({
-		token: GENERATED_DESIGN_TOKEN_MAP.LIGHT_THEME,
-		fileName: "light-theme.css",
-		outputPath: OUTPUT_PATHS.VARIABLES,
-		templatePath: TEMPLATE_FILES.VARIABLES,
-	});
-	await creator({
-		token: GENERATED_DESIGN_TOKEN_MAP.LIGHT_THEME,
-		fileName: "css-variables.ts",
-		outputPath: OUTPUT_PATHS.TYPES,
-		templatePath: TEMPLATE_FILES.TYPES,
-	});
-};
+	await writeFile(THEME_INTERFACE_OUTPUT_PATH, formattedTheme, "utf-8");
+}
+
+async function generate() {
+	await generateToken();
+	await generateGlobalThemeVariables();
+	await generateThemeVariablesInterface();
+}
 
 generate();
