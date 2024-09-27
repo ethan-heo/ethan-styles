@@ -1,1 +1,1 @@
-export { default as LIGHT_THEME } from "./light-theme.constants";
+export { default as THEME } from "./theme.constants";

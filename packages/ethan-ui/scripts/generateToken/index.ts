@@ -26,7 +26,12 @@ const PATH = {
 		__dirname,
 		"../../design-token/templates/theme-interface.ejs",
 	),
+	THEME_CONSTANTS_TEMPLATE: path.resolve(
+		__dirname,
+		"../../design-token/templates/theme-constants.ejs",
+	),
 	THEME_OUTPUT: path.resolve(__dirname, "../../src/styles/theme.css"),
+
 	GLOBAL_THEME_VARIABLES_OUTPUT: path.resolve(
 		__dirname,
 		"../../src/styles/global-theme-var.css",
@@ -34,6 +39,10 @@ const PATH = {
 	THEME_INTERFACE_OUTPUT: path.resolve(
 		__dirname,
 		"../../src/types/css-variables.ts",
+	),
+	THEME_CONSTANTS_OUTPUT: path.resolve(
+		__dirname,
+		"../../src/constants/theme.constants.ts",
 	),
 };
 
@@ -87,6 +96,19 @@ async function generateThemeVariablesInterface(anyThemeToken: Token) {
 	await writeFile(PATH.THEME_INTERFACE_OUTPUT, formattedTheme, "utf-8");
 }
 
+async function generateThemeConstants(anyThemeToken: Token) {
+	const constantsContent = await ejs.renderFile(PATH.THEME_CONSTANTS_TEMPLATE, {
+		variables: Object.entries(
+			mapper(generateDesignToken(anyThemeToken, [globalToken, anyThemeToken])),
+		),
+	});
+
+	const formattedTheme = await prettier.format(constantsContent, {
+		parser: "typescript",
+	});
+	await writeFile(PATH.THEME_CONSTANTS_OUTPUT, formattedTheme, "utf-8");
+}
+
 async function generate() {
 	const themes = await getThemes();
 
@@ -94,6 +116,7 @@ async function generate() {
 
 	await generateToken(themes);
 	await generateThemeVariablesInterface(themes[0].token);
+	await generateThemeConstants(themes[0].token);
 	await generateGlobalThemeVariables();
 }
 

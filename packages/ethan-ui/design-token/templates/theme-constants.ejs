@@ -1,0 +1,5 @@
+const THEME = {
+<% for (const [name] of variables) { %><%= name.replace(/\-/g, '_').toUpperCase() %> : "var(--<%- name %>)",<% } %>   
+} as const;
+
+export default THEME
