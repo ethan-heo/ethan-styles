@@ -16,8 +16,7 @@
 	],
 	"exports": {
 		".": "./dist/index.js",
-		"./styles/components.css": "./dist/tokens/components.css",
-		"./styles/light-theme.css": "./dist/tokens/light-theme.css"
+		"./styles.css": "./dist/styles.css"
 	},
 	"scripts": {
 		"gen:token": "ts-node --project tsconfig.node.json scripts/generateToken",
@@ -49,7 +48,6 @@
 		"postcss-simple-vars": "^7.0.1",
 		"prettier": "^3.2.5",
 		"rollup": "^4.12.1",
-		"rollup-plugin-copy-assets": "^2.0.3",
 		"rollup-plugin-dts": "^6.1.1",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-postcss": "^4.0.2",
