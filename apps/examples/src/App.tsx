@@ -3,14 +3,15 @@ import {
 	Button,
 	Flex,
 	Form,
-	GridLine,
 	Input,
 	Paragraph,
 	Title,
 	useFormState,
+	useThemeSwitcher,
 } from "@ethanheo/ui";
 
 function App() {
+	useThemeSwitcher("dark");
 	const { form, onSubmit } = useFormState({
 		form: {
 			name: {
@@ -36,12 +37,11 @@ function App() {
 			form.name.reset();
 		},
 	});
-
 	console.log(form.name.error);
 
 	return (
 		<main className="container">
-			<GridLine />
+			{/* <GridLine /> */}
 			<Title level={1}>Ethan-ui examples</Title>
 			<Flex
 				as="article"

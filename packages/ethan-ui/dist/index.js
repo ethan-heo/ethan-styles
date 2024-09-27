@@ -9,6 +9,17 @@ function __rest(s, e) {
   }
   return t;
 }
+function __classPrivateFieldGet(receiver, state, kind, f) {
+  if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+  return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+  if (kind === "m") throw new TypeError("Private method is not writable");
+  if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+  return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
+}
 typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
   var e = new Error(message);
   return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
@@ -267,6 +278,70 @@ const Link = (_a) => {
     return (jsx("a", Object.assign({ className: classNames }, props, { children: children })));
 };
 
+var _ThemeStorage_themeType, _ThemeStorage_STORAGE_THEME_KEY;
+class ThemeStorage {
+    constructor(themeType) {
+        _ThemeStorage_themeType.set(this, void 0);
+        _ThemeStorage_STORAGE_THEME_KEY.set(this, "theme");
+        __classPrivateFieldSet(this, _ThemeStorage_themeType, themeType !== null && themeType !== void 0 ? themeType : this.read(), "f");
+    }
+    getThemeType() {
+        return __classPrivateFieldGet(this, _ThemeStorage_themeType, "f");
+    }
+    setThemeType(themeType) {
+        this.write(themeType);
+    }
+    write(themeType) {
+        localStorage.setItem(__classPrivateFieldGet(this, _ThemeStorage_STORAGE_THEME_KEY, "f"), themeType);
+        __classPrivateFieldSet(this, _ThemeStorage_themeType, themeType, "f");
+    }
+    read() {
+        return this.readStorageTheme() || this.readSystemTheme();
+    }
+    readStorageTheme() {
+        return localStorage.getItem(__classPrivateFieldGet(this, _ThemeStorage_STORAGE_THEME_KEY, "f"));
+    }
+    readSystemTheme() {
+        if (window.matchMedia("(prefers-color-scheme: dark)")) {
+            return "dark";
+        }
+        else {
+            return "light";
+        }
+    }
+}
+_ThemeStorage_themeType = new WeakMap(), _ThemeStorage_STORAGE_THEME_KEY = new WeakMap();
+
+var _ThemeSwitcher_el, _ThemeSwitcher_storage;
+class ThemeSwitcher {
+    constructor(options) {
+        var _a;
+        _ThemeSwitcher_el.set(this, void 0);
+        _ThemeSwitcher_storage.set(this, void 0);
+        __classPrivateFieldSet(this, _ThemeSwitcher_storage, new ThemeStorage(options === null || options === void 0 ? void 0 : options.themeType), "f");
+        __classPrivateFieldSet(this, _ThemeSwitcher_el, (_a = options === null || options === void 0 ? void 0 : options.el) !== null && _a !== void 0 ? _a : document.body, "f");
+        __classPrivateFieldGet(this, _ThemeSwitcher_el, "f").classList.add(this.transformThemeType(__classPrivateFieldGet(this, _ThemeSwitcher_storage, "f").getThemeType()));
+    }
+    change(themeType) {
+        __classPrivateFieldGet(this, _ThemeSwitcher_el, "f").classList.remove(this.transformThemeType(__classPrivateFieldGet(this, _ThemeSwitcher_storage, "f").getThemeType()));
+        __classPrivateFieldGet(this, _ThemeSwitcher_el, "f").classList.add(this.transformThemeType(themeType));
+        __classPrivateFieldGet(this, _ThemeSwitcher_storage, "f").setThemeType(themeType);
+    }
+    transformThemeType(themeType) {
+        return `theme--${themeType}`;
+    }
+}
+_ThemeSwitcher_el = new WeakMap(), _ThemeSwitcher_storage = new WeakMap();
+
+function useThemeSwitcher(themeType = "light") {
+    const themeSwitcher = useRef(new ThemeSwitcher({ themeType })).current;
+    return {
+        change: (themeType) => {
+            themeSwitcher.change(themeType);
+        },
+    };
+}
+
 const withLayout = (WrappedComponent) => (_a) => {
     var { column, className } = _a, props = __rest(_a, ["column", "className"]);
     const columnClassName = Array.isArray(column) ? column.join(" ") : column;
@@ -508,130 +583,130 @@ const useFormState = (prop, initializedState = {}) => {
     return result;
 };
 
-const LIGHT_THEME = {
-    GRID_MOBILE_COLUMNS: "4",
-    GRID_MOBILE_GUTTER: "8px",
-    GRID_MOBILE_MARGIN: "14px",
-    GRID_TABLET_COLUMNS: "8",
-    GRID_TABLET_GUTTER: "12px",
-    GRID_TABLET_MARGIN: "22px",
-    GRID_DESKTOP_COLUMNS: "12",
-    GRID_DESKTOP_GUTTER: "16px",
-    GRID_DESKTOP_MARGIN: "auto",
-    RESPONSIVE_MOBILE: "768px",
-    RESPONSIVE_TABLET: "1024px",
-    RESPONSIVE_DESKTOP: "1280px",
-    FONT_SIZE_EXTRA_LARGE: "2rem",
-    FONT_SIZE_LARGE: "1.5rem",
-    FONT_SIZE_MEDIUM: "1rem",
-    FONT_SIZE_SMALL: "0.875rem",
-    FONT_SIZE_EXTRA_SMALL: "0.625rem",
-    FONT_WEIGHT_THIN: "100",
-    FONT_WEIGHT_EXTRA_LIGHT: "200",
-    FONT_WEIGHT_LIGHT: "300",
-    FONT_WEIGHT_NORMAL: "400",
-    FONT_WEIGHT_MEDIUM: "500",
-    FONT_WEIGHT_SEMI_BOLD: "600",
-    FONT_WEIGHT_BOLD: "700",
-    FONT_WEIGHT_EXTRA_BOLD: "800",
-    FONT_WEIGHT_BLACK: "900",
-    LINE_HEIGHT_EXTRA_LARGE: "2",
-    LINE_HEIGHT_LARGE: "1.5",
-    LINE_HEIGHT_MEDIUM: "1",
-    LINE_HEIGHT_SMALL: "0.875",
-    LINE_HEIGHT_EXTRA_SMALL: "0.625",
-    COLOR_PRIMARY_DEFAULT: "#6750A4",
-    COLOR_PRIMARY_ON_DEFAULT: "#FFFFFF",
-    COLOR_PRIMARY_CONTAINER: "#EADDFF",
-    COLOR_PRIMARY_ON_CONTAINER: "#21005D",
-    COLOR_SECONDARY_DEFAULT: "#625B71",
-    COLOR_SECONDARY_ON_DEFAULT: "#FFFFFF",
-    COLOR_SECONDARY_CONTAINER: "#E8DEF8",
-    COLOR_SECONDARY_ON_CONTAINER: "#1D192B",
-    COLOR_TERTIARY_DEFAULT: "#7D5260",
-    COLOR_TERTIARY_ON_DEFAULT: "#FFFFFF",
-    COLOR_TERTIARY_CONTAINER: "#FFD8E4",
-    COLOR_TERTIARY_ON_CONTAINER: "#31111D",
-    COLOR_ERROR_DEFAULT: "#B3261E",
-    COLOR_ERROR_ON_DEFAULT: "#FFFFFF",
-    COLOR_ERROR_CONTAINER: "#F9DEDC",
-    COLOR_ERROR_ON_CONTAINER: "#410E0B",
-    COLOR_BACKGROUND_DEFAULT: "#FFFFFF",
-    COLOR_BACKGROUND_ON_DEFAULT: "#1C1B1F",
-    COLOR_SURFACE_DEFAULT: "#FFFFFF",
-    COLOR_SURFACE_ON_DEFAULT: "#1C1B1F",
-    COLOR_SURFACE_VARIANT: "#E7E0EC",
-    COLOR_SURFACE_ON_VARIANT: "#49454F",
-    COLOR_OUTLINE_DEFAULT: "#79747E",
-    COLOR_SUCCESS_DEFAULT: "#388E3C",
-    COLOR_SUCCESS_ON_DEFAULT: "#FFFFFF",
-    COLOR_SUCCESS_CONTAINER: "#C8E6C9",
-    COLOR_SUCCESS_ON_CONTAINER: "#1B5E20",
-    COLOR_WARNING_DEFAULT: "#F57C00",
-    COLOR_WARNING_ON_DEFAULT: "#FFFFFF",
-    COLOR_WARNING_CONTAINER: "#FFE0B2",
-    COLOR_WARNING_ON_CONTAINER: "#E65100",
-    BORDER_HIDDEN_THIN: "1px hidden",
-    BORDER_HIDDEN_MEDIUM: "2px hidden",
-    BORDER_HIDDEN_BOLD: "3px hidden",
-    BORDER_HIDDEN_BLACK: "4px hidden",
-    BORDER_DOTTED_THIN: "1px dotted",
-    BORDER_DOTTED_MEDIUM: "2px dotted",
-    BORDER_DOTTED_BOLD: "3px dotted",
-    BORDER_DOTTED_BLACK: "4px dotted",
-    BORDER_DASHED_THIN: "1px dashed",
-    BORDER_DASHED_MEDIUM: "2px dashed",
-    BORDER_DASHED_BOLD: "3px dashed",
-    BORDER_DASHED_BLACK: "4px dashed",
-    BORDER_DOUBLE_THIN: "1px double",
-    BORDER_DOUBLE_MEDIUM: "2px double",
-    BORDER_DOUBLE_BOLD: "3px double",
-    BORDER_DOUBLE_BLACK: "4px double",
-    BORDER_GROOVE_THIN: "1px groove",
-    BORDER_GROOVE_MEDIUM: "2px groove",
-    BORDER_GROOVE_BOLD: "3px groove",
-    BORDER_GROOVE_BLACK: "4px groove",
-    BORDER_RIDGE_THIN: "1px ridge",
-    BORDER_RIDGE_MEDIUM: "2px ridge",
-    BORDER_RIDGE_BOLD: "3px ridge",
-    BORDER_RIDGE_BLACK: "4px ridge",
-    BORDER_INSET_THIN: "1px inset",
-    BORDER_INSET_MEDIUM: "2px inset",
-    BORDER_INSET_BOLD: "3px inset",
-    BORDER_INSET_BLACK: "4px inset",
-    BORDER_OUTSET_THIN: "1px outset",
-    BORDER_OUTSET_MEDIUM: "2px outset",
-    BORDER_OUTSET_BOLD: "3px outset",
-    BORDER_OUTSET_BLACK: "4px outset",
-    BORDER_SOLID_THIN: "1px solid",
-    BORDER_SOLID_MEDIUM: "2px solid",
-    BORDER_SOLID_BOLD: "3px solid",
-    BORDER_SOLID_BLACK: "4px solid",
-    BORDER_RADIUS_EXTRA_LARGE: "20px",
-    BORDER_RADIUS_LARGE: "16px",
-    BORDER_RADIUS_MEDIUM: "12px",
-    BORDER_RADIUS_SMALL: "8px",
-    BORDER_RADIUS_EXTRA_SMALL: "4px",
-    BORDER_RADIUS_FULL: "100%",
-    SPACING_EXTRA_LARGE: "24px",
-    SPACING_LARGE: "20px",
-    SPACING_MEDIUM: "16px",
-    SPACING_SMALL: "12px",
-    SPACING_EXTRA_SMALL: "8px",
-    SHADOW_TOP_LEFT_LARGE: "-12px -12px 20px 2px",
-    SHADOW_TOP_LEFT_MEDIUM: "-8px -8px 14px 2px",
-    SHADOW_TOP_LEFT_SMALL: "-2px -2px 10px 2px",
-    SHADOW_TOP_RIGHT_LARGE: "12px -12px 20px 2px",
-    SHADOW_TOP_RIGHT_MEDIUM: "8px -8px 14px 2px",
-    SHADOW_TOP_RIGHT_SMALL: "2px -2px 10px 2px",
-    SHADOW_BOTTOM_LEFT_LARGE: "-12px 12px 20px 2px",
-    SHADOW_BOTTOM_LEFT_MEDIUM: "-8px 8px 14px 2px",
-    SHADOW_BOTTOM_LEFT_SMALL: "-2px 2px 10px 2px",
-    SHADOW_BOTTOM_RIGHT_LARGE: "12px 12px 20px 2px",
-    SHADOW_BOTTOM_RIGHT_MEDIUM: "8px 8px 14px 2px",
-    SHADOW_BOTTOM_RIGHT_SMALL: "2px 2px 10px 2px",
-    FONT_FAMILY: "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;",
+const THEME = {
+    GRID_MOBILE_COLUMNS: "var(--grid-mobile-columns)",
+    GRID_MOBILE_GUTTER: "var(--grid-mobile-gutter)",
+    GRID_MOBILE_MARGIN: "var(--grid-mobile-margin)",
+    GRID_TABLET_COLUMNS: "var(--grid-tablet-columns)",
+    GRID_TABLET_GUTTER: "var(--grid-tablet-gutter)",
+    GRID_TABLET_MARGIN: "var(--grid-tablet-margin)",
+    GRID_DESKTOP_COLUMNS: "var(--grid-desktop-columns)",
+    GRID_DESKTOP_GUTTER: "var(--grid-desktop-gutter)",
+    GRID_DESKTOP_MARGIN: "var(--grid-desktop-margin)",
+    RESPONSIVE_MOBILE: "var(--responsive-mobile)",
+    RESPONSIVE_TABLET: "var(--responsive-tablet)",
+    RESPONSIVE_DESKTOP: "var(--responsive-desktop)",
+    FONT_SIZE_EXTRA_LARGE: "var(--font-size-extra-large)",
+    FONT_SIZE_LARGE: "var(--font-size-large)",
+    FONT_SIZE_MEDIUM: "var(--font-size-medium)",
+    FONT_SIZE_SMALL: "var(--font-size-small)",
+    FONT_SIZE_EXTRA_SMALL: "var(--font-size-extra-small)",
+    FONT_WEIGHT_THIN: "var(--font-weight-thin)",
+    FONT_WEIGHT_EXTRA_LIGHT: "var(--font-weight-extra-light)",
+    FONT_WEIGHT_LIGHT: "var(--font-weight-light)",
+    FONT_WEIGHT_NORMAL: "var(--font-weight-normal)",
+    FONT_WEIGHT_MEDIUM: "var(--font-weight-medium)",
+    FONT_WEIGHT_SEMI_BOLD: "var(--font-weight-semi-bold)",
+    FONT_WEIGHT_BOLD: "var(--font-weight-bold)",
+    FONT_WEIGHT_EXTRA_BOLD: "var(--font-weight-extra-bold)",
+    FONT_WEIGHT_BLACK: "var(--font-weight-black)",
+    LINE_HEIGHT_EXTRA_LARGE: "var(--line-height-extra-large)",
+    LINE_HEIGHT_LARGE: "var(--line-height-large)",
+    LINE_HEIGHT_MEDIUM: "var(--line-height-medium)",
+    LINE_HEIGHT_SMALL: "var(--line-height-small)",
+    LINE_HEIGHT_EXTRA_SMALL: "var(--line-height-extra-small)",
+    COLOR_PRIMARY_DEFAULT: "var(--color-primary-default)",
+    COLOR_PRIMARY_ON_DEFAULT: "var(--color-primary-on-default)",
+    COLOR_PRIMARY_CONTAINER: "var(--color-primary-container)",
+    COLOR_PRIMARY_ON_CONTAINER: "var(--color-primary-on-container)",
+    COLOR_SECONDARY_DEFAULT: "var(--color-secondary-default)",
+    COLOR_SECONDARY_ON_DEFAULT: "var(--color-secondary-on-default)",
+    COLOR_SECONDARY_CONTAINER: "var(--color-secondary-container)",
+    COLOR_SECONDARY_ON_CONTAINER: "var(--color-secondary-on-container)",
+    COLOR_TERTIARY_DEFAULT: "var(--color-tertiary-default)",
+    COLOR_TERTIARY_ON_DEFAULT: "var(--color-tertiary-on-default)",
+    COLOR_TERTIARY_CONTAINER: "var(--color-tertiary-container)",
+    COLOR_TERTIARY_ON_CONTAINER: "var(--color-tertiary-on-container)",
+    COLOR_ERROR_DEFAULT: "var(--color-error-default)",
+    COLOR_ERROR_ON_DEFAULT: "var(--color-error-on-default)",
+    COLOR_ERROR_CONTAINER: "var(--color-error-container)",
+    COLOR_ERROR_ON_CONTAINER: "var(--color-error-on-container)",
+    COLOR_BACKGROUND_DEFAULT: "var(--color-background-default)",
+    COLOR_BACKGROUND_ON_DEFAULT: "var(--color-background-on-default)",
+    COLOR_SURFACE_DEFAULT: "var(--color-surface-default)",
+    COLOR_SURFACE_ON_DEFAULT: "var(--color-surface-on-default)",
+    COLOR_SURFACE_VARIANT: "var(--color-surface-variant)",
+    COLOR_SURFACE_ON_VARIANT: "var(--color-surface-on-variant)",
+    COLOR_OUTLINE_DEFAULT: "var(--color-outline-default)",
+    COLOR_SUCCESS_DEFAULT: "var(--color-success-default)",
+    COLOR_SUCCESS_ON_DEFAULT: "var(--color-success-on-default)",
+    COLOR_SUCCESS_CONTAINER: "var(--color-success-container)",
+    COLOR_SUCCESS_ON_CONTAINER: "var(--color-success-on-container)",
+    COLOR_WARNING_DEFAULT: "var(--color-warning-default)",
+    COLOR_WARNING_ON_DEFAULT: "var(--color-warning-on-default)",
+    COLOR_WARNING_CONTAINER: "var(--color-warning-container)",
+    COLOR_WARNING_ON_CONTAINER: "var(--color-warning-on-container)",
+    BORDER_HIDDEN_THIN: "var(--border-hidden-thin)",
+    BORDER_HIDDEN_MEDIUM: "var(--border-hidden-medium)",
+    BORDER_HIDDEN_BOLD: "var(--border-hidden-bold)",
+    BORDER_HIDDEN_BLACK: "var(--border-hidden-black)",
+    BORDER_DOTTED_THIN: "var(--border-dotted-thin)",
+    BORDER_DOTTED_MEDIUM: "var(--border-dotted-medium)",
+    BORDER_DOTTED_BOLD: "var(--border-dotted-bold)",
+    BORDER_DOTTED_BLACK: "var(--border-dotted-black)",
+    BORDER_DASHED_THIN: "var(--border-dashed-thin)",
+    BORDER_DASHED_MEDIUM: "var(--border-dashed-medium)",
+    BORDER_DASHED_BOLD: "var(--border-dashed-bold)",
+    BORDER_DASHED_BLACK: "var(--border-dashed-black)",
+    BORDER_DOUBLE_THIN: "var(--border-double-thin)",
+    BORDER_DOUBLE_MEDIUM: "var(--border-double-medium)",
+    BORDER_DOUBLE_BOLD: "var(--border-double-bold)",
+    BORDER_DOUBLE_BLACK: "var(--border-double-black)",
+    BORDER_GROOVE_THIN: "var(--border-groove-thin)",
+    BORDER_GROOVE_MEDIUM: "var(--border-groove-medium)",
+    BORDER_GROOVE_BOLD: "var(--border-groove-bold)",
+    BORDER_GROOVE_BLACK: "var(--border-groove-black)",
+    BORDER_RIDGE_THIN: "var(--border-ridge-thin)",
+    BORDER_RIDGE_MEDIUM: "var(--border-ridge-medium)",
+    BORDER_RIDGE_BOLD: "var(--border-ridge-bold)",
+    BORDER_RIDGE_BLACK: "var(--border-ridge-black)",
+    BORDER_INSET_THIN: "var(--border-inset-thin)",
+    BORDER_INSET_MEDIUM: "var(--border-inset-medium)",
+    BORDER_INSET_BOLD: "var(--border-inset-bold)",
+    BORDER_INSET_BLACK: "var(--border-inset-black)",
+    BORDER_OUTSET_THIN: "var(--border-outset-thin)",
+    BORDER_OUTSET_MEDIUM: "var(--border-outset-medium)",
+    BORDER_OUTSET_BOLD: "var(--border-outset-bold)",
+    BORDER_OUTSET_BLACK: "var(--border-outset-black)",
+    BORDER_SOLID_THIN: "var(--border-solid-thin)",
+    BORDER_SOLID_MEDIUM: "var(--border-solid-medium)",
+    BORDER_SOLID_BOLD: "var(--border-solid-bold)",
+    BORDER_SOLID_BLACK: "var(--border-solid-black)",
+    BORDER_RADIUS_EXTRA_LARGE: "var(--border-radius-extra-large)",
+    BORDER_RADIUS_LARGE: "var(--border-radius-large)",
+    BORDER_RADIUS_MEDIUM: "var(--border-radius-medium)",
+    BORDER_RADIUS_SMALL: "var(--border-radius-small)",
+    BORDER_RADIUS_EXTRA_SMALL: "var(--border-radius-extra-small)",
+    BORDER_RADIUS_FULL: "var(--border-radius-full)",
+    SPACING_EXTRA_LARGE: "var(--spacing-extra-large)",
+    SPACING_LARGE: "var(--spacing-large)",
+    SPACING_MEDIUM: "var(--spacing-medium)",
+    SPACING_SMALL: "var(--spacing-small)",
+    SPACING_EXTRA_SMALL: "var(--spacing-extra-small)",
+    SHADOW_TOP_LEFT_LARGE: "var(--shadow-top-left-large)",
+    SHADOW_TOP_LEFT_MEDIUM: "var(--shadow-top-left-medium)",
+    SHADOW_TOP_LEFT_SMALL: "var(--shadow-top-left-small)",
+    SHADOW_TOP_RIGHT_LARGE: "var(--shadow-top-right-large)",
+    SHADOW_TOP_RIGHT_MEDIUM: "var(--shadow-top-right-medium)",
+    SHADOW_TOP_RIGHT_SMALL: "var(--shadow-top-right-small)",
+    SHADOW_BOTTOM_LEFT_LARGE: "var(--shadow-bottom-left-large)",
+    SHADOW_BOTTOM_LEFT_MEDIUM: "var(--shadow-bottom-left-medium)",
+    SHADOW_BOTTOM_LEFT_SMALL: "var(--shadow-bottom-left-small)",
+    SHADOW_BOTTOM_RIGHT_LARGE: "var(--shadow-bottom-right-large)",
+    SHADOW_BOTTOM_RIGHT_MEDIUM: "var(--shadow-bottom-right-medium)",
+    SHADOW_BOTTOM_RIGHT_SMALL: "var(--shadow-bottom-right-small)",
+    FONT_FAMILY: "var(--font-family)",
 };
 
-export { Button, Flex$1 as Flex, Form, GridLine, Input, LIGHT_THEME, Label, Link, Paragraph, Text, Title, useFormState, useMediaQuery };
+export { Button, Flex$1 as Flex, Form, GridLine, Input, Label, Link, Paragraph, THEME, Text, Title, useFormState, useMediaQuery, useThemeSwitcher };
 //# sourceMappingURL=index.js.map
