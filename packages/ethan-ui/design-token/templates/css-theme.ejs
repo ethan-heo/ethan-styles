@@ -1,5 +1,3 @@
 .theme--<%= name %> {
-    :root {
-        <% for (const [name, token] of variables) { %>--<%= name %>: <%- token.$value %>;<% } %>   
-    }
+    <% for (const [name, token] of variables) { %>--<%= name %>: <%- token.$value %>;<% } %>   
 }
