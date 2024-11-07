@@ -1,9 +1,0 @@
-<%
-    for (const [name, props] of classes) {
-        .<%= name %> {
-            for (const [propName, propValue] of Object.entries(props)) {
-                <%= propName %>: <%- propValue %>
-            }
-        }
-    }
-%>

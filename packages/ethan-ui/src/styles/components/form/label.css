@@ -1,7 +1,0 @@
-.form__label {
-	display: block;
-}
-
-.form__label.form--invalid {
-	color: var(--color-error-default);
-}
