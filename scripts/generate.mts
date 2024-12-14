@@ -5,77 +5,58 @@ import {
     TokenGroup,
     generateFile,
     generateDesignToken,
-    GenerateContentsOptions,
+    GenerateFileOptions,
 } from 'generate-design-token';
 
 type Options = {
-    templatePath: string;
-    outputPath: string;
-    tokenPath: string | string[];
-    extname: string;
+    input: {
+        token: string;
+        template: string;
+    };
+    output: {
+        filename: string;
+        path: string;
+        extname: string;
+    };
     baseToken?: string | string[];
-} & Omit<GenerateContentsOptions, 'template' | 'extname'>;
-
-type TokenInfo = {
-    theme: string;
-    token: TokenGroup;
-};
+} & Omit<
+    GenerateFileOptions,
+    'filename' | 'outputPath' | 'template' | 'extname'
+>;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const generate = async (options: Options) => {
-    const {
-        templatePath,
-        outputPath,
-        tokenPath,
-        extname,
-        baseToken,
-        ...generateOptions
-    } = options;
-    const tokenPaths = Array.isArray(tokenPath) ? tokenPath : [tokenPath];
+const _gen = async (options: Options) => {
+    const { input, output, baseToken = [], ...generateOptions } = options;
 
-    // 1. read files
-    const tokenContents = await Promise.all(tokenPaths.map(readFile));
+    // 1. read token
+    const tokenContent = await readFile(input.token);
 
-    // 2. set base token
-    const baseTokens: TokenGroup[] = [];
-
-    if (typeof baseToken === 'string') {
-        baseTokens.push(toToken<TokenGroup>(await readFile(baseToken)));
-    } else {
-        if (Array.isArray(baseToken)) {
-            const readBaseTokens = await Promise.all(baseToken.map(readFile));
-
-            baseTokens.push(...readBaseTokens.map(toToken<TokenGroup>));
-        }
-    }
+    // 2. read base token all
+    const baseTokens: TokenGroup[] = await getBaseTokens(baseToken);
 
     // 2. extract token info and base
-    const tokens = tokenContents.reduce((acc, content) => {
-        const token = toToken<TokenGroup>(content);
-
-        if (typeof token.$theme !== 'string') {
-            throw new Error(`Invalid token theme: ${token.$theme}`);
-        }
-
-        acc.push({
-            theme: token.$theme,
-            token: generateDesignToken(token, baseTokens),
-        });
-
-        return acc;
-    }, [] as TokenInfo[]);
+    const token = generateDesignToken(
+        toToken<TokenGroup>(tokenContent),
+        baseTokens
+    );
 
     // 3. create file
-
-    tokens.forEach(({ theme, token }) => {
-        generateFile(token, {
-            filename: `${theme}.${extname}`,
-            outputPath: resolve(__dirname, outputPath),
-            template: { path: resolve(__dirname, templatePath) },
-            ...generateOptions,
-        });
+    generateFile(token, {
+        filename: output.filename,
+        outputPath: resolve(__dirname, output.path),
+        template: { path: resolve(__dirname, input.template) },
+        extname: output.extname,
+        ...generateOptions,
     });
+};
+
+const generate = (options: Options | Options[]) => {
+    if (Array.isArray(options)) {
+        options.forEach(_gen);
+    } else {
+        _gen(options);
+    }
 };
 
 export default generate;
@@ -85,4 +66,22 @@ async function readFile(path: string) {
 }
 function toToken<T>(file: string) {
     return JSON.parse(file) as T;
+}
+
+async function getBaseTokens(baseTokenPath: string | string[]) {
+    const result: TokenGroup[] = [];
+
+    if (typeof baseTokenPath === 'string') {
+        result.push(toToken<TokenGroup>(await readFile(baseTokenPath)));
+    } else {
+        if (Array.isArray(baseTokenPath)) {
+            const readBaseTokens = await Promise.all(
+                baseTokenPath.map(readFile)
+            );
+
+            result.push(...readBaseTokens.map(toToken<TokenGroup>));
+        }
+    }
+
+    return result;
 }
