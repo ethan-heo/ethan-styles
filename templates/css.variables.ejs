@@ -1,2 +1,6 @@
 [data-theme="<%= topLevelMeta.$theme %>"] {
+    <% tokens.forEach((token) => { %>
+        <% if (!isTokenObj(token.value)) return %>
+        <%= getCSSVariable(token) %>
+    <% }) %>
 }
