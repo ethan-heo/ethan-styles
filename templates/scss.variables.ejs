@@ -1,0 +1,18 @@
+$<%= topLevelMeta.$theme %>-theme: (
+    <% const lastTokenIdx = tokens.length - 1 %>
+    <% tokens.forEach((token, idx) => { %>
+        <% if (!isTokenObj(token.value)) return %>
+        <% const variable = getCSSVariable(token, '-') %>
+        <% if (Array.isArray(variable.value)) { %>
+            <% variable.value.forEach(([key, value]) => { %>
+                <%= variable.key %>-<%= key %>: <%= value %>,
+            <% }) %>
+        <% } else { %>
+            <% if (idx !== lastTokenIdx) { %>
+                <%= variable.key %>: <%= variable.value %>,
+            <% } else { %>
+                <%= variable.key %>: <%= variable.value %>
+            <% } %>
+        <% } %>
+    <% }) %>
+)
