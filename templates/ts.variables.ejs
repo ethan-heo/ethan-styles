@@ -1,0 +1,16 @@
+const <%= topLevelMeta.$theme.toUpperCase() %>_THEME = {
+    <% tokens.forEach((token) => { %>
+        <% if (!isTokenObj(token.value)) return %>
+        <% const variable = getCSSVariable(token) %>
+        <% if (Array.isArray(variable.value)) { %>
+            <% variable.value.forEach(([key, value]) => { %>
+                <% const prop = `${variable.key}_${key}`.toUpperCase() %>; %>
+                <%= kebabToSnake(prop) %>: '<%= value %>',
+            <% }) %>
+        <% } else { %>
+            <%= kebabToSnake(variable.key.toUpperCase()) %>: '<%= variable.value %>',
+        <% } %>
+    <% }) %>
+}
+
+export default <%= topLevelMeta.$theme.toUpperCase() %>_THEME

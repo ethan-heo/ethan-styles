@@ -1,13 +1,13 @@
 import { EJSTemplateTokenData, TokenObj } from 'generate-design-token';
 import normalizeTokenValue from './normalizeTokenValue.mjs';
 
-const getCSSVariable = (tokenData: EJSTemplateTokenData, separator = '-') => {
+const getCSSVariable = (tokenData: EJSTemplateTokenData, separator: string) => {
     const normalizedValue = normalizeTokenValue(tokenData.value as TokenObj);
     const result: {
         key: string;
         value: string | number | [string, string | number][];
     } = {
-        key: tokenData.props.join(separator),
+        key: tokenData.props.join(separator ?? '-'),
         value: '',
     };
 
