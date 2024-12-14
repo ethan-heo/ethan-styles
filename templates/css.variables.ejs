@@ -1,6 +1,13 @@
 [data-theme="<%= topLevelMeta.$theme %>"] {
     <% tokens.forEach((token) => { %>
         <% if (!isTokenObj(token.value)) return %>
-        <%= getCSSVariable(token) %>
+        <% const variable = getCSSVariable(token, '-') %>
+        <% if (Array.isArray(variable.value)) { %>
+            <% variable.value.forEach(([key, value]) => { %>
+                --<%= variable.key %>-<%= key %>: <%= value %>;
+            <% }) %>
+        <% } else { %>
+            --<%= variable.key %>: <%= variable.value %>;
+        <% } %>
     <% }) %>
 }
