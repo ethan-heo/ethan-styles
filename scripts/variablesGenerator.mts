@@ -1,4 +1,5 @@
 import generate from './generate.mjs';
+import getCSSVariable from './helpers/getCSSVariable.mjs';
 
 const OUTPUT_PATH = '../files';
 
@@ -8,4 +9,7 @@ generate({
     outputPath: OUTPUT_PATH,
     extname: 'css',
     baseToken: '../tokens/base.tokens.json',
+    ejsHelper: {
+        getCSSVariable,
+    },
 });

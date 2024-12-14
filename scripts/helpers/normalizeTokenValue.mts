@@ -8,21 +8,37 @@ import {
     FontFamily,
     FontWeight,
     Gradient,
+    isBorderToken,
+    isColorToken,
+    isCompositeToken,
+    isCubicBezierToken,
+    isDimensionToken,
+    isDurationToken,
+    isFontFamilyToken,
+    isFontWeightToken,
+    isGradientToken,
+    isNumberToken,
+    isShadowToken,
+    isStringToken,
+    isStrokeStyleToken,
+    isTransitionToken,
+    isTypographyToken,
     Number,
     Shadow,
     String,
     StrokeStyle,
+    TokenObj,
     Transition,
     Typography,
 } from 'generate-design-token';
 
 type NormalizedToken = string | number | Record<string, any>;
 
-export const normalizeColor = (token: Color): NormalizedToken => {
+const normalizeColor = (token: Color): NormalizedToken => {
     return token.$value;
 };
 
-export const normalizeDimension = (token: Dimension): NormalizedToken => {
+const normalizeDimension = (token: Dimension): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -32,9 +48,7 @@ export const normalizeDimension = (token: Dimension): NormalizedToken => {
     return `${value}${unit}`;
 };
 
-export const normalizeFontFamily = (token: FontFamily): NormalizedToken => {
-    const name = 'fontFamily';
-
+const normalizeFontFamily = (token: FontFamily): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -42,11 +56,11 @@ export const normalizeFontFamily = (token: FontFamily): NormalizedToken => {
     return token.$value.join(', ');
 };
 
-export const normalizeFontWeight = (token: FontWeight): NormalizedToken => {
+const normalizeFontWeight = (token: FontWeight): NormalizedToken => {
     return token.$value;
 };
 
-export const normalizeDuration = (token: Duration): NormalizedToken => {
+const normalizeDuration = (token: Duration): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -56,9 +70,7 @@ export const normalizeDuration = (token: Duration): NormalizedToken => {
     return `${value}${unit}`;
 };
 
-export const normalizeCubicBezier = (token: CubicBezier): NormalizedToken => {
-    const name = 'cubicBezier';
-
+const normalizeCubicBezier = (token: CubicBezier): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -66,15 +78,15 @@ export const normalizeCubicBezier = (token: CubicBezier): NormalizedToken => {
     return `cubic-bezier(${token.$value.join(', ')})`;
 };
 
-export const normalizeString = (token: String): NormalizedToken => {
+const normalizeString = (token: String): NormalizedToken => {
     return token.$value;
 };
 
-export const normalizeNumber = (token: Number): NormalizedToken => {
+const normalizeNumber = (token: Number): NormalizedToken => {
     return token.$value;
 };
 
-export const normalizeComposite = (token: Composite): NormalizedToken => {
+const normalizeComposite = (token: Composite): NormalizedToken => {
     // composite을 사용하는 케이스가 뭘까?
     // normalize의 목적은 스타일 속성으로 변환하는 것이 목표인데 composite은 용도의 범위에 벗어나 보인다.
     // 일단 값을 반환하게 만들어서 사용자가 핸들링 하도록 만든다.
@@ -82,7 +94,7 @@ export const normalizeComposite = (token: Composite): NormalizedToken => {
     return token.$value;
 };
 
-export const normalizeStrokeStyle = (token: StrokeStyle): NormalizedToken => {
+const normalizeStrokeStyle = (token: StrokeStyle): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -101,28 +113,24 @@ export const normalizeStrokeStyle = (token: StrokeStyle): NormalizedToken => {
     };
 };
 
-export const normalizeBorder = (token: Border): NormalizedToken => {
+const normalizeBorder = (token: Border): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
 
-    const result = {
-        'border-width': '',
-        'border-style': token.$value.style,
-        'border-color': token.$value.color,
-    };
+    const { style, color } = token.$value;
+    let width = '';
 
     if (typeof token.$value.width === 'string') {
-        result['border-width'] = token.$value.width;
+        width = token.$value.width;
     } else {
-        result['border-width'] =
-            `${token.$value.width.value}${token.$value.width.unit}`;
+        width = `${token.$value.width.value}${token.$value.width.unit}`;
     }
 
-    return result;
+    return `${width} ${style} ${color}`;
 };
 
-export const normalizeTransition = (token: Transition): NormalizedToken => {
+const normalizeTransition = (token: Transition): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -157,7 +165,7 @@ export const normalizeTransition = (token: Transition): NormalizedToken => {
     return result;
 };
 
-export const normalizeShadow = (token: Shadow): NormalizedToken => {
+const normalizeShadow = (token: Shadow): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -195,7 +203,7 @@ export const normalizeShadow = (token: Shadow): NormalizedToken => {
     return `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
 };
 
-export const normalizeGradient = (token: Gradient): NormalizedToken => {
+const normalizeGradient = (token: Gradient): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -204,7 +212,7 @@ export const normalizeGradient = (token: Gradient): NormalizedToken => {
     return '';
 };
 
-export const normalizeTypography = (token: Typography): NormalizedToken => {
+const normalizeTypography = (token: Typography): NormalizedToken => {
     if (typeof token.$value === 'string') {
         return token.$value;
     }
@@ -239,3 +247,42 @@ export const normalizeTypography = (token: Typography): NormalizedToken => {
 
     return result;
 };
+
+const normalizeTokenValue = (token: TokenObj) => {
+    switch (true) {
+        case isColorToken(token):
+            return normalizeColor(token);
+        case isDimensionToken(token):
+            return normalizeDimension(token);
+        case isFontFamilyToken(token):
+            return normalizeFontFamily(token);
+        case isFontWeightToken(token):
+            return normalizeFontWeight(token);
+        case isDurationToken(token):
+            return normalizeDuration(token);
+        case isCubicBezierToken(token):
+            return normalizeCubicBezier(token);
+        case isStringToken(token):
+            return normalizeString(token);
+        case isNumberToken(token):
+            return normalizeNumber(token);
+        case isCompositeToken(token):
+            return normalizeComposite(token);
+        case isStrokeStyleToken(token):
+            return normalizeStrokeStyle(token);
+        case isBorderToken(token):
+            return normalizeBorder(token);
+        case isTransitionToken(token):
+            return normalizeTransition(token);
+        case isShadowToken(token):
+            return normalizeShadow(token);
+        case isGradientToken(token):
+            return normalizeGradient(token);
+        case isTypographyToken(token):
+            return normalizeTypography(token);
+        default:
+            throw new Error(`지원하지 않는 타입: ${token}`);
+    }
+};
+
+export default normalizeTokenValue;
