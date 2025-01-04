@@ -1,7 +1,7 @@
 import generate from './generate.mjs';
 import getCSSVariable from './helpers/getCSSVariable.mjs';
 
-const OUTPUT_PATH = '../files';
+const OUTPUT_PATH = '../dist';
 const CSS_VARIABLES_TEMPLATE_PATH = '../templates/css.variables.ejs';
 const SCSS_VARIABLES_TEMPLATE_PATH = '../templates/scss.variables.ejs';
 const TS_VARIABLES_TEMPLATE_PATH = '../templates/ts.variables.ejs';
