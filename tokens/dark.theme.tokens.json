@@ -495,9 +495,5 @@
                 }
             }
         }
-    },
-    "font-family": {
-        "$type": "string",
-        "$value": "{font-family.default}"
     }
 }

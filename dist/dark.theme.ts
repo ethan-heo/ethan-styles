@@ -416,9 +416,6 @@ const DARK_THEME = {
   SHADOW_BOTTOM_RIGHT_MEDIUM: "8px 8px 14px 2px #121212",
 
   SHADOW_BOTTOM_RIGHT_SMALL: "2px 2px 10px 2px #121212",
-
-  FONT_FAMILY:
-    "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif",
 };
 
 export default DARK_THEME;

@@ -326,12 +326,6 @@
             }
         }
     },
-    "font-family": {
-        "default": {
-            "$type": "fontFamily",
-            "$value": "맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif"
-        }
-    },
     "spacing": {
         "1": {
             "$type": "dimension",
