@@ -1,7 +1,29 @@
 {
     "name": "@ethanheo/styles",
     "version": "0.1.0",
-    "main": "files",
+    "exports": {
+        "./dark.theme.css": {
+            "import": "./dist/dark.theme.css"
+        },
+        "./light.theme.css": {
+            "import": "./dist/light.theme.css"
+        },
+        "./dark.theme.scss": {
+            "import": "./dist/dark.theme.scss"
+        },
+        "./light.theme.scss": {
+            "import": "./dist/light.theme.scss"
+        },
+        "./dark.theme.ts": {
+            "import": "./dist/dark.theme.ts"
+        },
+        "./light.theme.ts": {
+            "import": "./dist/light.theme.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
     "description": "Ethan Heo's styles",
     "author": {
         "email": "ethanheo.dev@gmail.com",
