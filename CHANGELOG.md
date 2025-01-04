@@ -1,5 +1,11 @@
 # @ethanheo/styles
 
+## 0.1.1
+
+### Patch Changes
+
+- [`066342f`](https://github.com/ethan-heo/ethan-styles/commit/066342fdf9f3d33e841bf9a982b2960fc6368603) Thanks [@ethan-heo](https://github.com/ethan-heo)! - 내보내기 옵션을 추가한다
+
 ## 0.1.0
 
 ### Minor Changes
